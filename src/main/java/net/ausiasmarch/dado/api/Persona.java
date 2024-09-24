@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import net.ausiasmarch.dado.bean.PersonaBean;
@@ -49,27 +50,25 @@ public class Persona {
         return oPersonas.get(getIntRandomNumber(0, oPersonas.size() - 1));
     }
 
-    private ArrayList<PersonaBean> getPersonas() {
-        ArrayList<PersonaBean> oPersonas = new ArrayList<PersonaBean>();
-        PersonaBean oPersona = new PersonaBean();
-        oPersona.setNombre(getNombrePersona());
-        oPersona.setApellido1(getApellidoPersona());
-        oPersona.setApellido2(getApellidoPersona());
-        oPersona.setEmail(
-                oPersona.getNombre().toLowerCase() + oPersona.getApellido1().toLowerCase() + getIntRandomNumber(99, 999)
-                        + "@ausiasmarch.net");
-        oPersonas.add(oPersona);
-        oPersona.setNombre("Laura");
-        oPersona.setApellido1("Gomez");
-        oPersona.setApellido2("Rodriguez");
-        oPersona.setEmail("laura@ausias.es");
-        oPersonas.add(oPersona);
+    private ArrayList<PersonaBean> getPersonas(int numPersonas) {
+        ArrayList<PersonaBean> oPersonas = new ArrayList<PersonaBean>();        
+        for (int i = 0; i < numPersonas; i++) {
+            PersonaBean oPersona = new PersonaBean();
+            oPersona.setNombre(getNombrePersona());
+            oPersona.setApellido1(getApellidoPersona());
+            oPersona.setApellido2(getApellidoPersona());
+            oPersona.setEmail(
+                    oPersona.getNombre().toLowerCase() + oPersona.getApellido1().toLowerCase()
+                            + getIntRandomNumber(99, 999)
+                            + "@ausiasmarch.net");
+            oPersonas.add(oPersona);
+        }
         return oPersonas;
     }
 
-    @GetMapping("/genera")
-    public ResponseEntity<ArrayList<PersonaBean>> genera() {
-        return new ResponseEntity<ArrayList<PersonaBean>>(getPersonas(), HttpStatus.OK);
+    @GetMapping("/genera/{numPersonas}")
+    public ResponseEntity<ArrayList<PersonaBean>> genera(@PathVariable Integer numPersonas) {
+        return new ResponseEntity<ArrayList<PersonaBean>>(getPersonas(numPersonas), HttpStatus.OK);
     }
 
 }
