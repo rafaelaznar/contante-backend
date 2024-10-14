@@ -1,6 +1,8 @@
 package net.ausiasmarch.dado.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,6 +25,11 @@ public class Usuario {
 
     @Autowired
     UsuarioService oUsuarioService;
+
+    @GetMapping("")
+    public ResponseEntity<Page<UsuarioEntity>> getPage(Pageable oPageable) {
+        return new ResponseEntity<Page<UsuarioEntity>>(oUsuarioService.getPage(oPageable), HttpStatus.OK);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioEntity> getUsuario(@PathVariable Long id) {
@@ -47,6 +54,11 @@ public class Usuario {
     @PutMapping("/")
     public ResponseEntity<UsuarioEntity> update(@RequestBody UsuarioEntity oUsuarioEntity) {
         return new ResponseEntity<UsuarioEntity>(oUsuarioService.update(oUsuarioEntity), HttpStatus.OK);
+    }
+
+    @PostMapping("/random/{cantidad}")
+    public ResponseEntity<Long> create(@PathVariable Long cantidad) {
+        return new ResponseEntity<Long>(oUsuarioService.randomCreate(cantidad), HttpStatus.OK);
     }
 
 }
