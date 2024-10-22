@@ -41,7 +41,7 @@ public class Usuario {
         return new ResponseEntity<UsuarioEntity>(oUsuarioService.get(id), HttpStatus.OK);
     }
 
-    @GetMapping("")
+    @GetMapping("/count")
     public ResponseEntity<Long> count() {
         return new ResponseEntity<Long>(oUsuarioService.count(), HttpStatus.OK);
     }
