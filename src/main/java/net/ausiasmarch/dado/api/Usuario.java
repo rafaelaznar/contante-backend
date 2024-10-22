@@ -41,7 +41,7 @@ public class Usuario {
         return new ResponseEntity<UsuarioEntity>(oUsuarioService.get(id), HttpStatus.OK);
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<Long> count() {
         return new ResponseEntity<Long>(oUsuarioService.count(), HttpStatus.OK);
     }
@@ -51,12 +51,12 @@ public class Usuario {
         return new ResponseEntity<Long>(oUsuarioService.delete(id), HttpStatus.OK);
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<UsuarioEntity> create(@RequestBody UsuarioEntity oUsuarioEntity) {
         return new ResponseEntity<UsuarioEntity>(oUsuarioService.create(oUsuarioEntity), HttpStatus.OK);
     }
 
-    @PutMapping("/")
+    @PutMapping("")
     public ResponseEntity<UsuarioEntity> update(@RequestBody UsuarioEntity oUsuarioEntity) {
         return new ResponseEntity<UsuarioEntity>(oUsuarioService.update(oUsuarioEntity), HttpStatus.OK);
     }
