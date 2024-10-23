@@ -66,4 +66,9 @@ public class Usuario {
         return new ResponseEntity<Long>(oUsuarioService.randomCreate(cantidad), HttpStatus.OK);
     }
 
+    @DeleteMapping("/all")
+    public ResponseEntity<Long> deleteAll() {
+        return new ResponseEntity<Long>(oUsuarioService.deleteAll(), HttpStatus.OK);
+    }
+
 }

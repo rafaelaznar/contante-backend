@@ -17,11 +17,11 @@ public class UsuarioService {
     @Autowired
     UsuarioRepository oUsuarioRepository;
 
-    private String[] arrNombres = { "Pepe", "Laura", "Ignacio", "Maria", "Lorenzo", "Carmen", "Rosa", "Paco", "Luis",
-            "Ana", "Rafa", "Manolo", "Lucia", "Marta", "Sara", "Rocio" };
+    private String[] arrNombres = {"Pepe", "Laura", "Ignacio", "Maria", "Lorenzo", "Carmen", "Rosa", "Paco", "Luis",
+        "Ana", "Rafa", "Manolo", "Lucia", "Marta", "Sara", "Rocio"};
 
-    private String[] arrApellidos = { "Sancho", "Gomez", "Pérez", "Rodriguez", "Garcia", "Fernandez", "Lopez",
-            "Martinez", "Sanchez", "Gonzalez", "Gimenez", "Feliu", "Gonzalez", "Hermoso", "Vidal", "Escriche" };
+    private String[] arrApellidos = {"Sancho", "Gomez", "Pérez", "Rodriguez", "Garcia", "Fernandez", "Lopez",
+        "Martinez", "Sanchez", "Gonzalez", "Gimenez", "Feliu", "Gonzalez", "Hermoso", "Vidal", "Escriche"};
 
     public int getRandomInt(int min, int max) {
         return (int) (Math.random() * (max - min + 1) + min);
@@ -85,6 +85,11 @@ public class UsuarioService {
             oUsuarioEntityFromDatabase.setEmail(oUsuarioEntity.getEmail());
         }
         return oUsuarioRepository.save(oUsuarioEntityFromDatabase);
+    }
+
+    public Long deleteAll() {
+        oUsuarioRepository.deleteAll();
+        return this.count();
     }
 
 }
