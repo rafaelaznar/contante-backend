@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import net.ausiasmarch.contante.entity.UsuarioEntity;
+import net.ausiasmarch.contante.exception.ResourceNotFoundException;
 import net.ausiasmarch.contante.repository.UsuarioRepository;
 
 @Service
@@ -51,7 +52,9 @@ public class UsuarioService {
     }
 
     public UsuarioEntity get(Long id) {
-        return oUsuarioRepository.findById(id).get();
+        return oUsuarioRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
+        // return oUsuarioRepository.findById(id).get();
     }
 
     public Long count() {
