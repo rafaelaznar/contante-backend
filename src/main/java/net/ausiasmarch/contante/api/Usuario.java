@@ -1,4 +1,4 @@
-package net.ausiasmarch.dado.api;
+package net.ausiasmarch.contante.api;
 
 import java.util.Optional;
 
@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.ausiasmarch.dado.entity.UsuarioEntity;
-import net.ausiasmarch.dado.service.UsuarioService;
+import net.ausiasmarch.contante.entity.UsuarioEntity;
+import net.ausiasmarch.contante.service.UsuarioService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController

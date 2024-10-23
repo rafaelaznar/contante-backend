@@ -1,4 +1,4 @@
-package net.ausiasmarch.dado.entity;
+package net.ausiasmarch.contante.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

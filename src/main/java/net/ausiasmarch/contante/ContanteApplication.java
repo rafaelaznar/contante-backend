@@ -1,13 +1,13 @@
-package net.ausiasmarch.dado;
+package net.ausiasmarch.contante;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DadoApplication {
+public class ContanteApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DadoApplication.class, args);
+		SpringApplication.run(ContanteApplication.class, args);
 	}
 
 }

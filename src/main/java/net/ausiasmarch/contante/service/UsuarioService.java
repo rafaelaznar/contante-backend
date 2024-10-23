@@ -1,4 +1,4 @@
-package net.ausiasmarch.dado.service;
+package net.ausiasmarch.contante.service;
 
 import java.util.Optional;
 
@@ -7,8 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import net.ausiasmarch.dado.entity.UsuarioEntity;
-import net.ausiasmarch.dado.repository.UsuarioRepository;
+import net.ausiasmarch.contante.entity.UsuarioEntity;
+import net.ausiasmarch.contante.repository.UsuarioRepository;
 
 @Service
 public class UsuarioService {

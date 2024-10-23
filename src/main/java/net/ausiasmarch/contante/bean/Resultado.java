@@ -1,4 +1,4 @@
-package net.ausiasmarch.dado.bean;
+package net.ausiasmarch.contante.bean;
 
 public class Resultado {
     Integer resultado;

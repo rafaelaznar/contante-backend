@@ -1,10 +1,10 @@
-package net.ausiasmarch.dado.repository;
+package net.ausiasmarch.contante.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import net.ausiasmarch.dado.entity.UsuarioEntity;
+import net.ausiasmarch.contante.entity.UsuarioEntity;
 
 public interface UsuarioRepository extends JpaRepository<UsuarioEntity, Long> {
 

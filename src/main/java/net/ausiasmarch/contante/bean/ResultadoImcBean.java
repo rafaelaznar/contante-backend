@@ -1,4 +1,4 @@
-package net.ausiasmarch.dado.bean;
+package net.ausiasmarch.contante.bean;
 
 public class ResultadoImcBean {
     private Double imc;

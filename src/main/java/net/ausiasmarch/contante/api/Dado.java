@@ -1,4 +1,4 @@
-package net.ausiasmarch.dado.api;
+package net.ausiasmarch.contante.api;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.ausiasmarch.dado.bean.Resultado;
+import net.ausiasmarch.contante.bean.Resultado;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
