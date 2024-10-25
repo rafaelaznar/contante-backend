@@ -12,7 +12,7 @@ import net.ausiasmarch.contante.exception.ResourceNotFoundException;
 import net.ausiasmarch.contante.repository.UsuarioRepository;
 
 @Service
-public class UsuarioService {
+public class UsuarioService implements ServiceInterface {
 
     @Autowired
     UsuarioRepository oUsuarioRepository;
