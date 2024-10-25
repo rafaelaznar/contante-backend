@@ -32,9 +32,9 @@ public class ApplicationExceptionHandler {
         return new ResponseEntity<>(oErrorBean, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(value = ResourceNotFoundException.class)
+    @ExceptionHandler(value = ResourceNotModifiedException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<ErrorBean> ResourceNotModifiedException(ResorceNotModifiedException exception) {
+    public ResponseEntity<ErrorBean> ResourceNotModifiedException(ResourceNotModifiedException exception) {
         ErrorBean oErrorBean = new ErrorBean();
         oErrorBean.setMessage(exception.getMessage());
         oErrorBean.setStatus(HttpStatus.NOT_FOUND.value());
@@ -42,7 +42,7 @@ public class ApplicationExceptionHandler {
         return new ResponseEntity<>(oErrorBean, HttpStatus.NOT_MODIFIED);
     }
 
-    @ExceptionHandler(value = ResourceNotFoundException.class)
+    @ExceptionHandler(value = NotAcceptableException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<ErrorBean> NotAcceptableException(NotAcceptableException exception) {
         ErrorBean oErrorBean = new ErrorBean();
