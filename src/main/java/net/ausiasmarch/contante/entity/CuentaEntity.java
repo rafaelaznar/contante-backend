@@ -19,10 +19,8 @@ public class CuentaEntity {
     @NotNull
     public String codigo;
 
-    @NotNull
     public String descripcion;
 
-    @NotNull
     public Long id_tipocuenta;
 
     public CuentaEntity(){

@@ -20,16 +20,12 @@ public class CuentaService implements ServiceInterface<CuentaEntity> {
     @Autowired
     RandomService oRandomService;
 
-    private String[] arrCodigo = {"1234", "5678", "9012", "3456", "7890"};
-    
-    
-
+    private String[] arrCodigo = { "1234", "5678", "9012", "3456", "7890" };
 
     public Long randomCreate(Long cantidad) {
         for (int i = 0; i < cantidad; i++) {
             CuentaEntity oCuentaEntity = new CuentaEntity();
             oCuentaEntity.setCodigo(arrCodigo[oRandomService.getRandomInt(0, arrCodigo.length - 1)]);
-            oCuentaEntity.setDescripcion("");
             oCuentaRepository.save(oCuentaEntity);
         }
         return oCuentaRepository.count();
@@ -39,9 +35,7 @@ public class CuentaService implements ServiceInterface<CuentaEntity> {
 
         if (filter.isPresent()) {
             return oCuentaRepository
-                    .findBycodigoContainingOrid_tipocuentaContaining(
-                            filter.get(), filter.get(),
-                            oPageable);
+                    .findByCodigoContaining(filter.get(), oPageable);
         } else {
             return oCuentaRepository.findAll(oPageable);
         }
@@ -50,7 +44,6 @@ public class CuentaService implements ServiceInterface<CuentaEntity> {
     public CuentaEntity get(Long id) {
         return oCuentaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Cuenta no encontrado"));
-        // return oCuentaRepository.findById(id).get();
     }
 
     public Long count() {
