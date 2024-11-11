@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 import net.ausiasmarch.contante.entity.UsuarioEntity;
 
+
 public interface ServiceInterface {
 
     public Long randomCreate(Long cantidad);
