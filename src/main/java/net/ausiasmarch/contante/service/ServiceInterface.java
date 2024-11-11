@@ -5,23 +5,23 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import net.ausiasmarch.contante.entity.UsuarioEntity;
 
-public interface ServiceInterface {
+
+public interface ServiceInterface<T> {
 
     public Long randomCreate(Long cantidad);
 
-    public Page<UsuarioEntity> getPage(Pageable oPageable, Optional<String> filter);
+    public Page<T> getPage(Pageable oPageable, Optional<String> filter);
 
-    public UsuarioEntity get(Long id);
+    public T get(Long id);
 
     public Long count();
 
     public Long delete(Long id);
 
-    public UsuarioEntity create(UsuarioEntity oUsuarioEntity);
+    public T create(T oUsuarioEntity);
 
-    public UsuarioEntity update(UsuarioEntity oUsuarioEntity);
+    public T update(T oUsuarioEntity);
 
     public Long deleteAll();
 

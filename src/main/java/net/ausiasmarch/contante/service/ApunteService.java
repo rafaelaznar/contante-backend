@@ -14,7 +14,7 @@ import net.ausiasmarch.contante.exception.ResourceNotFoundException;
 import net.ausiasmarch.contante.repository.ApunteRepository;
 
 @Service
-public class ApunteService implements ServiceApunteInterface {
+public class ApunteService implements ServiceInterface<ApunteEntity> {
 
     @Autowired
     private ApunteRepository oApunteRepository;

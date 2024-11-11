@@ -13,7 +13,7 @@ import net.ausiasmarch.contante.exception.ResourceNotFoundException;
 import net.ausiasmarch.contante.repository.SubCuentaRepository;
 
 @Service
-public class SubCuentaService implements ServiceSubCuentaInterface {
+public class SubCuentaService implements ServiceInterface<SubCuentaEntity> {
     
     @Autowired
     private SubCuentaRepository oSubCuentaRepository;
