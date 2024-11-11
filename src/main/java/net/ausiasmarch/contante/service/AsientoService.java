@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -52,8 +53,6 @@ public class AsientoService implements ServiceInterface<AsientoEntity> {
             oAsientoEntity.setId_usuario(1L);
             oAsientoEntity.setId_periodo(1L);
 
-
-
             oAsientoRepository.save(oAsientoEntity);
         }
         return oAsientoRepository.count();
@@ -61,10 +60,12 @@ public class AsientoService implements ServiceInterface<AsientoEntity> {
 
     @Override
     public Page<AsientoEntity> getPage(Pageable oPageable, Optional<String> filter) {
+
         if (filter.isPresent()) {
+
             return oAsientoRepository
-                    .findByDescripcionContainingOrComentariosContainingOrInventariableContainingOrMomentstampContaining(
-                            filter.get(), filter.get(), filter.get(), filter.get(),
+                    .findByDescripcionContainingOrComentariosContaining(
+                            filter.get(), filter.get(),
                             oPageable);
         } else {
             return oAsientoRepository.findAll(oPageable);
@@ -104,7 +105,7 @@ public class AsientoService implements ServiceInterface<AsientoEntity> {
         if (oAsientoEntity.getComentarios() != null) {
             oAsientoEntityFromDatabase.setComentarios(oAsientoEntity.getComentarios());
         }
-        //TODO
+        // TODO
         if (oAsientoEntity.getInventariable() != -1) {
             oAsientoEntityFromDatabase.setInventariable(oAsientoEntity.getInventariable());
         }

@@ -20,8 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import net.ausiasmarch.contante.entity.AsientoEntity;
 import net.ausiasmarch.contante.service.AsientoService;
 
-
-
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/asiento")
@@ -30,14 +28,17 @@ public class Asiento {
     @Autowired
     AsientoService oAsientoService;
 
-     @GetMapping("")
+    @GetMapping("")
     public ResponseEntity<Page<AsientoEntity>> getPage(
             Pageable oPageable,
-            @RequestParam  Optional<String> filter) {
+            @RequestParam Optional<String> filter) {
+
+
         return new ResponseEntity<Page<AsientoEntity>>(oAsientoService.getPage(oPageable, filter), HttpStatus.OK);
+    
     }
 
- @GetMapping("/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<AsientoEntity> getAsiento(@PathVariable Long id) {
         return new ResponseEntity<AsientoEntity>(oAsientoService.get(id), HttpStatus.OK);
     }
@@ -71,7 +72,5 @@ public class Asiento {
     public ResponseEntity<Long> deleteAll() {
         return new ResponseEntity<Long>(oAsientoService.deleteAll(), HttpStatus.OK);
     }
-
-
 
 }
