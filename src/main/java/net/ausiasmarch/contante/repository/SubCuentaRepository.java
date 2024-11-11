@@ -8,7 +8,7 @@ import net.ausiasmarch.contante.entity.SubCuentaEntity;
 
 public interface SubCuentaRepository extends JpaRepository<SubCuentaEntity, Long> {
 
-    Page<SubCuentaEntity> findByDescripcionContainingOrComentariosContaining (
-        String filter1, String filter2, Pageable oPageable);
+    Page<SubCuentaEntity> findByDescripcionContaining(
+        String filter1, Pageable oPageable);
 
 }

@@ -71,8 +71,8 @@ public Long randomCreate(Long cantidad) {
 public Page<SubCuentaEntity> getPage(Pageable oPageable, Optional<String> filter) {
     if (filter.isPresent()) {
         return oSubCuentaRepository
-                .findByDescripcionContainingOrComentariosContaining(
-                        filter.get(), filter.get(), oPageable);
+                .findByDescripcionContaining(
+                        filter.get(), oPageable);
     } else {
         return oSubCuentaRepository.findAll(oPageable);
     }
