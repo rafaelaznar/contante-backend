@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -62,7 +61,6 @@ public class AsientoService implements ServiceInterface<AsientoEntity> {
     public Page<AsientoEntity> getPage(Pageable oPageable, Optional<String> filter) {
 
         if (filter.isPresent()) {
-
             return oAsientoRepository
                     .findByDescripcionContainingOrComentariosContaining(
                             filter.get(), filter.get(),
@@ -106,7 +104,7 @@ public class AsientoService implements ServiceInterface<AsientoEntity> {
             oAsientoEntityFromDatabase.setComentarios(oAsientoEntity.getComentarios());
         }
         // TODO
-        if (oAsientoEntity.getInventariable() != -1) {
+        if (oAsientoEntity.getInventariable() == 0 || oAsientoEntity.getInventariable() == 1) {
             oAsientoEntityFromDatabase.setInventariable(oAsientoEntity.getInventariable());
         }
         if (oAsientoEntity.getMomentstamp() != null) {

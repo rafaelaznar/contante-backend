@@ -27,22 +27,19 @@ public class AsientoEntity {
     private String comentarios;
 
     @NotNull
-    @Digits(integer = 1, fraction = 0)  
+    @Digits(integer = 1, fraction = 0)
     private int inventariable;
 
     @NotNull
     private LocalDateTime momentstamp;
 
     @NotNull
-    // @Size(min = 3, max = 255)
     private Long id_tipoasiento;
 
     @NotNull
-    // @Size(min = 3, max = 255)
     private Long id_usuario;
 
     @NotNull
-    // @Size(min = 3, max = 255)
     private Long id_periodo;
 
     public AsientoEntity() {
