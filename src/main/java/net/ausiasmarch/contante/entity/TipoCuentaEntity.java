@@ -1,7 +1,5 @@
 package net.ausiasmarch.contante.entity;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,12 +7,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "apunte")
+@Table(name = "tipocuenta")
 public class TipoCuentaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
