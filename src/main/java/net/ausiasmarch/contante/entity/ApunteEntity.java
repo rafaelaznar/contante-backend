@@ -1,6 +1,10 @@
 package net.ausiasmarch.contante.entity;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,9 +34,10 @@ public class ApunteEntity {
     @Size(min = 3, max = 255)
     private String comentarios;
     @NotNull
-    private String momentstamp;
+      @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")    
+    private LocalDateTime momentstamp;
     @NotNull
-    @Max(value = 255)
+    @Max(value = 128)
     private Long orden;
     @NotNull
     private Long id_asiento;
@@ -45,7 +50,7 @@ public class ApunteEntity {
     }
 
     public ApunteEntity(Long id, BigDecimal debe, BigDecimal haber, String descripcion, String comentarios,
-            String momentstamp,
+            LocalDateTime momentstamp,
             long orden, long id_asiento, long id_subcuenta, long id_tipoapunte) {
         this.id = id;
         this.debe = debe;
@@ -59,7 +64,7 @@ public class ApunteEntity {
         this.id_tipoapunte = id_tipoapunte;
     }
 
-    public ApunteEntity(BigDecimal debe, BigDecimal haber, String descripcion, String comentarios, String momentstamp,
+    public ApunteEntity(BigDecimal debe, BigDecimal haber, String descripcion, String comentarios, LocalDateTime momentstamp,
             long orden, long id_asiento, long id_subcuenta, long idtipo) {
         this.debe = debe;
         this.haber = haber;
@@ -112,11 +117,11 @@ public class ApunteEntity {
         this.comentarios = comentarios;
     }
 
-    public String getMomentstamp() {
+    public LocalDateTime getMomentstamp() {
         return momentstamp;
     }
 
-    public void setMomentstamp(String momentstamp) {
+    public void setMomentstamp(LocalDateTime momentstamp) {
         this.momentstamp = momentstamp;
     }
 
