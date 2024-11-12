@@ -9,7 +9,7 @@ import net.ausiasmarch.contante.entity.CuentaEntity;
 
 public interface CuentaRepository extends JpaRepository<CuentaEntity, Long> {
 
-    Page<CuentaEntity> findByCodigoContaining (
-           String filter1, Pageable oPageable);
+    Page<CuentaEntity> findByCodigoContainingOrDescripcionContaining (
+           String filter1, String filter2, Pageable oPageable);
 }
 

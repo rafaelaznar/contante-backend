@@ -35,7 +35,7 @@ public class CuentaService implements ServiceInterface<CuentaEntity> {
 
         if (filter.isPresent()) {
             return oCuentaRepository
-                    .findByCodigoContaining(filter.get(), oPageable);
+                    .findByCodigoContainingOrDescripcionContaining(filter.get(), filter.get(), oPageable);
         } else {
             return oCuentaRepository.findAll(oPageable);
         }
