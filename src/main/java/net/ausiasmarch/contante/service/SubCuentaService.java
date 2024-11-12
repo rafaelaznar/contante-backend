@@ -1,6 +1,7 @@
 package net.ausiasmarch.contante.service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,16 +44,28 @@ private BigDecimal[] arrid_cuenta = {
 };
 
  // Datos de la columna momentstamp
- private String[] arrmomentstamp = {
-    "2024-11-06 10:15:00", "2024-11-06 10:30:00", "2024-11-06 10:45:00", "2024-11-06 11:00:00",
-    "2024-11-06 11:15:00",
-    "2024-11-06 11:30:00", "2024-11-06 11:45:00", "2024-11-06 12:00:00", "2024-11-06 12:15:00",
-    "2024-11-06 12:30:00",
-    "2024-11-06 12:45:00", "2024-11-06 13:00:00", "2024-11-06 13:15:00", "2024-11-06 13:30:00",
-    "2024-11-06 13:45:00",
-    "2024-11-06 14:00:00", "2024-11-06 14:15:00", "2024-11-06 14:30:00", "2024-11-06 14:45:00",
-    "2024-11-06 15:00:00"
-};
+LocalDateTime[] arrdateTimes = {
+            LocalDateTime.of(2023, 1, 1, 10, 0),
+            LocalDateTime.of(2023, 2, 2, 12, 30),
+            LocalDateTime.of(2023, 3, 3, 14, 15),
+            LocalDateTime.of(2023, 4, 4, 16, 45),
+            LocalDateTime.of(2023, 5, 5, 18, 0),
+            LocalDateTime.of(2023, 6, 6, 20, 30),
+            LocalDateTime.of(2023, 7, 7, 22, 15),
+            LocalDateTime.of(2023, 8, 8, 9, 45),
+            LocalDateTime.of(2023, 9, 9, 11, 0),
+            LocalDateTime.of(2023, 10, 10, 13, 30),
+            LocalDateTime.of(2023, 11, 11, 15, 15),
+            LocalDateTime.of(2023, 12, 12, 17, 45),
+            LocalDateTime.of(2024, 1, 13, 19, 0),
+            LocalDateTime.of(2024, 2, 14, 21, 30),
+            LocalDateTime.of(2024, 3, 15, 23, 15),
+            LocalDateTime.of(2024, 4, 16, 8, 45),
+            LocalDateTime.of(2024, 5, 17, 10, 0),
+            LocalDateTime.of(2024, 6, 18, 12, 30),
+            LocalDateTime.of(2024, 7, 19, 14, 15),
+            LocalDateTime.of(2024, 8, 20, 16, 45)
+        };
 
 
 public Long randomCreate(Long cantidad) {
@@ -61,7 +74,7 @@ public Long randomCreate(Long cantidad) {
         oSubCuentaEntity.setCodigo(arrcodigo[oRandomService.getRandomInt(0, arrcodigo.length - 1)]);
         oSubCuentaEntity.setDescripcion(arrdescripcion[oRandomService.getRandomInt(0, arrdescripcion.length - 1)]);
         oSubCuentaEntity.setId_cuenta(arrid_cuenta[oRandomService.getRandomInt(0, arrid_cuenta.length - 1)]);
-        oSubCuentaEntity.setMomentstamp(arrmomentstamp[oRandomService.getRandomInt(0, arrmomentstamp.length - 1)]);
+        oSubCuentaEntity.setMomentstamp(arrdateTimes[oRandomService.getRandomInt(0, arrdateTimes.length - 1)]);
         
         oSubCuentaRepository.save(oSubCuentaEntity);
     }
