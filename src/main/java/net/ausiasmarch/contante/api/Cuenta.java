@@ -38,6 +38,11 @@ public class Cuenta {
 
     @GetMapping("/{id}")
     public ResponseEntity<CuentaEntity> getCuenta(@PathVariable Long id) {
+        CuentaEntity test = oCuentaService.get(id);
+        System.out.println(test.getId());
+        System.out.println(test.getCodigo());
+        System.out.println(test.getDescripcion());
+        System.out.println(test.getId_tipocuenta());
         return new ResponseEntity<CuentaEntity>(oCuentaService.get(id), HttpStatus.OK);
     }
 

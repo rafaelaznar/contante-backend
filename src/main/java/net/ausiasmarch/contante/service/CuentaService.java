@@ -43,7 +43,7 @@ public class CuentaService implements ServiceInterface<CuentaEntity> {
 
     public CuentaEntity get(Long id) {
         return oCuentaRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Cuenta no encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("Cuenta no encontrada"));
     }
 
     public Long count() {
@@ -67,8 +67,8 @@ public class CuentaService implements ServiceInterface<CuentaEntity> {
         if (oCuentaEntity.getDescripcion() != null) {
             oCuentaEntityFromDatabase.setDescripcion(oCuentaEntity.getDescripcion());
         }
-        if (oCuentaEntity.getIdTipoCuenta() != null) {
-            oCuentaEntityFromDatabase.setIdTipoCuenta(oCuentaEntity.getIdTipoCuenta());
+        if (oCuentaEntity.getId_tipocuenta() != null) {
+            oCuentaEntityFromDatabase.setId_tipocuenta(oCuentaEntity.getId_tipocuenta());
         }
         return oCuentaRepository.save(oCuentaEntityFromDatabase);
     }

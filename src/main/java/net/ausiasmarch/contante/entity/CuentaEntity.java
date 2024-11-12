@@ -12,6 +12,7 @@ import jakarta.validation.constraints.NotNull;
 @Entity
 @Table(name = "cuenta")
 public class CuentaEntity {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
@@ -23,46 +24,44 @@ public class CuentaEntity {
 
     public Long id_tipocuenta;
 
-    public CuentaEntity(){
-
+    public CuentaEntity() {
     }
 
-    public CuentaEntity(Long id, String codigo, String descripcion, Long id_tipocuenta){
-        this.id = id;
+    public CuentaEntity(@NotNull String codigo, String descripcion, Long id_tipocuenta) {
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.id_tipocuenta = id_tipocuenta;
     }
 
-    public Long getId(){
+    public Long getId() {
         return id;
     }
 
-    public void setId(Long id){
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getCodigo(){
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo){
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
-    public String getDescripcion(){
-        return codigo;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setDescripcion(String descripcion){
+    public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
-    public Long getIdTipoCuenta(){
+    public Long getId_tipocuenta() {
         return id_tipocuenta;
     }
 
-    public void setIdTipoCuenta(Long id_tipocuenta){
+    public void setId_tipocuenta(Long id_tipocuenta) {
         this.id_tipocuenta = id_tipocuenta;
     }
 }
