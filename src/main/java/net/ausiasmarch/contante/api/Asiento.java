@@ -73,4 +73,6 @@ public class Asiento {
         return new ResponseEntity<Long>(oAsientoService.deleteAll(), HttpStatus.OK);
     }
 
+    //hola
+
 }
