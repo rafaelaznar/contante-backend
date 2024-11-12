@@ -8,7 +8,7 @@ import net.ausiasmarch.contante.entity.TipoCuentaEntity;
 
 public interface TipoCuentaRepository extends JpaRepository<TipoCuentaEntity, Long> {
 
-    Page<TipoCuentaEntity> findByDescripcionContainingOrCredito_o_debitoContainingOrComentariosContainingOrReal_o_nominalContaining(
+    Page<TipoCuentaEntity> findByDescripcionContainingOrCreditoOdebitoContainingOrComentariosContainingOrRealOnominalContaining(
             String filter2, String filter3, String filter4, String filter5, Pageable oPageable);
 
 

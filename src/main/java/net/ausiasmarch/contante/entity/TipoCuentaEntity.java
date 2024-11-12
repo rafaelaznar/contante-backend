@@ -32,19 +32,19 @@ public class TipoCuentaEntity {
     public TipoCuentaEntity() {
     }
 
-    public TipoCuentaEntity(Long id, String descripcion, Long credito_o_debito, String comentarios, Long real_o_nominal) {
+    public TipoCuentaEntity(Long id, String descripcion, Long creditoOdebito, String comentarios, Long realOnominal) {
         this.id = id;
         this.descripcion = descripcion;
-        this.credito_o_debito = credito_o_debito;
+        this.credito_o_debito = creditoOdebito;
         this.comentarios = comentarios;
-        this.real_o_nominal = real_o_nominal;
+        this.real_o_nominal = realOnominal;
     }
 
-    public TipoCuentaEntity(String descripcion, Long credito_o_debito, String comentarios, Long real_o_nominal) {
+    public TipoCuentaEntity(String descripcion, Long creditoOdebito, String comentarios, Long realOnominal) {
         this.descripcion = descripcion;
-        this.credito_o_debito = credito_o_debito;
+        this.credito_o_debito = creditoOdebito;
         this.comentarios = comentarios;
-        this.real_o_nominal = real_o_nominal;
+        this.real_o_nominal = realOnominal;
         
     }
 
@@ -64,12 +64,12 @@ public class TipoCuentaEntity {
         this.descripcion = descripcion;
     }
 
-    public Long getCredito_o_debito() {
+    public Long getCreditoOdebito() {
         return credito_o_debito;
     }
 
-    public void setCredito_o_debito(Long credito_o_debito) {
-        this.credito_o_debito = credito_o_debito;
+    public void setCreditoOdebito(Long creditoOdebito) {
+        this.credito_o_debito = creditoOdebito;
     }
 
     public String getComentarios() {
@@ -80,11 +80,11 @@ public class TipoCuentaEntity {
         this.comentarios = comentarios;
     }
 
-    public Long getReal_o_nominal() {
+    public Long getRealOnominal() {
         return real_o_nominal;
     }
 
-    public void setReal_o_nominal(Long real_o_nominal) {
-        this.real_o_nominal = real_o_nominal;
+    public void setRealOnominal(Long realOnominal) {
+        this.real_o_nominal = realOnominal;
     }
 }
