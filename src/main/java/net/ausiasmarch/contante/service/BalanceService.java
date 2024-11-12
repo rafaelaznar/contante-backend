@@ -12,7 +12,7 @@ import net.ausiasmarch.contante.exception.ResourceNotFoundException;
 import net.ausiasmarch.contante.repository.BalanceRepository;
 
 @Service
-public class BalanceService implements ServiceInterfaceBalance {
+public class BalanceService implements ServiceInterface<BalanceEntity> {
 
     @Autowired
     BalanceRepository oBalanceRepository;
