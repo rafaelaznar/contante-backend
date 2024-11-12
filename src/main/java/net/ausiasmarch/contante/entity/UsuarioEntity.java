@@ -16,14 +16,18 @@ public class UsuarioEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotNull
     @Size(min = 3, max = 255)
     private String nombre;
+
     @NotNull
     @Size(min = 3, max = 255)
     private String apellido1;
+
     @Size(min = 0, max = 255)
     private String apellido2;
+    
     @Email
     private String email;
 

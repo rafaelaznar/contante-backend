@@ -6,8 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 
-
-public interface ServiceInterface<T> {
+public interface ServiceInterface<T>{
 
     public Long randomCreate(Long cantidad);
 
