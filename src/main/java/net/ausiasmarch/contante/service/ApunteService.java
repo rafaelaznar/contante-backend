@@ -1,7 +1,7 @@
 package net.ausiasmarch.contante.service;
 
 import java.math.BigDecimal;
-
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,6 +71,29 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
             "2024-11-06 15:00:00"
     };
 
+      LocalDateTime[] arrdateTimes = {
+            LocalDateTime.of(2023, 1, 1, 10, 0),
+            LocalDateTime.of(2023, 2, 2, 12, 30),
+            LocalDateTime.of(2023, 3, 3, 14, 15),
+            LocalDateTime.of(2023, 4, 4, 16, 45),
+            LocalDateTime.of(2023, 5, 5, 18, 0),
+            LocalDateTime.of(2023, 6, 6, 20, 30),
+            LocalDateTime.of(2023, 7, 7, 22, 15),
+            LocalDateTime.of(2023, 8, 8, 9, 45),
+            LocalDateTime.of(2023, 9, 9, 11, 0),
+            LocalDateTime.of(2023, 10, 10, 13, 30),
+            LocalDateTime.of(2023, 11, 11, 15, 15),
+            LocalDateTime.of(2023, 12, 12, 17, 45),
+            LocalDateTime.of(2024, 1, 13, 19, 0),
+            LocalDateTime.of(2024, 2, 14, 21, 30),
+            LocalDateTime.of(2024, 3, 15, 23, 15),
+            LocalDateTime.of(2024, 4, 16, 8, 45),
+            LocalDateTime.of(2024, 5, 17, 10, 0),
+            LocalDateTime.of(2024, 6, 18, 12, 30),
+            LocalDateTime.of(2024, 7, 19, 14, 15),
+            LocalDateTime.of(2024, 8, 20, 16, 45)
+        };
+
     // Datos de la columna orden
     private int[] arrorden = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
 
@@ -94,7 +117,7 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
             oApunteEntity.setHaber(arrhaber[oRandomService.getRandomInt(0, arrhaber.length - 1)]);
             oApunteEntity.setDescripcion(arrdescripcion[oRandomService.getRandomInt(0, arrdescripcion.length - 1)]);
             oApunteEntity.setComentarios(arrcomentarios[oRandomService.getRandomInt(0, arrcomentarios.length - 1)]);
-            oApunteEntity.setMomentstamp(arrmomentstamp[oRandomService.getRandomInt(0, arrmomentstamp.length - 1)]);
+            oApunteEntity.setMomentstamp(arrdateTimes[oRandomService.getRandomInt(0, arrdateTimes.length - 1)]);
             oApunteEntity.setOrden(arrorden[oRandomService.getRandomInt(0, arrorden.length - 1)]);
             oApunteEntity.setId_asiento(arrid_asiento[oRandomService.getRandomInt(0, arrid_asiento.length - 1)]);
             oApunteEntity.setId_subcuenta(arrid_subcuenta[oRandomService.getRandomInt(0, arrid_subcuenta.length - 1)]);
