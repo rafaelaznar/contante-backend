@@ -31,8 +31,9 @@ public class UsuarioEntity {
     @Email
     private String email;
 
-    public UsuarioEntity() {
+    private Long id_tipousuario;
 
+    public UsuarioEntity() {
     }
 
     public UsuarioEntity(String nombre, String apellido1, String apellido2, String email) {
@@ -88,6 +89,14 @@ public class UsuarioEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Long getId_tipousuario() {
+        return id_tipousuario;
+    }
+
+    public void setId_tipousuario(Long id_tipousuario) {
+        this.id_tipousuario = id_tipousuario;
     }
 
 }
