@@ -1,6 +1,5 @@
 package net.ausiasmarch.contante.service;
 
-import java.math.BigDecimal;
 
 import java.util.Optional;
 
@@ -9,10 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import net.ausiasmarch.contante.entity.ApunteEntity;
 import net.ausiasmarch.contante.entity.TipoCuentaEntity;
 import net.ausiasmarch.contante.exception.ResourceNotFoundException;
-import net.ausiasmarch.contante.repository.ApunteRepository;
 import net.ausiasmarch.contante.repository.TipoCuentaRepository;
 
 @Service
