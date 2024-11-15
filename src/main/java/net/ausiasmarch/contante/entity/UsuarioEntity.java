@@ -16,19 +16,24 @@ public class UsuarioEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotNull
     @Size(min = 3, max = 255)
     private String nombre;
+
     @NotNull
     @Size(min = 3, max = 255)
     private String apellido1;
+
     @Size(min = 0, max = 255)
     private String apellido2;
+    
     @Email
     private String email;
 
-    public UsuarioEntity() {
+    private Long id_tipousuario;
 
+    public UsuarioEntity() {
     }
 
     public UsuarioEntity(String nombre, String apellido1, String apellido2, String email) {
@@ -84,6 +89,14 @@ public class UsuarioEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Long getId_tipousuario() {
+        return id_tipousuario;
+    }
+
+    public void setId_tipousuario(Long id_tipousuario) {
+        this.id_tipousuario = id_tipousuario;
     }
 
 }
