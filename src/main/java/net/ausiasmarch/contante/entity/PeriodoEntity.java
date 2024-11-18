@@ -37,7 +37,7 @@ public class PeriodoEntity {
 
 
     @OneToMany(mappedBy = "periodo",fetch = FetchType.LAZY)
-    private java.util.List<AsientoEntity> asientos;
+    private java.util.List<AsientoEntity> asientos; 
 
     public PeriodoEntity(){}
 
