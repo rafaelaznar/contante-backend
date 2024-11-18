@@ -2,9 +2,11 @@ package net.ausiasmarch.contante.entity;
 
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
@@ -29,6 +31,12 @@ public class TipoCuentaEntity {
     @Digits(integer = 1, fraction = 0)
     private Long real_o_nominal;
   
+    @OneToMany(mappedBy = "tipocuenta",fetch = FetchType.LAZY)
+    private java.util.List<CuentaEntity> cuentas;
+
+    @OneToMany(mappedBy = "tipocuenta",fetch = FetchType.LAZY)
+    private java.util.List<GrupoTipoCuentaEntity> grupotipocuentas;
+
     public TipoCuentaEntity() {
     }
 
@@ -86,5 +94,12 @@ public class TipoCuentaEntity {
 
     public void setRealOnominal(Long realOnominal) {
         this.real_o_nominal = realOnominal;
+    }
+    public int getCuentas() {
+        return cuentas.size();
+    }
+
+    public int getGrupoTipoCuentas() {
+        return grupotipocuentas.size();
     }
 }
