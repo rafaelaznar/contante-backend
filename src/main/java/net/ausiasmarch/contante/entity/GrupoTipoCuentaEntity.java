@@ -37,6 +37,10 @@ public class GrupoTipoCuentaEntity {
     @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
     @JoinColumn(name = "id_tipocuenta")
     private TipoCuentaEntity tipoCuenta;
+
+    @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
+    @JoinColumn(name = "id_balance")
+    private BalanceEntity balance;
   
     public GrupoTipoCuentaEntity() {
     }
@@ -112,5 +116,13 @@ public class GrupoTipoCuentaEntity {
 
     public void setTipoCuenta(TipoCuentaEntity tipoCuenta) {
         this.tipoCuenta = tipoCuenta;
+    }
+
+    public BalanceEntity getBalance() {
+        return balance;
+    }
+
+    public void setBalance(BalanceEntity balance) {
+        this.balance = balance;
     }
 }
