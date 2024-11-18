@@ -9,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Max;
@@ -39,19 +41,25 @@ public class ApunteEntity {
     @NotNull
     @Max(value = 128)
     private Long orden;
-    @NotNull
-    private Long id_asiento;
-    @NotNull
-    private Long id_subcuenta;
-    @NotNull
-    private Long id_tipoapunte;
+
+    @ManyToOne (fetch = jakarta.persistence.FetchType.EAGER)
+    @JoinColumn(name = "id_asiento")
+    private AsientoEntity asiento;
+
+    @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
+    @JoinColumn(name = "id_subcuenta")
+    private SubCuentaEntity subcuenta;
+
+    @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
+    @JoinColumn(name = "id_tipoapunte")
+    private TipoApunteEntity tipoapunte;
 
     public ApunteEntity() {
     }
 
     public ApunteEntity(Long id, BigDecimal debe, BigDecimal haber, String descripcion, String comentarios,
             LocalDateTime momentstamp,
-            long orden, long id_asiento, long id_subcuenta, long id_tipoapunte) {
+            long orden, AsientoEntity id_asiento, SubCuentaEntity id_subcuenta, TipoApunteEntity id_tipoapunte) {
         this.id = id;
         this.debe = debe;
         this.haber = haber;
@@ -59,22 +67,22 @@ public class ApunteEntity {
         this.comentarios = comentarios;
         this.momentstamp = momentstamp;
         this.orden = orden;
-        this.id_asiento = id_asiento;
-        this.id_subcuenta = id_subcuenta;
-        this.id_tipoapunte = id_tipoapunte;
+        this.asiento = id_asiento;
+        this.subcuenta = id_subcuenta;
+        this.tipoapunte = id_tipoapunte;
     }
 
     public ApunteEntity(BigDecimal debe, BigDecimal haber, String descripcion, String comentarios, LocalDateTime momentstamp,
-            long orden, long id_asiento, long id_subcuenta, long idtipo) {
+            long orden, AsientoEntity id_asiento, SubCuentaEntity id_subcuenta, TipoApunteEntity idtipo) {
         this.debe = debe;
         this.haber = haber;
         this.descripcion = descripcion;
         this.comentarios = comentarios;
         this.momentstamp = momentstamp;
         this.orden = orden;
-        this.id_asiento = id_asiento;
-        this.id_subcuenta = id_subcuenta;
-        this.id_tipoapunte = idtipo;
+        this.asiento = id_asiento;
+        this.subcuenta = id_subcuenta;
+        this.tipoapunte = idtipo;
     }
 
     public Long getId() {
@@ -133,28 +141,28 @@ public class ApunteEntity {
         this.orden = orden;
     }
 
-    public long getId_asiento() {
-        return id_asiento;
+    public AsientoEntity getAsiento() {
+        return asiento;
+    }    
+
+    public void setAsiento(AsientoEntity asiento) {
+        this.asiento = asiento;
     }
 
-    public void setId_asiento(long id_asiento) {
-        this.id_asiento = id_asiento;
+    public SubCuentaEntity getSubcuenta() {
+        return subcuenta;
     }
 
-    public long getId_subcuenta() {
-        return id_subcuenta;
+    public void setSubcuenta(SubCuentaEntity subcuenta) {    
+        this.subcuenta = subcuenta;
     }
 
-    public void setId_subcuenta(long id_subcuenta) {
-        this.id_subcuenta = id_subcuenta;
+    public TipoApunteEntity getTipoApunte() {
+        return tipoapunte;
     }
 
-    public long getId_tipoapunte() {
-        return id_tipoapunte;
-    }
-
-    public void setId_tipoapunte(long id_tipoapunte) {
-        this.id_tipoapunte = id_tipoapunte;
+    public void setTipoApunte(TipoApunteEntity tipoapunte) {
+        this.tipoapunte = tipoapunte;
     }
 
 }
