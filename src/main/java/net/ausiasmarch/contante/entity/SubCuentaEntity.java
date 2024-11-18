@@ -33,7 +33,7 @@ public class SubCuentaEntity {
     private LocalDateTime momentstamp;
     @NotNull
 
-    @OneToMany(mappedBy = "subcuenta",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "id_cuenta",fetch = FetchType.LAZY)
     @JoinColumn(name = "id_cuenta")
     private CuentaEntity cuenta;    
     public SubCuentaEntity() {
