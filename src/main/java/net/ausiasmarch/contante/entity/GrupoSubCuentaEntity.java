@@ -1,12 +1,11 @@
 package net.ausiasmarch.contante.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,12 +19,14 @@ public class GrupoSubCuentaEntity {
     private String titulo;
     private String descripcion;
     private int orden;
-    private long id_balance;
-    private long id_subcuenta;
 
-    @OneToMany(mappedBy = "gruposubcuenta",fetch = FetchType.LAZY)
+    @ManyToOne (fetch = jakarta.persistence.FetchType.EAGER)
     @JoinColumn(name = "id_subcuenta")
-    private java.util.List<SubCuentaEntity> subcuentas;
+    private SubCuentaEntity subcuenta;
+
+    @ManyToOne (fetch = jakarta.persistence.FetchType.EAGER)
+    @JoinColumn(name = "id_balance")
+    private BalanceEntity balance;
 
     public GrupoSubCuentaEntity() {
     }
@@ -55,10 +56,6 @@ public class GrupoSubCuentaEntity {
         this.descripcion = descripcion;
     }
 
-    public int getSubcuentas() {
-        return subcuentas.size();
-    }
-
     public String getTitulo() {
         return titulo;
     }
@@ -75,25 +72,21 @@ public class GrupoSubCuentaEntity {
         this.orden = orden;
     }
 
-    public long getId_balance() {
-        return id_balance;
+    public BalanceEntity getId_balance() {
+        return balance;
     }
 
-    public void setId_balance(long id_balance) {
-        this.id_balance = id_balance;
+    public void setId_balance(BalanceEntity id_balance) {
+        this.balance = id_balance;
     }
 
-    public long getId_subcuenta() {
-        return id_subcuenta;
+    public SubCuentaEntity getId_subcuenta() {
+        return subcuenta;
     }
 
-    public void setId_subcuenta(long id_subcuenta) {
-        this.id_subcuenta = id_subcuenta;
+    public void setId_subcuenta(SubCuentaEntity id_subcuenta) {
+        this.subcuenta = id_subcuenta;
     }
-
-    public void setSubcuentas(java.util.List<SubCuentaEntity> subcuentas) {
-        this.subcuentas = subcuentas;
-    }
-
+    
     
 }

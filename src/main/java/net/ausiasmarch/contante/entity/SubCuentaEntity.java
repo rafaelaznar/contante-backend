@@ -1,6 +1,5 @@
 package net.ausiasmarch.contante.entity;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.JoinColumn;
@@ -14,7 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import net.ausiasmarch.contante.api.Cuenta;
+
 
 @Entity
 @Table(name = "subcuenta")
@@ -33,9 +32,12 @@ public class SubCuentaEntity {
     private LocalDateTime momentstamp;
     @NotNull
 
-    @OneToMany(mappedBy = "id_cuenta",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "gruposubcuenta",fetch = FetchType.LAZY)
+    private java.util.List<SubCuentaEntity> subcuenta; ;
+
+    @ManyToOne (fetch = jakarta.persistence.FetchType.EAGER)
     @JoinColumn(name = "id_cuenta")
-    private CuentaEntity cuenta;    
+    private CuentaEntity cuenta;
     public SubCuentaEntity() {
     }
 
@@ -94,5 +96,8 @@ public class SubCuentaEntity {
         this.momentstamp = momentstamp;
     }
 
+    public int getsubcuenta() {
+        return subcuenta.size();
+    }
 
 }
