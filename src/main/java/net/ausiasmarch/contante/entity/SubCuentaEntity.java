@@ -1,17 +1,19 @@
 package net.ausiasmarch.contante.entity;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
-
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+
 
 @Entity
 @Table(name = "subcuenta")
@@ -24,29 +26,35 @@ public class SubCuentaEntity {
     private int codigo;
     @NotNull
     @Size(min = 3, max = 255)
-    private String descripcion;
-    @NotNull
-    private BigDecimal id_cuenta;
+    private String descripcion;   
     @NotNull
       @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")    
     private LocalDateTime momentstamp;
-    @NotNull
 
+    @OneToMany(mappedBy = "subcuenta",fetch = FetchType.LAZY)
+    private java.util.List<GrupoSubCuentaEntity> gruposubcuenta; ;
+
+    @OneToMany(mappedBy = "subcuenta",fetch = FetchType.LAZY)
+    private java.util.List<ApunteEntity> apunte;
+
+    @ManyToOne (fetch = jakarta.persistence.FetchType.EAGER)
+    @JoinColumn(name = "id_cuenta")
+    private CuentaEntity cuenta;
     public SubCuentaEntity() {
     }
 
-    public SubCuentaEntity(long id, int codigo, String descripcion,BigDecimal id_cuenta, LocalDateTime momentstamp) {
+    public SubCuentaEntity(long id, int codigo, String descripcion,CuentaEntity id_cuenta, LocalDateTime momentstamp) {
         this.id = id;
         this.codigo = codigo;
         this.descripcion = descripcion;
-        this.id_cuenta = id_cuenta;
+        this.cuenta = id_cuenta;
         this.momentstamp = momentstamp;
     }
 
-    public SubCuentaEntity( int codigo, String descripcion, BigDecimal id_cuenta, LocalDateTime momentstamp) {
+    public SubCuentaEntity( int codigo, String descripcion, CuentaEntity id_cuenta, LocalDateTime momentstamp) {
         this.codigo = codigo;
         this.descripcion = descripcion;
-        this.id_cuenta = id_cuenta;
+        this.cuenta = id_cuenta;
         this.momentstamp = momentstamp;
     }
 
@@ -74,12 +82,12 @@ public class SubCuentaEntity {
         this.descripcion = descripcion;
     }
 
-    public BigDecimal getId_cuenta() {
-        return id_cuenta;
+    public CuentaEntity getId_cuenta() {
+        return cuenta;
     }
 
-    public void setId_cuenta(BigDecimal id_cuenta) {
-        this.id_cuenta = id_cuenta;
+    public void setId_cuenta(CuentaEntity id_cuenta) {
+        this.cuenta = id_cuenta;
     }
 
     public LocalDateTime getMomentstamp() {
@@ -90,4 +98,11 @@ public class SubCuentaEntity {
         this.momentstamp = momentstamp;
     }
 
+    public int getsubcuenta() {
+        return gruposubcuenta.size();
+    }
+
+    public int getApuntes() {
+        return apunte.size();
+    }
 }
