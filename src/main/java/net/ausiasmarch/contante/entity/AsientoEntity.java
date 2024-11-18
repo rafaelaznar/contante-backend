@@ -56,7 +56,8 @@ public class AsientoEntity {
     @JoinColumn(name = "id_periodo")
     private PeriodoEntity periodo;
 
-    @OneToMany(mappedBy = "apunte",fetch = FetchType.LAZY)
+
+    @OneToMany(mappedBy = "asiento",fetch = FetchType.LAZY)
     private java.util.List<ApunteEntity> apuntes;
 
     public AsientoEntity() {
