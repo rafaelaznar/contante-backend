@@ -30,10 +30,12 @@ public class SubCuentaEntity {
     @NotNull
       @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")    
     private LocalDateTime momentstamp;
-    @NotNull
 
-    @OneToMany(mappedBy = "gruposubcuenta",fetch = FetchType.LAZY)
-    private java.util.List<SubCuentaEntity> subcuenta; ;
+    @OneToMany(mappedBy = "subcuenta",fetch = FetchType.LAZY)
+    private java.util.List<GrupoSubCuentaEntity> gruposubcuenta; ;
+
+    @OneToMany(mappedBy = "subcuenta",fetch = FetchType.LAZY)
+    private java.util.List<ApunteEntity> apunte;
 
     @ManyToOne (fetch = jakarta.persistence.FetchType.EAGER)
     @JoinColumn(name = "id_cuenta")
@@ -97,7 +99,10 @@ public class SubCuentaEntity {
     }
 
     public int getsubcuenta() {
-        return subcuenta.size();
+        return gruposubcuenta.size();
     }
 
+    public int getApuntes() {
+        return apunte.size();
+    }
 }
