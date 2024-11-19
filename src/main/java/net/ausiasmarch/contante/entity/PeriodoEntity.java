@@ -1,9 +1,12 @@
 package net.ausiasmarch.contante.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
@@ -32,6 +35,9 @@ public class PeriodoEntity {
     @NotNull
     private boolean cerrado;
 
+
+    @OneToMany(mappedBy = "periodo",fetch = FetchType.LAZY)
+    private java.util.List<AsientoEntity> asientos; 
 
     public PeriodoEntity(){}
 
@@ -92,6 +98,10 @@ public class PeriodoEntity {
 
     public void setCerrado(boolean cerrado) {
         this.cerrado = cerrado;
+    }
+
+    public int getAsientos() {
+        return asientos.size();
     }
  
 
