@@ -1,11 +1,13 @@
 package net.ausiasmarch.contante.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
@@ -25,6 +27,12 @@ public class CuentaEntity {
     @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
     @JoinColumn(name = "id_tipocuenta")
     private TipoCuentaEntity tipocuenta;
+
+    @OneToMany(mappedBy = "cuenta", fetch = FetchType.LAZY)
+    private java.util.List<GrupoCuentaEntity> grupocuenta;
+
+    @OneToMany(mappedBy = "cuenta", fetch = FetchType.LAZY)
+    private java.util.List<SubCuentaEntity> subcuenta;
 
     public CuentaEntity() {
     }
@@ -66,4 +74,11 @@ public class CuentaEntity {
         this.tipocuenta = tipocuenta;
     }
 
+    public int getGrupoCuenta() {
+        return grupocuenta.size();
+    }
+
+    public int getSubCuenta() {
+        return subcuenta.size();
+    }
 }
