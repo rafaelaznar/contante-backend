@@ -73,7 +73,9 @@ public Long randomCreate(Long cantidad) {
         SubCuentaEntity oSubCuentaEntity = new SubCuentaEntity();
         oSubCuentaEntity.setCodigo(arrcodigo[oRandomService.getRandomInt(0, arrcodigo.length - 1)]);
         oSubCuentaEntity.setDescripcion(arrdescripcion[oRandomService.getRandomInt(0, arrdescripcion.length - 1)]);
-        oSubCuentaEntity.setId_cuenta(arrid_cuenta[oRandomService.getRandomInt(0, arrid_cuenta.length - 1)]);
+
+      //  oSubCuentaEntity.setId_cuenta(arrid_cuenta[oRandomService.getRandomInt(0, arrid_cuenta.length - 1)]);
+
         oSubCuentaEntity.setMomentstamp(arrdateTimes[oRandomService.getRandomInt(0, arrdateTimes.length - 1)]);
         
         oSubCuentaRepository.save(oSubCuentaEntity);
