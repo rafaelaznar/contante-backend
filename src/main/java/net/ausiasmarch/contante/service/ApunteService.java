@@ -110,7 +110,7 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
             3014, 3015, 3016, 3017, 3018, 3019, 3020 };
 
 
-    public Long randomCreate(Long cantidad) {
+     public Long randomCreate(Long cantidad) {
         for (int i = 0; i < cantidad; i++) {
             ApunteEntity oApunteEntity = new ApunteEntity();
             oApunteEntity.setDebe(arrdebe[oRandomService.getRandomInt(0, arrdebe.length - 1)]);
@@ -126,7 +126,7 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
            */ oApunteRepository.save(oApunteEntity);
         }
         return oApunteRepository.count();
-    }
+    } 
 
     public Page<ApunteEntity> getPage(Pageable oPageable, Optional<String> filter) {
         if (filter.isPresent()) {
