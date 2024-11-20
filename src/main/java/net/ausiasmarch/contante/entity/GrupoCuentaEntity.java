@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
@@ -13,34 +15,35 @@ public class GrupoCuentaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
 
     @NotNull
-    public String titulo;
+    private String titulo;
 
     @NotNull
-    public String descripcion;
+    private String descripcion;
 
     @NotNull
-    public int orden;
+    private int orden;
 
     @NotNull
-    public Long id_cuenta;
+    @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
+    @JoinColumn(name = "id_cuenta")
+    private CuentaEntity cuenta;
 
     @NotNull
-    public Long id_balance;
+    @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
+    @JoinColumn(name = "id_balance")
+    private BalanceEntity balance;
 
     public GrupoCuentaEntity() {
     }
 
-    public GrupoCuentaEntity(Long id, @NotNull String titulo, @NotNull String descripcion, @NotNull int orden,
-            @NotNull Long id_cuenta, @NotNull Long id_balance) {
+    public GrupoCuentaEntity(Long id, @NotNull String titulo, @NotNull String descripcion, @NotNull int orden) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.orden = orden;
-        this.id_cuenta = id_cuenta;
-        this.id_balance = id_balance;
     }
 
     public Long getId() {
@@ -75,20 +78,20 @@ public class GrupoCuentaEntity {
         this.orden = orden;
     }
 
-    public Long getId_cuenta() {
-        return id_cuenta;
+    public CuentaEntity getCuenta() {
+        return cuenta;
     }
 
-    public void setId_cuenta(Long id_cuenta) {
-        this.id_cuenta = id_cuenta;
+    public void setCuenta(CuentaEntity cuenta) {
+        this.cuenta = cuenta;
     }
 
-    public Long getId_balance() {
-        return id_balance;
+    public BalanceEntity getBalance() {
+        return balance;
     }
 
-    public void setId_balance(Long id_balance) {
-        this.id_balance = id_balance;
+    public void setBalance(BalanceEntity balance) {
+        this.balance = balance;
     }
 
 }
