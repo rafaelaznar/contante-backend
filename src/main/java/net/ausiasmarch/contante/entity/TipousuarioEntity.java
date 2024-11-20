@@ -1,11 +1,9 @@
 package net.ausiasmarch.contante.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,9 +14,6 @@ public class TipousuarioEntity {
     private Long id;
 
     private String descripcion;
-
-    @OneToMany(mappedBy = "tipousuario",fetch = FetchType.LAZY)
-    private java.util.List<UsuarioEntity> usuarios;
 
     public TipousuarioEntity() {
     }
@@ -46,9 +41,5 @@ public class TipousuarioEntity {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public int getUsuarios() {
-        return usuarios.size();
     }
 }
