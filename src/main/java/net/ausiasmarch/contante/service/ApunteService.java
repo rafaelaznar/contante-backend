@@ -119,11 +119,11 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
             oApunteEntity.setComentarios(arrcomentarios[oRandomService.getRandomInt(0, arrcomentarios.length - 1)]);
             oApunteEntity.setMomentstamp(arrdateTimes[oRandomService.getRandomInt(0, arrdateTimes.length - 1)]);
             oApunteEntity.setOrden(arrorden[oRandomService.getRandomInt(0, arrorden.length - 1)]);
-            oApunteEntity.setId_asiento(arrid_asiento[oRandomService.getRandomInt(0, arrid_asiento.length - 1)]);
-            oApunteEntity.setId_subcuenta(arrid_subcuenta[oRandomService.getRandomInt(0, arrid_subcuenta.length - 1)]);
-            oApunteEntity
-                    .setId_tipoapunte(arrid_tipoapunte[oRandomService.getRandomInt(0, arrid_tipoapunte.length - 1)]);
-            oApunteRepository.save(oApunteEntity);
+         /*   oApunteEntity.setId_asiento(arrid_asiento[oRandomService.getRandomInt(0, arrid_asiento.length - 1)]);
+          oApunteEntity.setId_subcuenta(arrid_subcuenta[oRandomService.getRandomInt(0, arrid_subcuenta.length - 1)]);
+          oApunteEntity
+                 .setId_tipoapunte(arrid_tipoapunte[oRandomService.getRandomInt(0, arrid_tipoapunte.length - 1)]);
+           */ oApunteRepository.save(oApunteEntity);
         }
         return oApunteRepository.count();
     }
@@ -176,7 +176,7 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
         if (oApunteEntity.getOrden() != 0) {
             oApunteEntityFromDatabase.setOrden(oApunteEntity.getOrden());
         }
-        if (oApunteEntity.getId_asiento() != 0) {
+    /*if (oApunteEntity.getId_asiento() != 0) {
             oApunteEntityFromDatabase.setId_asiento(oApunteEntity.getId_asiento());
         }
         if (oApunteEntity.getId_subcuenta() != 0) {
@@ -185,7 +185,7 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
         if (oApunteEntity.getId_tipoapunte() != 0) {
             oApunteEntityFromDatabase.setId_tipoapunte(oApunteEntity.getId_tipoapunte());
         }
-        return oApunteRepository.save(oApunteEntityFromDatabase);
+        */     return oApunteRepository.save(oApunteEntityFromDatabase);
     }
 
     public Long deleteAll() {
