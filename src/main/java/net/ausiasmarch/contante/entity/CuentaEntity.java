@@ -34,6 +34,10 @@ public class CuentaEntity {
     @OneToMany(mappedBy = "cuenta", fetch = FetchType.LAZY)
     private java.util.List<SubCuentaEntity> subcuenta;
 
+    @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
+    @JoinColumn(name = "id_tipocuenta")
+    private TipoCuentaEntity tipoCuenta;
+
     public CuentaEntity() {
     }
 
