@@ -4,8 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -29,13 +27,11 @@ public class UsuarioEntity {
 
     @Size(min = 0, max = 255)
     private String apellido2;
-
+    
     @Email
     private String email;
 
-    @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
-    @JoinColumn(name = "id_tipousuario")
-    private TipousuarioEntity tipousuario;
+    private Long id_tipousuario;
 
     public UsuarioEntity() {
     }
@@ -95,11 +91,12 @@ public class UsuarioEntity {
         this.email = email;
     }
 
-    public TipousuarioEntity getTipousuario() {
-        return tipousuario;
+    public Long getId_tipousuario() {
+        return id_tipousuario;
     }
 
-    public void setTipousuario(TipousuarioEntity tipousuario) {
-        this.tipousuario = tipousuario;
+    public void setId_tipousuario(Long id_tipousuario) {
+        this.id_tipousuario = id_tipousuario;
     }
+
 }

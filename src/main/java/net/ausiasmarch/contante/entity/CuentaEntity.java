@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
@@ -23,6 +25,10 @@ public class CuentaEntity {
     public String descripcion;
 
     public Long id_tipocuenta;
+
+    @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
+    @JoinColumn(name = "id_tipocuenta")
+    private TipoCuentaEntity tipoCuenta;
 
     public CuentaEntity() {
     }
@@ -63,6 +69,13 @@ public class CuentaEntity {
 
     public void setId_tipocuenta(Long id_tipocuenta) {
         this.id_tipocuenta = id_tipocuenta;
+    }
+
+    public TipoCuentaEntity getTipoCuenta() {
+        return tipoCuenta;
+    }
+    public void setTipoCuenta(TipoCuentaEntity tipoCuenta) {
+        this.tipoCuenta = tipoCuenta;
     }
 }
 

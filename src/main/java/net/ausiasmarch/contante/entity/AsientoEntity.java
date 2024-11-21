@@ -5,9 +5,13 @@ import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
@@ -38,13 +42,23 @@ public class AsientoEntity {
     private LocalDateTime momentstamp;
 
     @NotNull
-    private Long id_tipoasiento;
+    @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
+    @JoinColumn(name = "id_tipoasiento")
+    private TipoAsientoEntity tipoasiento;
 
     @NotNull
-    private Long id_usuario;
+    @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
+    @JoinColumn(name = "id_usuario")
+    private UsuarioEntity usuario;
 
     @NotNull
-    private Long id_periodo;
+    @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
+    @JoinColumn(name = "id_periodo")
+    private PeriodoEntity periodo;
+
+
+    @OneToMany(mappedBy = "asiento",fetch = FetchType.LAZY)
+    private java.util.List<ApunteEntity> apuntes;
 
     public AsientoEntity() {
     }
@@ -56,29 +70,6 @@ public class AsientoEntity {
         this.inventariable = inventariable;
         this.momentstamp = momentstamp;
 
-    }
-
-    public AsientoEntity(String descripcion, String comentarios, int inventariable,
-            LocalDateTime momentstamp, Long id_tipoasiento, Long id_usuario, Long id_periodo) {
-        this.descripcion = descripcion;
-        this.comentarios = comentarios;
-        this.inventariable = inventariable;
-        this.momentstamp = momentstamp;
-        this.id_tipoasiento = id_tipoasiento;
-        this.id_usuario = id_usuario;
-        this.id_periodo = id_periodo;
-    }
-
-    public AsientoEntity(Long id, String descripcion, String comentarios, int inventariable,
-            LocalDateTime momentstamp, Long id_tipoasiento, Long id_usuario, Long id_periodo) {
-        this.id = id;
-        this.descripcion = descripcion;
-        this.comentarios = comentarios;
-        this.inventariable = inventariable;
-        this.momentstamp = momentstamp;
-        this.id_tipoasiento = id_tipoasiento;
-        this.id_usuario = id_usuario;
-        this.id_periodo = id_periodo;
     }
 
     public Long getId() {
@@ -121,28 +112,34 @@ public class AsientoEntity {
         this.momentstamp = momentstamp;
     }
 
-    public Long getId_tipoasiento() {
-        return id_tipoasiento;
+    public TipoAsientoEntity getTipoasiento() {
+        return tipoasiento;
     }
 
-    public void setId_tipoasiento(Long id_tipoasiento) {
-        this.id_tipoasiento = id_tipoasiento;
+    public void setTipoasiento(TipoAsientoEntity tipoasiento) {
+        this.tipoasiento = tipoasiento;
     }
 
-    public Long getId_usuario() {
-        return id_usuario;
+    public UsuarioEntity getUsuario() {
+        return usuario;
     }
 
-    public void setId_usuario(Long id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setUsuario(UsuarioEntity usuario) {
+        this.usuario = usuario;
     }
 
-    public Long getId_periodo() {
-        return id_periodo;
+    public PeriodoEntity getPeriodo() {
+        return periodo;
     }
 
-    public void setId_periodo(Long id_periodo) {
-        this.id_periodo = id_periodo;
+    public void setPeriodo(PeriodoEntity periodo) {
+        this.periodo = periodo;
     }
+
+    public int getApuntes() {
+        return apuntes.size();
+    }
+
+    
 
 }

@@ -48,9 +48,9 @@ public class AsientoService implements ServiceInterface<AsientoEntity> {
             oAsientoEntity.setComentarios(arrComentarios[oRandomService.getRandomInt(0, arrComentarios.length - 1)]);
             oAsientoEntity.setInventariable(oRandomService.getRandomInt(0, 1));
             oAsientoEntity.setMomentstamp(LocalDateTime.now());
-            oAsientoEntity.setId_tipoasiento(1L);
-            oAsientoEntity.setId_usuario(1L);
-            oAsientoEntity.setId_periodo(1L);
+          //  oAsientoEntity.setId_tipoasiento(1L);
+          //  oAsientoEntity.setId_usuario(1L);
+          //  oAsientoEntity.setId_periodo(1L);
 
             oAsientoRepository.save(oAsientoEntity);
         }
