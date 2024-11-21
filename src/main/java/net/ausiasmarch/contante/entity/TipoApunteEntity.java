@@ -5,7 +5,6 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
@@ -26,20 +25,11 @@ public class TipoApunteEntity {
     @Size(min = 3, max = 255)
     private String comentarios;
 
-    @OneToMany(fetch = jakarta.persistence.FetchType.EAGER)
-    @JoinColumn(name = "id_apunte")
-    private ApunteEntity apunte;
-
-    @OneToMany(fetch = jakarta.persistence.FetchType.EAGER)
-    @JoinColumn(name = "id_grupotipoapunte")
-    private GrupoTipoApunteEntity grupotipoapunte;
-
-
     @OneToMany(mappedBy = "tipoapunte",fetch = FetchType.LAZY)
     private java.util.List<ApunteEntity> apuntes;
 
     @OneToMany(mappedBy = "tipoapunte",fetch = FetchType.LAZY)
-    private java.util.List<ApunteEntity> grupotipoapuntes;
+    private java.util.List<GrupoTipoApunteEntity> grupotipoapuntes;
     
     public TipoApunteEntity() {
     }
@@ -75,20 +65,12 @@ public class TipoApunteEntity {
         this.comentarios = comentarios;
     }
 
-    public ApunteEntity getApunte() {
-        return apunte;
+    public int getApuntes() {
+        return apuntes.size();
     }
 
-    public void setApunte(ApunteEntity apunte) {
-        this.apunte = apunte;
-    }
-
-    public GrupoTipoApunteEntity getGrupotipoapunte() {
-        return grupotipoapunte;
-    }
-
-    public void setGrupotipoapunte(GrupoTipoApunteEntity grupotipoapunte) {
-        this.grupotipoapunte = grupotipoapunte;
+    public int getGrupoTipoCuentas() {
+        return grupotipoapuntes.size();
     }
 
     

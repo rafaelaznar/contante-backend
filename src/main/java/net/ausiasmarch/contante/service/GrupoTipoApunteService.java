@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import net.ausiasmarch.contante.entity.GrupoTipoApunteEntity;
 
-import net.ausiasmarch.contante.exception.ResourceNotFoundException;
 import net.ausiasmarch.contante.repository.GrupoTipoApunteRepository;
 
 @Service
