@@ -14,7 +14,7 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "tipocuenta")
-public class GrupoTipoCuentaEntity {
+public class GrupotipocuentaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -36,16 +36,16 @@ public class GrupoTipoCuentaEntity {
 
     @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
     @JoinColumn(name = "id_tipocuenta")
-    private TipoCuentaEntity tipoCuenta;
+    private TipocuentaEntity tipoCuenta;
 
     @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
     @JoinColumn(name = "id_balance")
     private BalanceEntity balance;
   
-    public GrupoTipoCuentaEntity() {
+    public GrupotipocuentaEntity() {
     }
 
-    public GrupoTipoCuentaEntity(Long id, String titulo, String descripcion, Long orden,Long idTipoCuenta,Long idBalance ) {
+    public GrupotipocuentaEntity(Long id, String titulo, String descripcion, Long orden,Long idTipoCuenta,Long idBalance ) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -54,7 +54,7 @@ public class GrupoTipoCuentaEntity {
         this.id_balance = idBalance;
     }
 
-    public GrupoTipoCuentaEntity(String titulo, String descripcion, Long idTipoCuenta, Long idBalance) {
+    public GrupotipocuentaEntity(String titulo, String descripcion, Long idTipoCuenta, Long idBalance) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.id_tipocuenta = idTipoCuenta;
@@ -94,27 +94,11 @@ public class GrupoTipoCuentaEntity {
         this.orden = orden;
     }
 
-    public Long getIdTipoCuenta() {
-        return id_tipocuenta;
-    }
-
-    public void setIdTipoCuenta(Long idTipocuenta) {
-        this.id_tipocuenta = idTipocuenta;
-    }
-
-    public Long getIdBalance() {
-        return id_balance;
-    }
-
-    public void setIdBalance(Long idBalance) {
-        this.id_balance = idBalance;
-    }
-
-    public TipoCuentaEntity getTipoCuenta() {
+    public TipocuentaEntity getTipocuenta() {
         return tipoCuenta;
     }
 
-    public void setTipoCuenta(TipoCuentaEntity tipoCuenta) {
+    public void setTipocuenta(TipocuentaEntity tipoCuenta) {
         this.tipoCuenta = tipoCuenta;
     }
 

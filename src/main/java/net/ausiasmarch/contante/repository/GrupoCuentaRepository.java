@@ -4,10 +4,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import net.ausiasmarch.contante.entity.GrupoCuentaEntity;
+import net.ausiasmarch.contante.entity.GrupocuentaEntity;
 
-public interface GrupoCuentaRepository extends JpaRepository<GrupoCuentaEntity, Long> {
+public interface GrupoCuentaRepository extends JpaRepository<GrupocuentaEntity, Long> {
 
-    Page<GrupoCuentaEntity> findByTituloContaining(
+    Page<GrupocuentaEntity> findByTituloContaining(
             String filter1, Pageable oPageable);
 }

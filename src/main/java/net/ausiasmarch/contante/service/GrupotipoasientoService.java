@@ -1,25 +1,30 @@
 package net.ausiasmarch.contante.service;
 
-
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-
-import net.ausiasmarch.contante.entity.GrupoTipoAsientoEntity;
+import net.ausiasmarch.contante.entity.GrupotipoasientoEntity;
+import net.ausiasmarch.contante.entity.GrupotipocuentaEntity;
 import net.ausiasmarch.contante.exception.ResourceNotFoundException;
 import net.ausiasmarch.contante.repository.GrupoTipoAsientoRepository;
 
 
-public class GrupoTipoAsientoService implements ServiceInterface<GrupoTipoAsientoEntity> {
+public class GrupotipoasientoService implements ServiceInterface<GrupotipoasientoEntity> {
 
     @Autowired
     GrupoTipoAsientoRepository oGrupoTipoAsientoRepository;
 
     @Autowired
     RandomService oRandomService;
+
+    @Autowired
+    TipoasientoService oTipoasientoService;
+
+    @Autowired
+    BalanceService oBalanceService;
 
     String[] arrTitulos = { "Titulo 1", "Titulo 2", "Titulo 3", "Titulo 4", "Titulo 5", "Titulo 6", "Titulo 7",
             "Titulo 8", "Titulo 9", "Titulo 10" };
@@ -32,21 +37,19 @@ public class GrupoTipoAsientoService implements ServiceInterface<GrupoTipoAsient
     @Override
     public Long randomCreate(Long cantidad) {
         for (int i = 0; i < cantidad; i++) {
-            GrupoTipoAsientoEntity oGrupoTipoAsientoEntity = new GrupoTipoAsientoEntity();
-
+            GrupotipoasientoEntity oGrupoTipoAsientoEntity = new GrupotipoasientoEntity();
             oGrupoTipoAsientoEntity
                     .setTitulo(arrTitulos[oRandomService.getRandomInt(0, arrTitulos.length - 1)]);
             oGrupoTipoAsientoEntity.setDescripcion(arrDescripcion[oRandomService.getRandomInt(0, arrDescripcion.length - 1)]);
             oGrupoTipoAsientoEntity.setOrden(arrOrden[oRandomService.getRandomInt(0, arrOrden.length - 1)]);
-            //oGrupoTipoAsientoEntity.setId_tipoasiento(1L);
-            //oGrupoTipoAsientoEntity.setId_balance(1L);
-
+            oGrupoTipoAsientoEntity.setTipoasiento(oTipoasientoService.randomSelection());
+            oGrupoTipoAsientoEntity.setBalance(oBalanceService.randomSelection());
             oGrupoTipoAsientoRepository.save(oGrupoTipoAsientoEntity);
         }
         return oGrupoTipoAsientoRepository.count();
     }
 
-    public Page<GrupoTipoAsientoEntity> getPage(Pageable oPageable, Optional<String> filter) {
+    public Page<GrupotipoasientoEntity> getPage(Pageable oPageable, Optional<String> filter) {
         if (filter.isPresent()) {
             return oGrupoTipoAsientoRepository.findByTituloContainingOrDescripcionContaining(
                             filter.get(), filter.get(), oPageable);
@@ -56,7 +59,7 @@ public class GrupoTipoAsientoService implements ServiceInterface<GrupoTipoAsient
     }
 
 
-    public GrupoTipoAsientoEntity get(Long id) {
+    public GrupotipoasientoEntity get(Long id) {
         return oGrupoTipoAsientoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Grupo de Tipo de Asiento no encontrado"));
     }
@@ -70,12 +73,12 @@ public class GrupoTipoAsientoService implements ServiceInterface<GrupoTipoAsient
         return 1L;
     }
 
-    public GrupoTipoAsientoEntity create(GrupoTipoAsientoEntity oGrupoTipoAsientoEntity) {
+    public GrupotipoasientoEntity create(GrupotipoasientoEntity oGrupoTipoAsientoEntity) {
         return oGrupoTipoAsientoRepository.save(oGrupoTipoAsientoEntity);
     }
 
-    public GrupoTipoAsientoEntity update(GrupoTipoAsientoEntity oGrupoTipoAsientoEntity) {
-        GrupoTipoAsientoEntity oGrupoTipoAsientoEntityFromDatabase = oGrupoTipoAsientoRepository.findById(oGrupoTipoAsientoEntity.getId()).get();
+    public GrupotipoasientoEntity update(GrupotipoasientoEntity oGrupoTipoAsientoEntity) {
+        GrupotipoasientoEntity oGrupoTipoAsientoEntityFromDatabase = oGrupoTipoAsientoRepository.findById(oGrupoTipoAsientoEntity.getId()).get();
         if (oGrupoTipoAsientoEntity.getTitulo() != null) {
             oGrupoTipoAsientoEntityFromDatabase.setTitulo(oGrupoTipoAsientoEntity.getTitulo());
         }
@@ -100,6 +103,10 @@ public class GrupoTipoAsientoService implements ServiceInterface<GrupoTipoAsient
         return this.count();
     }
 
-
+    @Override
+    public GrupotipoasientoEntity randomSelection() {
+        return oGrupoTipoAsientoRepository.findAll()
+                .get(oRandomService.getRandomInt(0, (int) (oGrupoTipoAsientoRepository.count() - 1)));
+    }    
 
 }

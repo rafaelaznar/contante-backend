@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "gruposubcuenta")
-public class GrupoSubCuentaEntity {
+public class GruposubcuentaEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,20 +22,20 @@ public class GrupoSubCuentaEntity {
 
     @ManyToOne (fetch = jakarta.persistence.FetchType.EAGER)
     @JoinColumn(name = "id_subcuenta")
-    private SubCuentaEntity subcuenta;
+    private SubcuentaEntity subcuenta;
 
     @ManyToOne (fetch = jakarta.persistence.FetchType.EAGER)
     @JoinColumn(name = "id_balance")
     private BalanceEntity balance;
 
-    public GrupoSubCuentaEntity() {
+    public GruposubcuentaEntity() {
     }
 
-    public GrupoSubCuentaEntity(String descripcion) {
+    public GruposubcuentaEntity(String descripcion) {
         this.descripcion = descripcion;
     }
 
-    public GrupoSubCuentaEntity(Long id, String descripcion) {
+    public GruposubcuentaEntity(Long id, String descripcion) {
         this.id = id;
         this.descripcion = descripcion;
     }
@@ -72,20 +72,20 @@ public class GrupoSubCuentaEntity {
         this.orden = orden;
     }
 
-    public BalanceEntity getId_balance() {
+    public BalanceEntity getBalance() {
         return balance;
     }
 
-    public void setId_balance(BalanceEntity id_balance) {
-        this.balance = id_balance;
+    public void setBalance(BalanceEntity balance) {
+        this.balance = balance;
     }
 
-    public SubCuentaEntity getId_subcuenta() {
+    public SubcuentaEntity getSubcuenta() {
         return subcuenta;
     }
 
-    public void setId_subcuenta(SubCuentaEntity id_subcuenta) {
-        this.subcuenta = id_subcuenta;
+    public void setSubcuenta(SubcuentaEntity subcuenta) {
+        this.subcuenta = subcuenta;
     }
     
     

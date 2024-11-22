@@ -26,17 +26,13 @@ public class CuentaEntity {
 
     @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
     @JoinColumn(name = "id_tipocuenta")
-    private TipoCuentaEntity tipocuenta;
+    private TipocuentaEntity tipocuenta;
 
     @OneToMany(mappedBy = "cuenta", fetch = FetchType.LAZY)
-    private java.util.List<GrupoCuentaEntity> grupocuenta;
+    private java.util.List<GrupocuentaEntity> grupocuentas;
 
     @OneToMany(mappedBy = "cuenta", fetch = FetchType.LAZY)
-    private java.util.List<SubCuentaEntity> subcuenta;
-
-    @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
-    @JoinColumn(name = "id_tipocuenta")
-    private TipoCuentaEntity tipoCuenta;
+    private java.util.List<SubcuentaEntity> subcuentas;
 
     public CuentaEntity() {
     }
@@ -70,19 +66,19 @@ public class CuentaEntity {
         this.descripcion = descripcion;
     }
 
-    public TipoCuentaEntity getTipocuenta() {
+    public TipocuentaEntity getTipocuenta() {
         return tipocuenta;
     }
 
-    public void setTipocuenta(TipoCuentaEntity tipocuenta) {
+    public void setTipocuenta(TipocuentaEntity tipocuenta) {
         this.tipocuenta = tipocuenta;
     }
 
-    public int getGrupoCuenta() {
-        return grupocuenta.size();
+    public int getGrupocuenta() {
+        return grupocuentas.size();
     }
 
-    public int getSubCuenta() {
-        return subcuenta.size();
+    public int getSubcuenta() {
+        return subcuentas.size();
     }
 }

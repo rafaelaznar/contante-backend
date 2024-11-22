@@ -8,12 +8,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import net.ausiasmarch.contante.entity.TipoCuentaEntity;
+import net.ausiasmarch.contante.entity.TipocuentaEntity;
 import net.ausiasmarch.contante.exception.ResourceNotFoundException;
 import net.ausiasmarch.contante.repository.TipoCuentaRepository;
 
 @Service
-public class TipoCuentaService implements ServiceInterface<TipoCuentaEntity> {
+public class TipocuentaService implements ServiceInterface<TipocuentaEntity> {
 
     @Autowired
     private TipoCuentaRepository oTipoCuentaRepository;
@@ -54,7 +54,7 @@ public class TipoCuentaService implements ServiceInterface<TipoCuentaEntity> {
 
     public Long randomCreate(Long cantidad) {
         for (int i = 0; i < cantidad; i++) {
-            TipoCuentaEntity oTipoCuentaEntity = new TipoCuentaEntity();
+            TipocuentaEntity oTipoCuentaEntity = new TipocuentaEntity();
             oTipoCuentaEntity.setDescripcion(arrDescripcion[oRandomService.getRandomInt(0, arrDescripcion.length - 1)]);
             oTipoCuentaEntity.setCreditoOdebito(arrCreditoOdebito[oRandomService.getRandomInt(0, arrCreditoOdebito.length - 1)]);
             oTipoCuentaEntity.setRealOnominal(arrRealOnominal[oRandomService.getRandomInt(0, arrRealOnominal.length - 1)]);
@@ -64,7 +64,7 @@ public class TipoCuentaService implements ServiceInterface<TipoCuentaEntity> {
         return oTipoCuentaRepository.count();
     }
 
-    public Page<TipoCuentaEntity> getPage(Pageable oPageable, Optional<String> filter) {
+    public Page<TipocuentaEntity> getPage(Pageable oPageable, Optional<String> filter) {
         if (filter.isPresent()) {
             return oTipoCuentaRepository
                     .findByDescripcionContainingOrCreditoOdebitoContainingOrComentariosContainingOrRealOnominalContaining(
@@ -74,7 +74,7 @@ public class TipoCuentaService implements ServiceInterface<TipoCuentaEntity> {
         }
     }
 
-    public TipoCuentaEntity get(Long id) {
+    public TipocuentaEntity get(Long id) {
         return oTipoCuentaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Apunte no encontrado"));
     }
@@ -88,12 +88,12 @@ public class TipoCuentaService implements ServiceInterface<TipoCuentaEntity> {
         return 1L;
     }
 
-    public TipoCuentaEntity create(TipoCuentaEntity oTipoCuentaEntity) {
+    public TipocuentaEntity create(TipocuentaEntity oTipoCuentaEntity) {
         return oTipoCuentaRepository.save(oTipoCuentaEntity);
     }
 
-    public TipoCuentaEntity update(TipoCuentaEntity oTipoCuentaEntity) {
-        TipoCuentaEntity oTipoCuentaEntityFromDatabase = oTipoCuentaRepository.findById(oTipoCuentaEntity.getId()).get();
+    public TipocuentaEntity update(TipocuentaEntity oTipoCuentaEntity) {
+        TipocuentaEntity oTipoCuentaEntityFromDatabase = oTipoCuentaRepository.findById(oTipoCuentaEntity.getId()).get();
         if (oTipoCuentaEntity.getDescripcion() != null) {
             oTipoCuentaEntityFromDatabase.setDescripcion(oTipoCuentaEntity.getDescripcion());
         }
@@ -112,6 +112,10 @@ public class TipoCuentaService implements ServiceInterface<TipoCuentaEntity> {
     public Long deleteAll() {
         oTipoCuentaRepository.deleteAll();
         return this.count();
+    }
+
+    public TipocuentaEntity randomSelection() {
+        return oTipoCuentaRepository.findAll().get(oRandomService.getRandomInt(0, (int) (oTipoCuentaRepository.count() - 1)));
     }
 
 }

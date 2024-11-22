@@ -7,12 +7,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import net.ausiasmarch.contante.entity.TipoApunteEntity;
+import net.ausiasmarch.contante.entity.TipoapunteEntity;
 import net.ausiasmarch.contante.exception.ResourceNotFoundException;
 import net.ausiasmarch.contante.repository.TipoApunteRepository;
 
 @Service
-public class TipoApunteService implements ServiceInterface<TipoApunteEntity>{
+public class TipoapunteService implements ServiceInterface<TipoapunteEntity>{
     
     @Autowired
     private TipoApunteRepository oTipoApunteRepository;
@@ -43,7 +43,7 @@ public class TipoApunteService implements ServiceInterface<TipoApunteEntity>{
 
     public Long randomCreate(Long cantidad) {
         for (int i = 0; i < cantidad; i++) {
-            TipoApunteEntity oTipoApunteEntity = new TipoApunteEntity();
+            TipoapunteEntity oTipoApunteEntity = new TipoapunteEntity();
             oTipoApunteEntity.setDescripcion(arrdescripcion[oRandomService.getRandomInt(0, arrdescripcion.length - 1)]);
             oTipoApunteEntity.setComentarios(arrcomentarios[oRandomService.getRandomInt(0, arrcomentarios.length - 1)]);
             oTipoApunteRepository.save(oTipoApunteEntity);
@@ -51,7 +51,7 @@ public class TipoApunteService implements ServiceInterface<TipoApunteEntity>{
         return oTipoApunteRepository.count();
     }
 
-    public Page<TipoApunteEntity> getPage(Pageable oPageable, Optional<String> filter) {
+    public Page<TipoapunteEntity> getPage(Pageable oPageable, Optional<String> filter) {
         if (filter.isPresent()) {
             return oTipoApunteRepository
                     .findByDescripcionContainingOrComentariosContaining(
@@ -61,7 +61,7 @@ public class TipoApunteService implements ServiceInterface<TipoApunteEntity>{
         }
     }
 
-    public TipoApunteEntity get(Long id) {
+    public TipoapunteEntity get(Long id) {
         return oTipoApunteRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Tipo de Apunte no encontrado"));
     }
@@ -75,12 +75,12 @@ public class TipoApunteService implements ServiceInterface<TipoApunteEntity>{
         return 1L;
     }
 
-    public TipoApunteEntity create(TipoApunteEntity oTipoApunteEntity) {
+    public TipoapunteEntity create(TipoapunteEntity oTipoApunteEntity) {
         return oTipoApunteRepository.save(oTipoApunteEntity);
     }
 
-    public TipoApunteEntity update(TipoApunteEntity oTipoApunteEntity) {
-        TipoApunteEntity oTipoApunteEntityFromDatabase = oTipoApunteRepository.findById(oTipoApunteEntity.getId()).get();
+    public TipoapunteEntity update(TipoapunteEntity oTipoApunteEntity) {
+        TipoapunteEntity oTipoApunteEntityFromDatabase = oTipoApunteRepository.findById(oTipoApunteEntity.getId()).get();
         if (oTipoApunteEntity.getDescripcion() != null) {
             oTipoApunteEntityFromDatabase.setDescripcion(oTipoApunteEntity.getDescripcion());
         }
@@ -93,6 +93,10 @@ public class TipoApunteService implements ServiceInterface<TipoApunteEntity>{
     public Long deleteAll() {
         oTipoApunteRepository.deleteAll();
         return this.count();
+    }
+
+    public TipoapunteEntity randomSelection() {
+        return oTipoApunteRepository.findAll().get(oRandomService.getRandomInt(0, (int) (oTipoApunteRepository.count() - 1)));
     }
 
 }

@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import net.ausiasmarch.contante.entity.GrupoTipoAsientoEntity;
-import net.ausiasmarch.contante.service.GrupoTipoAsientoService;
+import net.ausiasmarch.contante.entity.GrupotipoasientoEntity;
+import net.ausiasmarch.contante.service.GrupotipoasientoService;
 
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
@@ -27,17 +27,17 @@ import net.ausiasmarch.contante.service.GrupoTipoAsientoService;
 public class GrupoTipoasiento {
 
     @Autowired
-    GrupoTipoAsientoService oGrupoTipoAsientoService;
+    GrupotipoasientoService oGrupoTipoAsientoService;
  @GetMapping("")
-        public ResponseEntity<Page<GrupoTipoAsientoEntity>> getPage(
+        public ResponseEntity<Page<GrupotipoasientoEntity>> getPage(
                 Pageable oPageable,
                 @RequestParam  Optional<String> filter) {
-            return new ResponseEntity<Page<GrupoTipoAsientoEntity>>(oGrupoTipoAsientoService.getPage(oPageable, filter), HttpStatus.OK);
+            return new ResponseEntity<Page<GrupotipoasientoEntity>>(oGrupoTipoAsientoService.getPage(oPageable, filter), HttpStatus.OK);
         }
 
  @GetMapping("/{id}")
-        public ResponseEntity<GrupoTipoAsientoEntity> getGrupoTipoAsiento(@PathVariable Long id) {
-            return new ResponseEntity<GrupoTipoAsientoEntity>(oGrupoTipoAsientoService.get(id), HttpStatus.OK);
+        public ResponseEntity<GrupotipoasientoEntity> getGrupoTipoAsiento(@PathVariable Long id) {
+            return new ResponseEntity<GrupotipoasientoEntity>(oGrupoTipoAsientoService.get(id), HttpStatus.OK);
         }
 
  @GetMapping("/count")
@@ -51,13 +51,13 @@ public class GrupoTipoasiento {
         }
     
         @PutMapping("")
-        public ResponseEntity<GrupoTipoAsientoEntity> create(@RequestBody GrupoTipoAsientoEntity oGrupoTipoAsientoEntity) {
-            return new ResponseEntity<GrupoTipoAsientoEntity>(oGrupoTipoAsientoService.create(oGrupoTipoAsientoEntity), HttpStatus.OK);
+        public ResponseEntity<GrupotipoasientoEntity> create(@RequestBody GrupotipoasientoEntity oGrupoTipoAsientoEntity) {
+            return new ResponseEntity<GrupotipoasientoEntity>(oGrupoTipoAsientoService.create(oGrupoTipoAsientoEntity), HttpStatus.OK);
         }
     
         @PostMapping("")
-        public ResponseEntity<GrupoTipoAsientoEntity> update(@RequestBody GrupoTipoAsientoEntity oGrupoTipoAsientoEntity) {
-            return new ResponseEntity<GrupoTipoAsientoEntity>(oGrupoTipoAsientoService.update(oGrupoTipoAsientoEntity), HttpStatus.OK);
+        public ResponseEntity<GrupotipoasientoEntity> update(@RequestBody GrupotipoasientoEntity oGrupoTipoAsientoEntity) {
+            return new ResponseEntity<GrupotipoasientoEntity>(oGrupoTipoAsientoService.update(oGrupoTipoAsientoEntity), HttpStatus.OK);
         }
     
     

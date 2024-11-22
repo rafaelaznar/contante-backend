@@ -18,26 +18,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.ausiasmarch.contante.entity.TipoApunteEntity;
-import net.ausiasmarch.contante.service.TipoApunteService;
+import net.ausiasmarch.contante.entity.TipoapunteEntity;
+import net.ausiasmarch.contante.service.TipoapunteService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/tipoapunte")
 public class TipoApunte {
     @Autowired
-    TipoApunteService oTipoApunteService;
+    TipoapunteService oTipoApunteService;
 
     @GetMapping("")
-    public ResponseEntity<Page<TipoApunteEntity>> getPage(
+    public ResponseEntity<Page<TipoapunteEntity>> getPage(
             Pageable oPageable,
             @RequestParam  Optional<String> filter) {
-        return new ResponseEntity<Page<TipoApunteEntity>>(oTipoApunteService.getPage(oPageable, filter), HttpStatus.OK);
+        return new ResponseEntity<Page<TipoapunteEntity>>(oTipoApunteService.getPage(oPageable, filter), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TipoApunteEntity> getTipoApunte(@PathVariable Long id) {
-        return new ResponseEntity<TipoApunteEntity>(oTipoApunteService.get(id), HttpStatus.OK);
+    public ResponseEntity<TipoapunteEntity> getTipoApunte(@PathVariable Long id) {
+        return new ResponseEntity<TipoapunteEntity>(oTipoApunteService.get(id), HttpStatus.OK);
     }
 
     @GetMapping("/count")
@@ -51,13 +51,13 @@ public class TipoApunte {
     }
 
     @PutMapping("")
-    public ResponseEntity<TipoApunteEntity> create(@RequestBody TipoApunteEntity oTipoApunteEntity) {
-        return new ResponseEntity<TipoApunteEntity>(oTipoApunteService.create(oTipoApunteEntity), HttpStatus.OK);
+    public ResponseEntity<TipoapunteEntity> create(@RequestBody TipoapunteEntity oTipoApunteEntity) {
+        return new ResponseEntity<TipoapunteEntity>(oTipoApunteService.create(oTipoApunteEntity), HttpStatus.OK);
     }
 
     @PostMapping("")
-    public ResponseEntity<TipoApunteEntity> update(@RequestBody TipoApunteEntity oTipoApunteEntity) {
-        return new ResponseEntity<TipoApunteEntity>(oTipoApunteService.update(oTipoApunteEntity), HttpStatus.OK);
+    public ResponseEntity<TipoapunteEntity> update(@RequestBody TipoapunteEntity oTipoApunteEntity) {
+        return new ResponseEntity<TipoapunteEntity>(oTipoApunteService.update(oTipoApunteEntity), HttpStatus.OK);
     }
 
 

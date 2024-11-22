@@ -6,12 +6,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import net.ausiasmarch.contante.entity.GrupoSubCuentaEntity;
-import net.ausiasmarch.contante.entity.TipousuarioEntity;
+import net.ausiasmarch.contante.entity.GruposubcuentaEntity;
 import net.ausiasmarch.contante.exception.ResourceNotFoundException;
 import net.ausiasmarch.contante.repository.GrupoSubCuentaRepository;
 @Service
-public class GrupoSubCuentaService {
+public class GruposubcuentaService {
     
     @Autowired
     GrupoSubCuentaRepository oGrupoSubCuentaRepository;
@@ -19,18 +18,25 @@ public class GrupoSubCuentaService {
     @Autowired
     RandomService oRandomService;
 
+    @Autowired
+    SubcuentaService oSubcuentaService;
+
+    @Autowired
+    BalanceService oBalanceService;
 
     public Long randomCreate(Long cantidad) {
         for (int i = 0; i < cantidad; i++) {
-            GrupoSubCuentaEntity ogGrupoSubCuentaEntity = new GrupoSubCuentaEntity();
+            GruposubcuentaEntity ogGrupoSubCuentaEntity = new GruposubcuentaEntity();
             ogGrupoSubCuentaEntity.setDescripcion("Tipo usuario " + i + oRandomService.getRandomInt(999, 9999));
-            
+            ogGrupoSubCuentaEntity.setOrden(i);
+            ogGrupoSubCuentaEntity.setSubcuenta(oSubcuentaService.randomSelection());
+            ogGrupoSubCuentaEntity.setBalance(oBalanceService.randomSelection());
             oGrupoSubCuentaRepository.save(ogGrupoSubCuentaEntity);
         }
         return oGrupoSubCuentaRepository.count();
     }
 
-    public Page<GrupoSubCuentaEntity> getPage(Pageable oPageable, Optional<String> filter) {
+    public Page<GruposubcuentaEntity> getPage(Pageable oPageable, Optional<String> filter) {
 
         if (filter.isPresent()) {
             return oGrupoSubCuentaRepository
@@ -40,7 +46,7 @@ public class GrupoSubCuentaService {
         }
     }
 
-    public GrupoSubCuentaEntity get(Long id) {
+    public GruposubcuentaEntity get(Long id) {
         return oGrupoSubCuentaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
     }
@@ -54,12 +60,12 @@ public class GrupoSubCuentaService {
         return 1L;
     }
 
-    public GrupoSubCuentaEntity create(GrupoSubCuentaEntity oGrupoSubCuentaEntity) {
+    public GruposubcuentaEntity create(GruposubcuentaEntity oGrupoSubCuentaEntity) {
         return oGrupoSubCuentaRepository.save(oGrupoSubCuentaEntity);
     }
 
-    public GrupoSubCuentaEntity update(GrupoSubCuentaEntity oGrupoSubCuentaEntity) {
-        GrupoSubCuentaEntity oGrupoSubCuentaEntityFromDatabase = oGrupoSubCuentaRepository.findById(oGrupoSubCuentaEntity.getId())
+    public GruposubcuentaEntity update(GruposubcuentaEntity oGrupoSubCuentaEntity) {
+        GruposubcuentaEntity oGrupoSubCuentaEntityFromDatabase = oGrupoSubCuentaRepository.findById(oGrupoSubCuentaEntity.getId())
                 .get();
         if (oGrupoSubCuentaEntity.getDescripcion() != null) {
             oGrupoSubCuentaEntityFromDatabase.setDescripcion(oGrupoSubCuentaEntity.getDescripcion());
@@ -70,5 +76,10 @@ public class GrupoSubCuentaService {
     public Long deleteAll() {
         oGrupoSubCuentaRepository.deleteAll();
         return this.count();
+    }
+
+    public GruposubcuentaEntity randomSelection() {
+        return oGrupoSubCuentaRepository.findAll()
+                .get(oRandomService.getRandomInt(0, (int) (oGrupoSubCuentaRepository.count() - 1)));
     }
 }

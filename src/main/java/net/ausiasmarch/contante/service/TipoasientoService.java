@@ -7,44 +7,48 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import net.ausiasmarch.contante.entity.TipoAsientoEntity;
+import net.ausiasmarch.contante.entity.TipoasientoEntity;
+
 import net.ausiasmarch.contante.exception.ResourceNotFoundException;
 import net.ausiasmarch.contante.repository.TipoAsientoRepository;
 
 @Service
-public class TipoAsientoService implements ServiceInterfaceTipoAsiento {
-    
+public class TipoasientoService implements ServiceInterface<TipoasientoEntity> {
+
     @Autowired
     private TipoAsientoRepository oTipoAsientoRepository;
 
     @Autowired
     RandomService oRandomService;
 
-    private String[] arrDescripciones = {"Asiento simple", "Asiento doble", "Asiento triple", "Asiento cuadruple", "Asiento quinuple",
-        "Asiento sexuple", "Asiento septuple", "Asiento octuple", "Asiento novuple", "Asiento decuple", "Asiento decuple", "Asiento decuple",
-        "Asiento decuple", "Asiento decuple", "Asiento decuple", "Asiento decuple"};
+    private String[] arrDescripciones = { "Asiento simple", "Asiento doble", "Asiento triple", "Asiento cuadruple",
+            "Asiento quinuple",
+            "Asiento sexuple", "Asiento septuple", "Asiento octuple", "Asiento novuple", "Asiento decuple",
+            "Asiento decuple", "Asiento decuple",
+            "Asiento decuple", "Asiento decuple", "Asiento decuple", "Asiento decuple" };
 
     public Long randomCreate(Long cantidad) {
         for (int i = 0; i < cantidad; i++) {
-            TipoAsientoEntity oTipoAsientoEntity = new TipoAsientoEntity();
-            oTipoAsientoEntity.setDescripcion(arrDescripciones[oRandomService.getRandomInt(0, arrDescripciones.length - 1)]);
+            TipoasientoEntity oTipoAsientoEntity = new TipoasientoEntity();
+            oTipoAsientoEntity
+                    .setDescripcion(arrDescripciones[oRandomService.getRandomInt(0, arrDescripciones.length - 1)]);
             oTipoAsientoRepository.save(oTipoAsientoEntity);
         }
         return oTipoAsientoRepository.count();
     }
 
-    public Page<TipoAsientoEntity> getPage(Pageable oPageable, Optional<String> filter) {
+    public Page<TipoasientoEntity> getPage(Pageable oPageable, Optional<String> filter) {
 
         if (filter.isPresent()) {
             return oTipoAsientoRepository
                     .findByDescripcionContaining(
-                            filter.get(),oPageable);
+                            filter.get(), oPageable);
         } else {
             return oTipoAsientoRepository.findAll(oPageable);
         }
     }
 
-     public TipoAsientoEntity get(Long id) {
+    public TipoasientoEntity get(Long id) {
         return oTipoAsientoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("TipoAsiento no encontrado"));
         // return oUsuarioRepository.findById(id).get();
@@ -59,12 +63,13 @@ public class TipoAsientoService implements ServiceInterfaceTipoAsiento {
         return 1L;
     }
 
-    public TipoAsientoEntity create(TipoAsientoEntity oTipoAsientoEntity) {
+    public TipoasientoEntity create(TipoasientoEntity oTipoAsientoEntity) {
         return oTipoAsientoRepository.save(oTipoAsientoEntity);
     }
 
-    public TipoAsientoEntity update(TipoAsientoEntity oTipoAsientoEntity) {
-        TipoAsientoEntity oTipoAsientoEntityFromDatabase = oTipoAsientoRepository.findById(oTipoAsientoEntity.getId()).get();
+    public TipoasientoEntity update(TipoasientoEntity oTipoAsientoEntity) {
+        TipoasientoEntity oTipoAsientoEntityFromDatabase = oTipoAsientoRepository.findById(oTipoAsientoEntity.getId())
+                .get();
         if (oTipoAsientoEntity.getDescripcion() != null) {
             oTipoAsientoEntityFromDatabase.setDescripcion(oTipoAsientoEntity.getDescripcion());
         }
@@ -74,5 +79,10 @@ public class TipoAsientoService implements ServiceInterfaceTipoAsiento {
     public Long deleteAll() {
         oTipoAsientoRepository.deleteAll();
         return this.count();
+    }
+
+    public TipoasientoEntity randomSelection() {
+        return oTipoAsientoRepository.findAll()
+                .get(oRandomService.getRandomInt(0, (int) (oTipoAsientoRepository.count() - 1)));
     }
 }

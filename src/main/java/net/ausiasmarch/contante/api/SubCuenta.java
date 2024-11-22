@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.ausiasmarch.contante.entity.SubCuentaEntity;
-import net.ausiasmarch.contante.service.SubCuentaService;
+import net.ausiasmarch.contante.entity.SubcuentaEntity;
+import net.ausiasmarch.contante.service.SubcuentaService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
@@ -28,18 +28,18 @@ import net.ausiasmarch.contante.service.SubCuentaService;
 public class SubCuenta {
 
     @Autowired
-    SubCuentaService oSubCuentaService;
+    SubcuentaService oSubCuentaService;
 
     @GetMapping("")
-    public ResponseEntity<Page<SubCuentaEntity>> getPage(
+    public ResponseEntity<Page<SubcuentaEntity>> getPage(
             Pageable oPageable,
             @RequestParam  Optional<String> filter) {
-        return new ResponseEntity<Page<SubCuentaEntity>>(oSubCuentaService.getPage(oPageable, filter), HttpStatus.OK);
+        return new ResponseEntity<Page<SubcuentaEntity>>(oSubCuentaService.getPage(oPageable, filter), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<SubCuentaEntity> getApunte(@PathVariable Long id) {
-        return new ResponseEntity<SubCuentaEntity>(oSubCuentaService.get(id), HttpStatus.OK);
+    public ResponseEntity<SubcuentaEntity> getApunte(@PathVariable Long id) {
+        return new ResponseEntity<SubcuentaEntity>(oSubCuentaService.get(id), HttpStatus.OK);
     }
 
     @GetMapping("/count")
@@ -53,13 +53,13 @@ public class SubCuenta {
     }
 
     @PutMapping("")
-    public ResponseEntity<SubCuentaEntity> create(@RequestBody SubCuentaEntity oApunteEntity) {
-        return new ResponseEntity<SubCuentaEntity>(oSubCuentaService.create(oApunteEntity), HttpStatus.OK);
+    public ResponseEntity<SubcuentaEntity> create(@RequestBody SubcuentaEntity oApunteEntity) {
+        return new ResponseEntity<SubcuentaEntity>(oSubCuentaService.create(oApunteEntity), HttpStatus.OK);
     }
 
     @PostMapping("")
-    public ResponseEntity<SubCuentaEntity> update(@RequestBody SubCuentaEntity oApunteEntity) {
-        return new ResponseEntity<SubCuentaEntity>(oSubCuentaService.update(oApunteEntity), HttpStatus.OK);
+    public ResponseEntity<SubcuentaEntity> update(@RequestBody SubcuentaEntity oApunteEntity) {
+        return new ResponseEntity<SubcuentaEntity>(oSubCuentaService.update(oApunteEntity), HttpStatus.OK);
     }
 
 

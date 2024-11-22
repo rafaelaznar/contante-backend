@@ -7,12 +7,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "grupotipoasiento")
-public class GrupoTipoAsientoEntity {
+@Table(name = "grupotipoapunte")
+public class GrupotipoapunteEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,30 +28,29 @@ public class GrupoTipoAsientoEntity {
     private String descripcion;
 
     @NotNull
+    @Max(value = 128)
     private Long orden;
-
-    @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
-    @JoinColumn(name = "id_tipoasiento")
-    private TipoAsientoEntity tipoasiento;
 
     @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
     @JoinColumn(name = "id_balance")
     private BalanceEntity balance;
 
-    public GrupoTipoAsientoEntity() {
+    @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
+    @JoinColumn(name = "id_tipoapunte")
+    private TipoapunteEntity tipoapunte;
+
+    public GrupotipoapunteEntity() {
     }
 
-    public GrupoTipoAsientoEntity(String titulo, String descripcion, Long orden) {
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.orden = orden;
-    }
-
-    public GrupoTipoAsientoEntity(Long id, String titulo, String descripcion, Long orden) {
+    public GrupotipoapunteEntity(Long id, @NotNull @Size(min = 3, max = 255) String titulo,
+            @NotNull @Size(min = 3, max = 255) String descripcion, @NotNull @Max(128) Long orden,
+            @NotNull Long id_balance,
+            @NotNull Long id_tipoapunte) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.orden = orden;
+   
     }
 
     public Long getId() {
@@ -81,16 +81,8 @@ public class GrupoTipoAsientoEntity {
         return orden;
     }
 
-    public void setOrden(Long orden) {
-        this.orden = orden;
-    }
-
-    public TipoAsientoEntity getTipoasiento() {
-        return tipoasiento;
-    }
-
-    public void setTipoasiento(TipoAsientoEntity tipoasiento) {
-        this.tipoasiento = tipoasiento;
+    public void setOrden(Long arrorden) {
+        this.orden = arrorden;
     }
 
     public BalanceEntity getBalance() {
@@ -100,5 +92,14 @@ public class GrupoTipoAsientoEntity {
     public void setBalance(BalanceEntity balance) {
         this.balance = balance;
     }
+
+    public TipoapunteEntity getTipoapunte() {
+        return tipoapunte;
+    }
+
+    public void setTipoapunte(TipoapunteEntity tipoapunte) {
+        this.tipoapunte = tipoapunte;
+    }
+
 
 }

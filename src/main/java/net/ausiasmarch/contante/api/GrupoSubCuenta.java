@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.ausiasmarch.contante.entity.GrupoSubCuentaEntity;
-import net.ausiasmarch.contante.service.GrupoSubCuentaService;
+import net.ausiasmarch.contante.entity.GruposubcuentaEntity;
+import net.ausiasmarch.contante.service.GruposubcuentaService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
@@ -27,18 +27,18 @@ import net.ausiasmarch.contante.service.GrupoSubCuentaService;
 public class GrupoSubCuenta {
     
     @Autowired
-    GrupoSubCuentaService oGrupoSubCuentaService;
+    GruposubcuentaService oGrupoSubCuentaService;
 
     @GetMapping("")
-    public ResponseEntity<Page<GrupoSubCuentaEntity>> getPage(
+    public ResponseEntity<Page<GruposubcuentaEntity>> getPage(
             Pageable oPageable,
             @RequestParam  Optional<String> filter) {
-        return new ResponseEntity<Page<GrupoSubCuentaEntity>>(oGrupoSubCuentaService.getPage(oPageable, filter), HttpStatus.OK);
+        return new ResponseEntity<Page<GruposubcuentaEntity>>(oGrupoSubCuentaService.getPage(oPageable, filter), HttpStatus.OK);
     }
 
      @GetMapping("/{id}")
-    public ResponseEntity<GrupoSubCuentaEntity> getTipousuario(@PathVariable Long id) {
-        return new ResponseEntity<GrupoSubCuentaEntity>(oGrupoSubCuentaService.get(id), HttpStatus.OK);
+    public ResponseEntity<GruposubcuentaEntity> getTipousuario(@PathVariable Long id) {
+        return new ResponseEntity<GruposubcuentaEntity>(oGrupoSubCuentaService.get(id), HttpStatus.OK);
     }
 
     @GetMapping("/count")
@@ -52,13 +52,13 @@ public class GrupoSubCuenta {
     }
 
     @PutMapping("")
-    public ResponseEntity<GrupoSubCuentaEntity> create(@RequestBody GrupoSubCuentaEntity oTipousuarioEntity) {
-        return new ResponseEntity<GrupoSubCuentaEntity>(oGrupoSubCuentaService.create(oTipousuarioEntity), HttpStatus.OK);
+    public ResponseEntity<GruposubcuentaEntity> create(@RequestBody GruposubcuentaEntity oTipousuarioEntity) {
+        return new ResponseEntity<GruposubcuentaEntity>(oGrupoSubCuentaService.create(oTipousuarioEntity), HttpStatus.OK);
     }
 
     @PostMapping("")
-    public ResponseEntity<GrupoSubCuentaEntity> update(@RequestBody GrupoSubCuentaEntity oTipousuarioEntity) {
-        return new ResponseEntity<GrupoSubCuentaEntity>(oGrupoSubCuentaService.update(oTipousuarioEntity), HttpStatus.OK);
+    public ResponseEntity<GruposubcuentaEntity> update(@RequestBody GruposubcuentaEntity oTipousuarioEntity) {
+        return new ResponseEntity<GruposubcuentaEntity>(oGrupoSubCuentaService.update(oTipousuarioEntity), HttpStatus.OK);
     }
 
     @PutMapping("/random/{cantidad}")

@@ -3,12 +3,12 @@ package net.ausiasmarch.contante.repository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import net.ausiasmarch.contante.entity.GrupoTipoAsientoEntity;
+import net.ausiasmarch.contante.entity.GrupotipoasientoEntity;
 
 
-public interface GrupoTipoAsientoRepository extends JpaRepository<GrupoTipoAsientoEntity, Long>{
+public interface GrupoTipoAsientoRepository extends JpaRepository<GrupotipoasientoEntity, Long>{
 
-     Page<GrupoTipoAsientoEntity> findByTituloContainingOrDescripcionContaining(
+     Page<GrupotipoasientoEntity> findByTituloContainingOrDescripcionContaining(
             String filter2, String filter3, Pageable oPageable);
 
     

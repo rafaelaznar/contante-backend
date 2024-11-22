@@ -17,7 +17,7 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "subcuenta")
-public class SubCuentaEntity {
+public class SubcuentaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,18 +32,19 @@ public class SubCuentaEntity {
     private LocalDateTime momentstamp;
 
     @OneToMany(mappedBy = "subcuenta",fetch = FetchType.LAZY)
-    private java.util.List<GrupoSubCuentaEntity> gruposubcuenta; ;
+    private java.util.List<GruposubcuentaEntity> gruposubcuentas;
 
     @OneToMany(mappedBy = "subcuenta",fetch = FetchType.LAZY)
-    private java.util.List<ApunteEntity> apunte;
+    private java.util.List<ApunteEntity> apuntes;
 
     @ManyToOne (fetch = jakarta.persistence.FetchType.EAGER)
     @JoinColumn(name = "id_cuenta")
     private CuentaEntity cuenta;
-    public SubCuentaEntity() {
+    
+    public SubcuentaEntity() {
     }
 
-    public SubCuentaEntity(long id, int codigo, String descripcion,CuentaEntity id_cuenta, LocalDateTime momentstamp) {
+    public SubcuentaEntity(long id, int codigo, String descripcion,CuentaEntity id_cuenta, LocalDateTime momentstamp) {
         this.id = id;
         this.codigo = codigo;
         this.descripcion = descripcion;
@@ -51,7 +52,7 @@ public class SubCuentaEntity {
         this.momentstamp = momentstamp;
     }
 
-    public SubCuentaEntity( int codigo, String descripcion, CuentaEntity id_cuenta, LocalDateTime momentstamp) {
+    public SubcuentaEntity( int codigo, String descripcion, CuentaEntity id_cuenta, LocalDateTime momentstamp) {
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.cuenta = id_cuenta;
@@ -82,12 +83,12 @@ public class SubCuentaEntity {
         this.descripcion = descripcion;
     }
 
-    public CuentaEntity getId_cuenta() {
+    public CuentaEntity getCuenta() {
         return cuenta;
     }
 
-    public void setId_cuenta(CuentaEntity id_cuenta) {
-        this.cuenta = id_cuenta;
+    public void setCuenta(CuentaEntity oCuenta) {
+        this.cuenta = oCuenta;
     }
 
     public LocalDateTime getMomentstamp() {
@@ -99,10 +100,10 @@ public class SubCuentaEntity {
     }
 
     public int getsubcuenta() {
-        return gruposubcuenta.size();
+        return gruposubcuentas.size();
     }
 
     public int getApuntes() {
-        return apunte.size();
+        return apuntes.size();
     }
 }

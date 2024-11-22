@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.ausiasmarch.contante.entity.GrupoTipoApunteEntity;
-import net.ausiasmarch.contante.service.GrupoTipoApunteService;
+import net.ausiasmarch.contante.entity.GrupotipoapunteEntity;
+import net.ausiasmarch.contante.service.GrupotipoapunteService;
 
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
@@ -28,18 +28,18 @@ import net.ausiasmarch.contante.service.GrupoTipoApunteService;
 public class GrupoTipoApunte {
 
    @Autowired
-   GrupoTipoApunteService oGrupoTipoApunteService;
+   GrupotipoapunteService oGrupoTipoApunteService;
 
     @GetMapping("")
-    public ResponseEntity<Page<GrupoTipoApunteEntity>> getPage(
+    public ResponseEntity<Page<GrupotipoapunteEntity>> getPage(
             Pageable oPageable,
             @RequestParam  Optional<String> filter) {
-        return new ResponseEntity<Page<GrupoTipoApunteEntity>>(oGrupoTipoApunteService.getPage(oPageable, filter), HttpStatus.OK);
+        return new ResponseEntity<Page<GrupotipoapunteEntity>>(oGrupoTipoApunteService.getPage(oPageable, filter), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<GrupoTipoApunteEntity> getGrupoTipoApunte(@PathVariable Long id) {
-        return new ResponseEntity<GrupoTipoApunteEntity>(oGrupoTipoApunteService.get(id), HttpStatus.OK);
+    public ResponseEntity<GrupotipoapunteEntity> getGrupoTipoApunte(@PathVariable Long id) {
+        return new ResponseEntity<GrupotipoapunteEntity>(oGrupoTipoApunteService.get(id), HttpStatus.OK);
     }
 
     @GetMapping("/count")
@@ -53,13 +53,13 @@ public class GrupoTipoApunte {
     }
 
     @PutMapping("")
-    public ResponseEntity<GrupoTipoApunteEntity> create(@RequestBody GrupoTipoApunteEntity oGrupoTipoApunteEntity) {
-        return new ResponseEntity<GrupoTipoApunteEntity>(oGrupoTipoApunteService.create(oGrupoTipoApunteEntity), HttpStatus.OK);
+    public ResponseEntity<GrupotipoapunteEntity> create(@RequestBody GrupotipoapunteEntity oGrupoTipoApunteEntity) {
+        return new ResponseEntity<GrupotipoapunteEntity>(oGrupoTipoApunteService.create(oGrupoTipoApunteEntity), HttpStatus.OK);
     }
 
     @PostMapping("")
-    public ResponseEntity<GrupoTipoApunteEntity> update(@RequestBody GrupoTipoApunteEntity oGrupoTipoApunteEntity) {
-        return new ResponseEntity<GrupoTipoApunteEntity>(oGrupoTipoApunteService.update(oGrupoTipoApunteEntity), HttpStatus.OK);
+    public ResponseEntity<GrupotipoapunteEntity> update(@RequestBody GrupotipoapunteEntity oGrupoTipoApunteEntity) {
+        return new ResponseEntity<GrupotipoapunteEntity>(oGrupoTipoApunteService.update(oGrupoTipoApunteEntity), HttpStatus.OK);
     }
 
     @PutMapping("/random/{cantidad}")

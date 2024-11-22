@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.ausiasmarch.contante.entity.TipoAsientoEntity;
-import net.ausiasmarch.contante.service.TipoAsientoService;
+import net.ausiasmarch.contante.entity.TipoasientoEntity;
+import net.ausiasmarch.contante.service.TipoasientoService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
@@ -27,19 +27,19 @@ import net.ausiasmarch.contante.service.TipoAsientoService;
 public class TipoAsiento {
 
     @Autowired
-    TipoAsientoService oTipoAsientoService;
+    TipoasientoService oTipoAsientoService;
 
     @GetMapping("")
-    public ResponseEntity<Page<TipoAsientoEntity>> getPage(
+    public ResponseEntity<Page<TipoasientoEntity>> getPage(
             Pageable oPageable,
             @RequestParam Optional<String> filter) {
-        return new ResponseEntity<Page<TipoAsientoEntity>>(oTipoAsientoService.getPage(oPageable, filter),
+        return new ResponseEntity<Page<TipoasientoEntity>>(oTipoAsientoService.getPage(oPageable, filter),
                 HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TipoAsientoEntity> getTipoAsiento(@PathVariable Long id) {
-        return new ResponseEntity<TipoAsientoEntity>(oTipoAsientoService.get(id), HttpStatus.OK);
+    public ResponseEntity<TipoasientoEntity> getTipoAsiento(@PathVariable Long id) {
+        return new ResponseEntity<TipoasientoEntity>(oTipoAsientoService.get(id), HttpStatus.OK);
     }
 
     @GetMapping("/count")
@@ -53,13 +53,13 @@ public class TipoAsiento {
     }
 
     @PutMapping("")
-    public ResponseEntity<TipoAsientoEntity> create(@RequestBody TipoAsientoEntity oTipoAsientoEntity) {
-        return new ResponseEntity<TipoAsientoEntity>(oTipoAsientoService.create(oTipoAsientoEntity), HttpStatus.OK);
+    public ResponseEntity<TipoasientoEntity> create(@RequestBody TipoasientoEntity oTipoAsientoEntity) {
+        return new ResponseEntity<TipoasientoEntity>(oTipoAsientoService.create(oTipoAsientoEntity), HttpStatus.OK);
     }
 
     @PostMapping("")
-    public ResponseEntity<TipoAsientoEntity> update(@RequestBody TipoAsientoEntity oTipoAsientoEntity) {
-        return new ResponseEntity<TipoAsientoEntity>(oTipoAsientoService.update(oTipoAsientoEntity), HttpStatus.OK);
+    public ResponseEntity<TipoasientoEntity> update(@RequestBody TipoasientoEntity oTipoAsientoEntity) {
+        return new ResponseEntity<TipoasientoEntity>(oTipoAsientoService.update(oTipoAsientoEntity), HttpStatus.OK);
     }
 
     @PutMapping("/random/{cantidad}")

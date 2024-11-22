@@ -7,12 +7,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import net.ausiasmarch.contante.entity.GrupoCuentaEntity;
+import net.ausiasmarch.contante.entity.GrupocuentaEntity;
 import net.ausiasmarch.contante.exception.ResourceNotFoundException;
 import net.ausiasmarch.contante.repository.GrupoCuentaRepository;
 
 @Service
-public class GrupoCuentaService implements ServiceInterface<GrupoCuentaEntity> {
+public class GrupocuentaService implements ServiceInterface<GrupocuentaEntity> {
 
     @Autowired
     GrupoCuentaRepository oGrupoCuentaRepository;
@@ -20,22 +20,28 @@ public class GrupoCuentaService implements ServiceInterface<GrupoCuentaEntity> {
     @Autowired
     RandomService oRandomService;
 
+    @Autowired
+    CuentaService oCuentaService;
+
+    @Autowired
+    BalanceService oBalanceService;
+
     private String[] arrTitulo = { "Titulo 1", "Titulo 2", "Titulo 3", "Titulo 4", "Titulo 5" };
 
     public Long randomCreate(Long cantidad) {
         for (int i = 0; i < cantidad; i++) {
-            GrupoCuentaEntity oGrupoCuentaEntity = new GrupoCuentaEntity();
+            GrupocuentaEntity oGrupoCuentaEntity = new GrupocuentaEntity();
             oGrupoCuentaEntity.setTitulo(arrTitulo[oRandomService.getRandomInt(0, arrTitulo.length - 1)]);
             oGrupoCuentaEntity.setDescripcion("descripcion aleatoria");
             oGrupoCuentaEntity.setOrden(i + 1);
-            oGrupoCuentaEntity.setId_cuenta(i + 1L);
-            oGrupoCuentaEntity.setId_balance(i + 1L);
+            oGrupoCuentaEntity.setCuenta(oCuentaService.randomSelection());
+            oGrupoCuentaEntity.setBalance(oBalanceService.randomSelection());
             oGrupoCuentaRepository.save(oGrupoCuentaEntity);
         }
         return oGrupoCuentaRepository.count();
     }
 
-    public Page<GrupoCuentaEntity> getPage(Pageable oPageable, Optional<String> filter) {
+    public Page<GrupocuentaEntity> getPage(Pageable oPageable, Optional<String> filter) {
 
         if (filter.isPresent()) {
             return oGrupoCuentaRepository
@@ -45,7 +51,7 @@ public class GrupoCuentaService implements ServiceInterface<GrupoCuentaEntity> {
         }
     }
 
-    public GrupoCuentaEntity get(Long id) {
+    public GrupocuentaEntity get(Long id) {
         return oGrupoCuentaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("GrupoCuenta no encontrada"));
     }
@@ -59,12 +65,12 @@ public class GrupoCuentaService implements ServiceInterface<GrupoCuentaEntity> {
         return 1L;
     }
 
-    public GrupoCuentaEntity create(GrupoCuentaEntity oGrupoCuentaEntity) {
+    public GrupocuentaEntity create(GrupocuentaEntity oGrupoCuentaEntity) {
         return oGrupoCuentaRepository.save(oGrupoCuentaEntity);
     }
 
-    public GrupoCuentaEntity update(GrupoCuentaEntity oGrupoCuentaEntity) {
-        GrupoCuentaEntity oGrupoCuentaEntityFromDatabase = oGrupoCuentaRepository.findById(oGrupoCuentaEntity.getId())
+    public GrupocuentaEntity update(GrupocuentaEntity oGrupoCuentaEntity) {
+        GrupocuentaEntity oGrupoCuentaEntityFromDatabase = oGrupoCuentaRepository.findById(oGrupoCuentaEntity.getId())
                 .get();
         if (oGrupoCuentaEntity.getTitulo() != null) {
             oGrupoCuentaEntityFromDatabase.setTitulo(oGrupoCuentaEntity.getTitulo());
@@ -75,11 +81,11 @@ public class GrupoCuentaService implements ServiceInterface<GrupoCuentaEntity> {
         if (oGrupoCuentaEntity.getOrden() != 0) {
             oGrupoCuentaEntityFromDatabase.setOrden(oGrupoCuentaEntity.getOrden());
         }
-        if (oGrupoCuentaEntity.getId_cuenta() != 0) {
-            oGrupoCuentaEntityFromDatabase.setId_cuenta(oGrupoCuentaEntity.getId_cuenta());
+        if (oGrupoCuentaEntity.getCuenta() != null) {
+            oGrupoCuentaEntityFromDatabase.setCuenta(oCuentaService.get(oGrupoCuentaEntity.getCuenta().getId()));
         }
-        if (oGrupoCuentaEntity.getId_balance() != 0) {
-            oGrupoCuentaEntityFromDatabase.setId_balance(oGrupoCuentaEntity.getId_balance());
+        if (oGrupoCuentaEntity.getBalance() != null) {
+            oGrupoCuentaEntityFromDatabase.setBalance(oBalanceService.get(oGrupoCuentaEntity.getBalance().getId()));
         }
         return oGrupoCuentaRepository.save(oGrupoCuentaEntityFromDatabase);
     }
@@ -87,6 +93,11 @@ public class GrupoCuentaService implements ServiceInterface<GrupoCuentaEntity> {
     public Long deleteAll() {
         oGrupoCuentaRepository.deleteAll();
         return this.count();
+    }
+
+    public GrupocuentaEntity randomSelection() {
+        return oGrupoCuentaRepository.findAll()
+                .get(oRandomService.getRandomInt(0, (int) (oGrupoCuentaRepository.count() - 1)));
     }
 
 }

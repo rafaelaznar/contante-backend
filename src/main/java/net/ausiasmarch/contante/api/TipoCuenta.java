@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.ausiasmarch.contante.entity.TipoCuentaEntity;
-import net.ausiasmarch.contante.service.TipoCuentaService;
+import net.ausiasmarch.contante.entity.TipocuentaEntity;
+import net.ausiasmarch.contante.service.TipocuentaService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
@@ -27,18 +27,18 @@ import net.ausiasmarch.contante.service.TipoCuentaService;
 public class TipoCuenta {
 
      @Autowired
-        TipoCuentaService oTipoCuentaService;
+        TipocuentaService oTipoCuentaService;
     
         @GetMapping("")
-        public ResponseEntity<Page<TipoCuentaEntity>> getPage(
+        public ResponseEntity<Page<TipocuentaEntity>> getPage(
                 Pageable oPageable,
                 @RequestParam  Optional<String> filter) {
-            return new ResponseEntity<Page<TipoCuentaEntity>>(oTipoCuentaService.getPage(oPageable, filter), HttpStatus.OK);
+            return new ResponseEntity<Page<TipocuentaEntity>>(oTipoCuentaService.getPage(oPageable, filter), HttpStatus.OK);
         }
     
         @GetMapping("/{id}")
-        public ResponseEntity<TipoCuentaEntity> getTipoCuenta(@PathVariable Long id) {
-            return new ResponseEntity<TipoCuentaEntity>(oTipoCuentaService.get(id), HttpStatus.OK);
+        public ResponseEntity<TipocuentaEntity> getTipoCuenta(@PathVariable Long id) {
+            return new ResponseEntity<TipocuentaEntity>(oTipoCuentaService.get(id), HttpStatus.OK);
         }
     
         @GetMapping("/count")
@@ -52,13 +52,13 @@ public class TipoCuenta {
         }
     
         @PutMapping("")
-        public ResponseEntity<TipoCuentaEntity> create(@RequestBody TipoCuentaEntity oTipoCuentaEntity) {
-            return new ResponseEntity<TipoCuentaEntity>(oTipoCuentaService.create(oTipoCuentaEntity), HttpStatus.OK);
+        public ResponseEntity<TipocuentaEntity> create(@RequestBody TipocuentaEntity oTipoCuentaEntity) {
+            return new ResponseEntity<TipocuentaEntity>(oTipoCuentaService.create(oTipoCuentaEntity), HttpStatus.OK);
         }
     
         @PostMapping("")
-        public ResponseEntity<TipoCuentaEntity> update(@RequestBody TipoCuentaEntity oTipoCuentaEntity) {
-            return new ResponseEntity<TipoCuentaEntity>(oTipoCuentaService.update(oTipoCuentaEntity), HttpStatus.OK);
+        public ResponseEntity<TipocuentaEntity> update(@RequestBody TipocuentaEntity oTipoCuentaEntity) {
+            return new ResponseEntity<TipocuentaEntity>(oTipoCuentaService.update(oTipoCuentaEntity), HttpStatus.OK);
         }
     
     

@@ -14,7 +14,7 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "tipocuenta")
-public class TipoCuentaEntity {
+public class TipocuentaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,12 +35,12 @@ public class TipoCuentaEntity {
     private java.util.List<CuentaEntity> cuentas;
 
     @OneToMany(mappedBy = "tipocuenta",fetch = FetchType.LAZY)
-    private java.util.List<GrupoTipoCuentaEntity> grupotipocuentas;
+    private java.util.List<GrupotipocuentaEntity> grupotipocuentas;
 
-    public TipoCuentaEntity() {
+    public TipocuentaEntity() {
     }
 
-    public TipoCuentaEntity(Long id, String descripcion, Long creditoOdebito, String comentarios, Long realOnominal) {
+    public TipocuentaEntity(Long id, String descripcion, Long creditoOdebito, String comentarios, Long realOnominal) {
         this.id = id;
         this.descripcion = descripcion;
         this.credito_o_debito = creditoOdebito;
@@ -48,7 +48,7 @@ public class TipoCuentaEntity {
         this.real_o_nominal = realOnominal;
     }
 
-    public TipoCuentaEntity(String descripcion, Long creditoOdebito, String comentarios, Long realOnominal) {
+    public TipocuentaEntity(String descripcion, Long creditoOdebito, String comentarios, Long realOnominal) {
         this.descripcion = descripcion;
         this.credito_o_debito = creditoOdebito;
         this.comentarios = comentarios;

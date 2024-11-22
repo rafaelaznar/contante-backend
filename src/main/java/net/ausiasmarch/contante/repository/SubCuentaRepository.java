@@ -4,11 +4,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import net.ausiasmarch.contante.entity.SubCuentaEntity;
+import net.ausiasmarch.contante.entity.SubcuentaEntity;
 
-public interface SubCuentaRepository extends JpaRepository<SubCuentaEntity, Long> {
+public interface SubCuentaRepository extends JpaRepository<SubcuentaEntity, Long> {
 
-    Page<SubCuentaEntity> findByDescripcionContaining(
+    Page<SubcuentaEntity> findByDescripcionContaining(
         String filter1, Pageable oPageable);
 
 }

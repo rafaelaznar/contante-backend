@@ -74,4 +74,8 @@ public class TipousuarioService implements ServiceInterface<TipousuarioEntity> {
         return this.count();
     }
 
+    public TipousuarioEntity randomSelection() {
+        return oTipousuarioRepository.findAll().get(oRandomService.getRandomInt(0, (int) (oTipousuarioRepository.count() - 1)));
+    }
+
 }

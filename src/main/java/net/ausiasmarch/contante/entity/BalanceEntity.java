@@ -23,8 +23,20 @@ public class BalanceEntity {
     @Size(min = 3, max = 255)
     private String descripcion;
 
-    @OneToMany(mappedBy = "balance",fetch = FetchType.LAZY)
-    private java.util.List<GrupoTipoCuentaEntity> grupotipocuentas;
+    @OneToMany(mappedBy = "balance", fetch = FetchType.LAZY)
+    private java.util.List<GrupotipoasientoEntity> grupoasientos;
+
+    @OneToMany(mappedBy = "balance", fetch = FetchType.LAZY)
+    private java.util.List<GruposubcuentaEntity> gruposubcuentas;
+
+    @OneToMany(mappedBy = "balance", fetch = FetchType.LAZY)
+    private java.util.List<GrupotipocuentaEntity> grupotipocuentas;
+
+    @OneToMany(mappedBy = "balance", fetch = FetchType.LAZY)
+    private java.util.List<GrupocuentaEntity> grupocuentas;
+
+    @OneToMany(mappedBy = "balance", fetch = FetchType.LAZY)
+    private java.util.List<GrupotipoapunteEntity> grupotipoapuntes;
 
     public BalanceEntity() {
     }
@@ -68,6 +80,24 @@ public class BalanceEntity {
         return grupotipocuentas.size();
     }
 
+    public int getGrupoasientos() {
+        return grupoasientos.size();
+    }
 
-    
+    public int getSubcuentas() {
+        return gruposubcuentas.size();
+    }
+
+    public int getGrupocuentas() {
+        return grupocuentas.size();
+    }
+
+    public int getGrupotipocuentas() {
+        return grupotipocuentas.size();
+    }
+
+    public int getGrupotipoapuntes() {
+        return grupotipoapuntes.size();
+    }
+
 }

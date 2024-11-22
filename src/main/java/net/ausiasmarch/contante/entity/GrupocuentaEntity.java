@@ -11,7 +11,7 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "grupocuenta")
-public class GrupoCuentaEntity {
+public class GrupocuentaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,10 +36,10 @@ public class GrupoCuentaEntity {
     @JoinColumn(name = "id_balance")
     private BalanceEntity balance;
 
-    public GrupoCuentaEntity() {
+    public GrupocuentaEntity() {
     }
 
-    public GrupoCuentaEntity(Long id, @NotNull String titulo, @NotNull String descripcion, @NotNull int orden) {
+    public GrupocuentaEntity(Long id, @NotNull String titulo, @NotNull String descripcion, @NotNull int orden) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;

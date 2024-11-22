@@ -12,7 +12,7 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "tipoapunte")
-public class TipoApunteEntity {
+public class TipoapunteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,12 +29,12 @@ public class TipoApunteEntity {
     private java.util.List<ApunteEntity> apuntes;
 
     @OneToMany(mappedBy = "tipoapunte",fetch = FetchType.LAZY)
-    private java.util.List<GrupoTipoApunteEntity> grupotipoapuntes;
+    private java.util.List<GrupotipoapunteEntity> grupotipoapuntes;
     
-    public TipoApunteEntity() {
+    public TipoapunteEntity() {
     }
 
-    public TipoApunteEntity(Long id, @NotNull @Size(min = 3, max = 255) String descripcion,
+    public TipoapunteEntity(Long id, @NotNull @Size(min = 3, max = 255) String descripcion,
             @NotNull @Size(min = 3, max = 255) String comentarios) {
         this.id = id;
         this.descripcion = descripcion;

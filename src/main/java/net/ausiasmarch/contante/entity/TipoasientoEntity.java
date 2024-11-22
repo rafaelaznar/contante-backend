@@ -1,34 +1,41 @@
 package net.ausiasmarch.contante.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "tipoasiento")
-public class TipoAsientoEntity {
-    
+public class TipoasientoEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 
     @NotNull
     @Size(min = 3, max = 255)
     private String descripcion;
 
-    public TipoAsientoEntity() {
+    @OneToMany(mappedBy = "tipoasiento", fetch = FetchType.LAZY)
+    private java.util.List<AsientoEntity> asientos;
+
+    @OneToMany(mappedBy = "tipoasiento", fetch = FetchType.LAZY)
+    private java.util.List<GrupotipoasientoEntity> grupotipoasientos;
+
+    public TipoasientoEntity() {
     }
 
-    public TipoAsientoEntity(@NotNull @Size(min = 3, max = 255) String descripcion) {
+    public TipoasientoEntity(@NotNull @Size(min = 3, max = 255) String descripcion) {
         this.descripcion = descripcion;
     }
 
-    public TipoAsientoEntity(Long id, @NotNull @Size(min = 3, max = 255) String descripcion) {
+    public TipoasientoEntity(Long id, @NotNull @Size(min = 3, max = 255) String descripcion) {
         this.id = id;
         this.descripcion = descripcion;
     }
@@ -49,6 +56,12 @@ public class TipoAsientoEntity {
         this.descripcion = descripcion;
     }
 
+    public int getAsientos() {
+        return asientos.size();
+    }
 
+    public int getGrupotipoasientos() {
+        return grupotipoasientos.size();
+    }
 
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import net.ausiasmarch.contante.entity.UsuarioEntity;
 import net.ausiasmarch.contante.exception.ResourceNotFoundException;
+import net.ausiasmarch.contante.repository.TipousuarioRepository;
 import net.ausiasmarch.contante.repository.UsuarioRepository;
 
 @Service
@@ -16,6 +17,9 @@ public class UsuarioService implements ServiceInterface<UsuarioEntity> {
 
     @Autowired
     UsuarioRepository oUsuarioRepository;
+
+    @Autowired
+    TipousuarioService oTipousuarioService;
 
     @Autowired
     RandomService oRandomService;
@@ -34,6 +38,7 @@ public class UsuarioService implements ServiceInterface<UsuarioEntity> {
             oUsuarioEntity.setApellido1(arrApellidos[oRandomService.getRandomInt(0, arrApellidos.length - 1)]);
             oUsuarioEntity.setApellido2(arrApellidos[oRandomService.getRandomInt(0, arrApellidos.length - 1)]);
             oUsuarioEntity.setEmail("email" + oUsuarioEntity.getNombre() + oRandomService.getRandomInt(999, 9999) + "@gmail.com");
+            oUsuarioEntity.setTipousuario(oTipousuarioService.randomSelection());
             oUsuarioRepository.save(oUsuarioEntity);
         }
         return oUsuarioRepository.count();
@@ -90,6 +95,10 @@ public class UsuarioService implements ServiceInterface<UsuarioEntity> {
     public Long deleteAll() {
         oUsuarioRepository.deleteAll();
         return this.count();
+    }
+
+    public UsuarioEntity randomSelection() {
+        return oUsuarioRepository.findById((long) oRandomService.getRandomInt(1, (int) (long) this.count())).get();
     }
 
 }

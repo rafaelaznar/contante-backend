@@ -4,11 +4,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import net.ausiasmarch.contante.entity.TipoApunteEntity;
+import net.ausiasmarch.contante.entity.TipoapunteEntity;
 
-public interface TipoApunteRepository extends JpaRepository<TipoApunteEntity, Long> {
+public interface TipoApunteRepository extends JpaRepository<TipoapunteEntity, Long> {
 
-    Page<TipoApunteEntity> findByDescripcionContainingOrComentariosContaining (
+    Page<TipoapunteEntity> findByDescripcionContainingOrComentariosContaining (
         String filter1, String filter2, Pageable oPageable);
     
 }

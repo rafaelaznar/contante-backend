@@ -124,5 +124,9 @@ public class PeriodoService implements ServiceInterface<PeriodoEntity> {
         oPeriodoRepository.deleteAll();
         return this.count();
     }
+
+    public PeriodoEntity randomSelection() {
+        return oPeriodoRepository.findAll().get(oRandomService.getRandomInt(0, (int) (oPeriodoRepository.count() - 1)));
+    }
     
 }
