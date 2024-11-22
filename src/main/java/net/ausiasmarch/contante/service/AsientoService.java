@@ -110,12 +110,20 @@ public class AsientoService implements ServiceInterface<AsientoEntity> {
         if (oAsientoEntity.getComentarios() != null) {
             oAsientoEntityFromDatabase.setComentarios(oAsientoEntity.getComentarios());
         }
-        // TODO
         if (oAsientoEntity.getInventariable() == 0 || oAsientoEntity.getInventariable() == 1) {
             oAsientoEntityFromDatabase.setInventariable(oAsientoEntity.getInventariable());
         }
         if (oAsientoEntity.getMomentstamp() != null) {
             oAsientoEntityFromDatabase.setMomentstamp(oAsientoEntity.getMomentstamp());
+        }
+        if (oAsientoEntity.getTipoasiento() != null) {
+            oAsientoEntityFromDatabase.setTipoasiento(oTipoasientoService.get(oTipoasientoService.randomSelection().getId()));
+        }
+        if (oAsientoEntity.getUsuario() != null) {
+            oAsientoEntityFromDatabase.setUsuario(oUsuarioService.get(oUsuarioService.randomSelection().getId()));
+        }
+        if (oAsientoEntity.getPeriodo() != null) {
+            oAsientoEntityFromDatabase.setPeriodo(oPeriodoService.get(oPeriodoService.randomSelection().getId()));
         }
         return oAsientoRepository.save(oAsientoEntityFromDatabase);
     }
