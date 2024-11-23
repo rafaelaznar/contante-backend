@@ -7,7 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import net.ausiasmarch.contante.entity.GruposubcuentaEntity;
 import net.ausiasmarch.contante.entity.GrupotipocuentaEntity;
 import net.ausiasmarch.contante.exception.ResourceNotFoundException;
 import net.ausiasmarch.contante.repository.GrupotipocuentaRepository;
@@ -73,9 +72,9 @@ public class GrupotipocuentaService implements ServiceInterface<GrupotipocuentaE
     public Long randomCreate(Long cantidad) {
         for (int i = 0; i < cantidad; i++) {
             GrupotipocuentaEntity ogGrupoSubCuentaEntity = new GrupotipocuentaEntity();
-            ogGrupoSubCuentaEntity.setTitulo("Tipo usuario " + i + oRandomService.getRandomInt(999, 9999));
-            ogGrupoSubCuentaEntity.setDescripcion("Tipo usuario " + i + oRandomService.getRandomInt(999, 9999));
-            ogGrupoSubCuentaEntity.setOrden((long) i);
+            ogGrupoSubCuentaEntity.setTitulo("Grupo tipo cuenta " + i + oRandomService.getRandomInt(999, 9999));
+            ogGrupoSubCuentaEntity.setDescripcion(ogGrupoSubCuentaEntity.getTitulo());
+            ogGrupoSubCuentaEntity.setOrden(i);
             ogGrupoSubCuentaEntity.setTipocuenta(oTipocuentaService.randomSelection());
             ogGrupoSubCuentaEntity.setBalance(oBalanceService.randomSelection());
             oGrupotipocuentaRepository.save(ogGrupoSubCuentaEntity);
@@ -87,7 +86,7 @@ public class GrupotipocuentaService implements ServiceInterface<GrupotipocuentaE
     public Page<GrupotipocuentaEntity> getPage(Pageable oPageable, Optional<String> filter) {
         if (filter.isPresent()) {
             return oGrupotipocuentaRepository
-                    .findByTituloContainingOrDescripcionContaining(filter.get(), filter.get(), oPageable);                            
+                    .findByTituloContainingOrDescripcionContaining(filter.get(), filter.get(), oPageable);
         } else {
             return oGrupotipocuentaRepository.findAll(oPageable);
         }
@@ -120,7 +119,7 @@ public class GrupotipocuentaService implements ServiceInterface<GrupotipocuentaE
         if (oGrupoTipoCuentaEntity.getDescripcion() != null) {
             oGrupoTipoCuentaEntityFromDatabase.setDescripcion(oGrupoTipoCuentaEntity.getDescripcion());
         }
-        if (oGrupoTipoCuentaEntity.getOrden() != null) {
+        if (oGrupoTipoCuentaEntity.getOrden() != 0) {
             oGrupoTipoCuentaEntityFromDatabase.setOrden(oGrupoTipoCuentaEntity.getOrden());
         }
         if (oGrupoTipoCuentaEntity.getTipocuenta() != null) {

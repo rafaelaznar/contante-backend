@@ -29,7 +29,7 @@ public class GrupotipoapunteEntity {
 
     @NotNull
     @Max(value = 128)
-    private Long orden;
+    private int orden;
 
     @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
     @JoinColumn(name = "id_balance")
@@ -43,7 +43,7 @@ public class GrupotipoapunteEntity {
     }
 
     public GrupotipoapunteEntity(Long id, @NotNull @Size(min = 3, max = 255) String titulo,
-            @NotNull @Size(min = 3, max = 255) String descripcion, @NotNull @Max(128) Long orden,
+            @NotNull @Size(min = 3, max = 255) String descripcion, @NotNull @Max(128) int orden,
             @NotNull Long id_balance,
             @NotNull Long id_tipoapunte) {
         this.id = id;
@@ -77,11 +77,11 @@ public class GrupotipoapunteEntity {
         this.descripcion = descripcion;
     }
 
-    public Long getOrden() {
+    public int getOrden() {
         return orden;
     }
 
-    public void setOrden(Long arrorden) {
+    public void setOrden(int arrorden) {
         this.orden = arrorden;
     }
 

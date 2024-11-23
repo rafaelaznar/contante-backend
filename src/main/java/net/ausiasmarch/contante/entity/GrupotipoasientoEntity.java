@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -27,7 +28,8 @@ public class GrupotipoasientoEntity {
     private String descripcion;
 
     @NotNull
-    private Long orden;
+    @Max(value = 128)
+    private int orden;
 
     @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
     @JoinColumn(name = "id_tipoasiento")
@@ -40,13 +42,13 @@ public class GrupotipoasientoEntity {
     public GrupotipoasientoEntity() {
     }
 
-    public GrupotipoasientoEntity(String titulo, String descripcion, Long orden) {
+    public GrupotipoasientoEntity(String titulo, String descripcion, int orden) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.orden = orden;
     }
 
-    public GrupotipoasientoEntity(Long id, String titulo, String descripcion, Long orden) {
+    public GrupotipoasientoEntity(Long id, String titulo, String descripcion, int orden) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -77,11 +79,11 @@ public class GrupotipoasientoEntity {
         this.descripcion = descripcion;
     }
 
-    public Long getOrden() {
+    public int getOrden() {
         return orden;
     }
 
-    public void setOrden(Long orden) {
+    public void setOrden(int orden) {
         this.orden = orden;
     }
 

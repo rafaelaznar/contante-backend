@@ -27,7 +27,8 @@ public class GruposubcuentaService {
     public Long randomCreate(Long cantidad) {
         for (int i = 0; i < cantidad; i++) {
             GruposubcuentaEntity ogGrupoSubCuentaEntity = new GruposubcuentaEntity();
-            ogGrupoSubCuentaEntity.setDescripcion("Tipo usuario " + i + oRandomService.getRandomInt(999, 9999));
+            ogGrupoSubCuentaEntity.setTitulo("Grupo subcuenta " + i + oRandomService.getRandomInt(999, 9999));
+            ogGrupoSubCuentaEntity.setDescripcion(ogGrupoSubCuentaEntity.getTitulo());
             ogGrupoSubCuentaEntity.setOrden(i);
             ogGrupoSubCuentaEntity.setSubcuenta(oSubcuentaService.randomSelection());
             ogGrupoSubCuentaEntity.setBalance(oBalanceService.randomSelection());

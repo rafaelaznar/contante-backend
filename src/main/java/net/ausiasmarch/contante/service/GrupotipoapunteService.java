@@ -49,7 +49,7 @@ public class GrupotipoapunteService implements ServiceInterface<GrupotipoapunteE
             oGrupoTipoApunteEntity.setTitulo(arrTitulos[oRandomService.getRandomInt(0, arrTitulos.length - 1)]);
             oGrupoTipoApunteEntity
                     .setDescripcion(arrDescripcion[oRandomService.getRandomInt(0, arrDescripcion.length - 1)]);
-            oGrupoTipoApunteEntity.setOrden((long) arrorden[oRandomService.getRandomInt(0, arrorden.length - 1)]);
+            oGrupoTipoApunteEntity.setOrden(arrorden[oRandomService.getRandomInt(0, arrorden.length - 1)]);
 
             oGrupoTipoApunteEntity.setBalance(oBalanceService.randomSelection());
             oGrupoTipoApunteEntity.setTipoapunte(oTipoApunteService.randomSelection());    

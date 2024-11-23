@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "gruposubcuenta")
@@ -18,6 +20,8 @@ public class GruposubcuentaEntity {
 
     private String titulo;
     private String descripcion;
+    @NotNull
+    @Max(value = 128)
     private int orden;
 
     @ManyToOne (fetch = jakarta.persistence.FetchType.EAGER)

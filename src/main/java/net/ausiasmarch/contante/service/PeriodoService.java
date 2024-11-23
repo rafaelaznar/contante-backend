@@ -21,11 +21,11 @@ public class PeriodoService implements ServiceInterface<PeriodoEntity> {
     RandomService oRandomService;
 
     public Long randomCreate(Long cantidad) {
-        this.create(new PeriodoEntity(2020, "ejercicio 2020", "", true));
-        this.create(new PeriodoEntity(2021, "ejercicio 2021", "", true));
-        this.create(new PeriodoEntity(2022, "ejercicio 2022", "", true));
-        this.create(new PeriodoEntity(2023, "ejercicio 2023", "", true));
-        this.create(new PeriodoEntity(2024, "ejercicio 2024", "", false));
+        this.create(new PeriodoEntity(2020, "ejercicio 2020", "ejercicio 2020", true));
+        this.create(new PeriodoEntity(2021, "ejercicio 2021", "ejercicio 2021", true));
+        this.create(new PeriodoEntity(2022, "ejercicio 2022", "ejercicio 2022", true));
+        this.create(new PeriodoEntity(2023, "ejercicio 2023", "ejercicio 2023", true));
+        this.create(new PeriodoEntity(2024, "ejercicio 2024", "ejercicio 2024", false));
         return oPeriodoRepository.count();
     }
 
