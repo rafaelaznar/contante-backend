@@ -41,12 +41,6 @@ public class BalanceEntity {
     public BalanceEntity() {
     }
 
-    public BalanceEntity(Long id, String titulo, String descripcion) {
-        this.id = id;
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-    }
-
     public BalanceEntity(String titulo, String descripcion) {
         this.titulo = titulo;
         this.descripcion = descripcion;

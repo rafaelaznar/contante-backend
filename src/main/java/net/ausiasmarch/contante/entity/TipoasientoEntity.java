@@ -35,11 +35,6 @@ public class TipoasientoEntity {
         this.descripcion = descripcion;
     }
 
-    public TipoasientoEntity(Long id, @NotNull @Size(min = 3, max = 255) String descripcion) {
-        this.id = id;
-        this.descripcion = descripcion;
-    }
-
     public Long getId() {
         return id;
     }

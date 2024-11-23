@@ -20,14 +20,10 @@ public class TipousuarioService implements ServiceInterface<TipousuarioEntity> {
     @Autowired
     RandomService oRandomService;
 
-
     public Long randomCreate(Long cantidad) {
-        for (int i = 0; i < cantidad; i++) {
-            TipousuarioEntity oTipousuarioEntity = new TipousuarioEntity();
-            oTipousuarioEntity.setDescripcion("Tipo usuario " + i + oRandomService.getRandomInt(999, 9999));
-            
-            oTipousuarioRepository.save(oTipousuarioEntity);
-        }
+        this.create(new TipousuarioEntity("Administrador"));
+        this.create(new TipousuarioEntity("Contable"));
+        this.create(new TipousuarioEntity("Auditor"));
         return oTipousuarioRepository.count();
     }
 
@@ -75,7 +71,8 @@ public class TipousuarioService implements ServiceInterface<TipousuarioEntity> {
     }
 
     public TipousuarioEntity randomSelection() {
-        return oTipousuarioRepository.findAll().get(oRandomService.getRandomInt(0, (int) (oTipousuarioRepository.count() - 1)));
+        return oTipousuarioRepository.findAll()
+                .get(oRandomService.getRandomInt(0, (int) (oTipousuarioRepository.count() - 1)));
     }
 
 }
