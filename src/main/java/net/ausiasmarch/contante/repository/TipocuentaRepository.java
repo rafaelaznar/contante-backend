@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import net.ausiasmarch.contante.entity.TipocuentaEntity;
 
-public interface TipoCuentaRepository extends JpaRepository<TipocuentaEntity, Long> {
+public interface TipocuentaRepository extends JpaRepository<TipocuentaEntity, Long> {
 
     Page<TipocuentaEntity> findByDescripcionContainingOrCreditoOdebitoContainingOrComentariosContainingOrRealOnominalContaining(
             String filter2, String filter3, String filter4, String filter5, Pageable oPageable);

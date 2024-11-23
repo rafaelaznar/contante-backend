@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import net.ausiasmarch.contante.entity.TipoasientoEntity;
 
-public interface TipoAsientoRepository extends JpaRepository <TipoasientoEntity, Long> {
+public interface TipoasientoRepository extends JpaRepository <TipoasientoEntity, Long> {
     
     Page<TipoasientoEntity> findByDescripcionContaining(
             String filter, Pageable oPageable);

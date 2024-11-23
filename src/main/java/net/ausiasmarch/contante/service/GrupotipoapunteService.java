@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service;
 
 import net.ausiasmarch.contante.entity.GrupotipoapunteEntity;
 
-import net.ausiasmarch.contante.repository.GrupoTipoApunteRepository;
+import net.ausiasmarch.contante.repository.GrupotipoapunteRepository;
 
 @Service
 public class GrupotipoapunteService implements ServiceInterface<GrupotipoapunteEntity> {
     @Autowired
-    GrupoTipoApunteRepository oGrupoTipoApunteRepository;
+    GrupotipoapunteRepository oGrupoTipoApunteRepository;
 
     @Autowired
     RandomService oRandomService;

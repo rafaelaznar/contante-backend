@@ -5,17 +5,17 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import net.ausiasmarch.contante.entity.GrupotipoasientoEntity;
-import net.ausiasmarch.contante.entity.GrupotipocuentaEntity;
 import net.ausiasmarch.contante.exception.ResourceNotFoundException;
-import net.ausiasmarch.contante.repository.GrupoTipoAsientoRepository;
+import net.ausiasmarch.contante.repository.GrupotipoasientoRepository;
 
-
+@Service
 public class GrupotipoasientoService implements ServiceInterface<GrupotipoasientoEntity> {
 
     @Autowired
-    GrupoTipoAsientoRepository oGrupoTipoAsientoRepository;
+    GrupotipoasientoRepository oGrupoTipoAsientoRepository;
 
     @Autowired
     RandomService oRandomService;

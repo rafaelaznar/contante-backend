@@ -24,7 +24,7 @@ import net.ausiasmarch.contante.service.TipocuentaService;
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/tipoCuenta")
-public class TipoCuenta {
+public class Tipocuenta {
 
      @Autowired
         TipocuentaService oTipoCuentaService;

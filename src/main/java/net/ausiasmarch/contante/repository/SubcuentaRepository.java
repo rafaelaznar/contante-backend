@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import net.ausiasmarch.contante.entity.SubcuentaEntity;
 
-public interface SubCuentaRepository extends JpaRepository<SubcuentaEntity, Long> {
+public interface SubcuentaRepository extends JpaRepository<SubcuentaEntity, Long> {
 
     Page<SubcuentaEntity> findByDescripcionContaining(
         String filter1, Pageable oPageable);

@@ -25,7 +25,7 @@ import net.ausiasmarch.contante.service.GrupotipocuentaService;
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/grupoTipoCuenta")
-public class GrupoTipoCuenta {
+public class Grupotipocuenta {
 
      @Autowired
         GrupotipocuentaService oGrupoTipoCuentaService;

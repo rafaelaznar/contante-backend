@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
 import net.ausiasmarch.contante.entity.TipoasientoEntity;
 
 import net.ausiasmarch.contante.exception.ResourceNotFoundException;
-import net.ausiasmarch.contante.repository.TipoAsientoRepository;
+import net.ausiasmarch.contante.repository.TipoasientoRepository;
 
 @Service
 public class TipoasientoService implements ServiceInterface<TipoasientoEntity> {
 
     @Autowired
-    private TipoAsientoRepository oTipoAsientoRepository;
+    private TipoasientoRepository oTipoAsientoRepository;
 
     @Autowired
     RandomService oRandomService;

@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service;
 
 import net.ausiasmarch.contante.entity.GruposubcuentaEntity;
 import net.ausiasmarch.contante.exception.ResourceNotFoundException;
-import net.ausiasmarch.contante.repository.GrupoSubCuentaRepository;
+import net.ausiasmarch.contante.repository.GruposubcuentaRepository;
 @Service
 public class GruposubcuentaService {
     
     @Autowired
-    GrupoSubCuentaRepository oGrupoSubCuentaRepository;
+    GruposubcuentaRepository oGrupoSubCuentaRepository;
 
     @Autowired
     RandomService oRandomService;

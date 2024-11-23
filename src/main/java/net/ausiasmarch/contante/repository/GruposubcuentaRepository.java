@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import net.ausiasmarch.contante.entity.GruposubcuentaEntity;
 
-public interface GrupoSubCuentaRepository extends JpaRepository<GruposubcuentaEntity, Long> {
+public interface GruposubcuentaRepository extends JpaRepository<GruposubcuentaEntity, Long> {
 
     Page<GruposubcuentaEntity> findByDescripcionContaining(
         String filter1, Pageable oPageable);

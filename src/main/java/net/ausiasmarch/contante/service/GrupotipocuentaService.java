@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
 import net.ausiasmarch.contante.entity.GruposubcuentaEntity;
 import net.ausiasmarch.contante.entity.GrupotipocuentaEntity;
 import net.ausiasmarch.contante.exception.ResourceNotFoundException;
-import net.ausiasmarch.contante.repository.GrupoTipoCuentaRepository;
+import net.ausiasmarch.contante.repository.GrupotipocuentaRepository;
 
 @Service
 public class GrupotipocuentaService implements ServiceInterface<GrupotipocuentaEntity> {
 
     @Autowired
-    private GrupoTipoCuentaRepository oGrupotipocuentaRepository;
+    private GrupotipocuentaRepository oGrupotipocuentaRepository;
 
     @Autowired
     RandomService oRandomService;
@@ -87,8 +87,7 @@ public class GrupotipocuentaService implements ServiceInterface<GrupotipocuentaE
     public Page<GrupotipocuentaEntity> getPage(Pageable oPageable, Optional<String> filter) {
         if (filter.isPresent()) {
             return oGrupotipocuentaRepository
-                    .findByTituloContainingOrDescripcionContainingOrOrdenContainingOrIdTipoCuentaContainingIdBalanceContaining(
-                            filter.get(), filter.get(), filter.get(), filter.get(), filter.get(), oPageable);
+                    .findByTituloContainingOrDescripcionContaining(filter.get(), filter.get(), oPageable);                            
         } else {
             return oGrupotipocuentaRepository.findAll(oPageable);
         }
