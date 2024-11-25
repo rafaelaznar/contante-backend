@@ -99,7 +99,7 @@ public class SubcuentaEntity {
         this.momentstamp = momentstamp;
     }
 
-    public int getsubcuenta() {
+    public int getGruposubcuentas() {
         return gruposubcuentas.size();
     }
 
