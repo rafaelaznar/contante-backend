@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 
 import net.ausiasmarch.contante.entity.SubcuentaEntity;
 import net.ausiasmarch.contante.exception.ResourceNotFoundException;
-import net.ausiasmarch.contante.repository.SubCuentaRepository;
+import net.ausiasmarch.contante.repository.SubcuentaRepository;
 
 @Service
 public class SubcuentaService implements ServiceInterface<SubcuentaEntity> {
 
     @Autowired
-    private SubCuentaRepository oSubCuentaRepository;
+    private SubcuentaRepository oSubCuentaRepository;
 
     @Autowired
     private CuentaService oCuentaService;

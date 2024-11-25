@@ -5,17 +5,17 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import net.ausiasmarch.contante.entity.GrupotipoasientoEntity;
-import net.ausiasmarch.contante.entity.GrupotipocuentaEntity;
 import net.ausiasmarch.contante.exception.ResourceNotFoundException;
-import net.ausiasmarch.contante.repository.GrupoTipoAsientoRepository;
+import net.ausiasmarch.contante.repository.GrupotipoasientoRepository;
 
-
+@Service
 public class GrupotipoasientoService implements ServiceInterface<GrupotipoasientoEntity> {
 
     @Autowired
-    GrupoTipoAsientoRepository oGrupoTipoAsientoRepository;
+    GrupotipoasientoRepository oGrupoTipoAsientoRepository;
 
     @Autowired
     RandomService oRandomService;
@@ -32,8 +32,6 @@ public class GrupotipoasientoService implements ServiceInterface<Grupotipoasient
     String[] arrDescripcion = { "Descripcion 1", "Descripcion 2", "Descripcion 3", "Descripcion 4", "Descripcion 5", "Descripcion 6", "Descripcion 7",
             "Descripcion 8", "Descripcion 9", "Descripcion 10" };
 
-    Long[] arrOrden = { 1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L };
-
     @Override
     public Long randomCreate(Long cantidad) {
         for (int i = 0; i < cantidad; i++) {
@@ -41,7 +39,7 @@ public class GrupotipoasientoService implements ServiceInterface<Grupotipoasient
             oGrupoTipoAsientoEntity
                     .setTitulo(arrTitulos[oRandomService.getRandomInt(0, arrTitulos.length - 1)]);
             oGrupoTipoAsientoEntity.setDescripcion(arrDescripcion[oRandomService.getRandomInt(0, arrDescripcion.length - 1)]);
-            oGrupoTipoAsientoEntity.setOrden(arrOrden[oRandomService.getRandomInt(0, arrOrden.length - 1)]);
+            oGrupoTipoAsientoEntity.setOrden(i);
             oGrupoTipoAsientoEntity.setTipoasiento(oTipoasientoService.randomSelection());
             oGrupoTipoAsientoEntity.setBalance(oBalanceService.randomSelection());
             oGrupoTipoAsientoRepository.save(oGrupoTipoAsientoEntity);

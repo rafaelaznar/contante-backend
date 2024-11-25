@@ -18,57 +18,59 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.ausiasmarch.contante.entity.TipoasientoEntity;
-import net.ausiasmarch.contante.service.TipoasientoService;
+import net.ausiasmarch.contante.entity.SubcuentaEntity;
+import net.ausiasmarch.contante.service.SubcuentaService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/tipoasiento")
-public class TipoAsiento {
+@RequestMapping("/subcuenta")
+
+public class Subcuenta {
 
     @Autowired
-    TipoasientoService oTipoAsientoService;
+    SubcuentaService oSubCuentaService;
 
     @GetMapping("")
-    public ResponseEntity<Page<TipoasientoEntity>> getPage(
+    public ResponseEntity<Page<SubcuentaEntity>> getPage(
             Pageable oPageable,
-            @RequestParam Optional<String> filter) {
-        return new ResponseEntity<Page<TipoasientoEntity>>(oTipoAsientoService.getPage(oPageable, filter),
-                HttpStatus.OK);
+            @RequestParam  Optional<String> filter) {
+        return new ResponseEntity<Page<SubcuentaEntity>>(oSubCuentaService.getPage(oPageable, filter), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TipoasientoEntity> getTipoAsiento(@PathVariable Long id) {
-        return new ResponseEntity<TipoasientoEntity>(oTipoAsientoService.get(id), HttpStatus.OK);
+    public ResponseEntity<SubcuentaEntity> getApunte(@PathVariable Long id) {
+        return new ResponseEntity<SubcuentaEntity>(oSubCuentaService.get(id), HttpStatus.OK);
     }
 
     @GetMapping("/count")
     public ResponseEntity<Long> count() {
-        return new ResponseEntity<Long>(oTipoAsientoService.count(), HttpStatus.OK);
+        return new ResponseEntity<Long>(oSubCuentaService.count(), HttpStatus.OK);
     }
 
-     @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Long> delete(@PathVariable Long id) {
-        return new ResponseEntity<Long>(oTipoAsientoService.delete(id), HttpStatus.OK);
+        return new ResponseEntity<Long>(oSubCuentaService.delete(id), HttpStatus.OK);
     }
 
     @PutMapping("")
-    public ResponseEntity<TipoasientoEntity> create(@RequestBody TipoasientoEntity oTipoAsientoEntity) {
-        return new ResponseEntity<TipoasientoEntity>(oTipoAsientoService.create(oTipoAsientoEntity), HttpStatus.OK);
+    public ResponseEntity<SubcuentaEntity> create(@RequestBody SubcuentaEntity oApunteEntity) {
+        return new ResponseEntity<SubcuentaEntity>(oSubCuentaService.create(oApunteEntity), HttpStatus.OK);
     }
 
     @PostMapping("")
-    public ResponseEntity<TipoasientoEntity> update(@RequestBody TipoasientoEntity oTipoAsientoEntity) {
-        return new ResponseEntity<TipoasientoEntity>(oTipoAsientoService.update(oTipoAsientoEntity), HttpStatus.OK);
+    public ResponseEntity<SubcuentaEntity> update(@RequestBody SubcuentaEntity oApunteEntity) {
+        return new ResponseEntity<SubcuentaEntity>(oSubCuentaService.update(oApunteEntity), HttpStatus.OK);
     }
+
 
     @PutMapping("/random/{cantidad}")
     public ResponseEntity<Long> create(@PathVariable Long cantidad) {
-        return new ResponseEntity<Long>(oTipoAsientoService.randomCreate(cantidad), HttpStatus.OK);
+        return new ResponseEntity<Long>(oSubCuentaService.randomCreate(cantidad), HttpStatus.OK);
     }
-
     @DeleteMapping("/all")
     public ResponseEntity<Long> deleteAll() {
-        return new ResponseEntity<Long>(oTipoAsientoService.deleteAll(), HttpStatus.OK);
+        return new ResponseEntity<Long>(oSubCuentaService.deleteAll(), HttpStatus.OK);
     }
+
+    
 }

@@ -17,59 +17,60 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import net.ausiasmarch.contante.entity.GrupocuentaEntity;
-import net.ausiasmarch.contante.service.GrupocuentaService;
+import net.ausiasmarch.contante.entity.GrupotipoasientoEntity;
+import net.ausiasmarch.contante.service.GrupotipoasientoService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/grupocuenta")
-public class GrupoCuenta {
+@RequestMapping("/grupotipoasiento")
+public class Grupotipoasiento {
 
     @Autowired
-    GrupocuentaService oGrupoCuentaService;
+    GrupotipoasientoService oGrupoTipoasientoService;
 
     @GetMapping("")
-    public ResponseEntity<Page<GrupocuentaEntity>> getPage(
+    public ResponseEntity<Page<GrupotipoasientoEntity>> getPage(
             Pageable oPageable,
             @RequestParam Optional<String> filter) {
-        return new ResponseEntity<Page<GrupocuentaEntity>>(oGrupoCuentaService.getPage(oPageable, filter),
+        return new ResponseEntity<Page<GrupotipoasientoEntity>>(oGrupoTipoasientoService.getPage(oPageable, filter),
                 HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<GrupocuentaEntity> getGrupoCuenta(@PathVariable Long id) {
-        return new ResponseEntity<GrupocuentaEntity>(oGrupoCuentaService.get(id), HttpStatus.OK);
+    public ResponseEntity<GrupotipoasientoEntity> getGrupoTipoAsiento(@PathVariable Long id) {
+        return new ResponseEntity<GrupotipoasientoEntity>(oGrupoTipoasientoService.get(id), HttpStatus.OK);
     }
 
     @GetMapping("/count")
     public ResponseEntity<Long> count() {
-        return new ResponseEntity<Long>(oGrupoCuentaService.count(), HttpStatus.OK);
+        return new ResponseEntity<Long>(oGrupoTipoasientoService.count(), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Long> delete(@PathVariable Long id) {
-        return new ResponseEntity<Long>(oGrupoCuentaService.delete(id), HttpStatus.OK);
+        return new ResponseEntity<Long>(oGrupoTipoasientoService.delete(id), HttpStatus.OK);
     }
 
     @PutMapping("")
-    public ResponseEntity<GrupocuentaEntity> create(@RequestBody GrupocuentaEntity oGrupoCuentaEntity) {
-        return new ResponseEntity<GrupocuentaEntity>(oGrupoCuentaService.create(oGrupoCuentaEntity), HttpStatus.OK);
+    public ResponseEntity<GrupotipoasientoEntity> create(@RequestBody GrupotipoasientoEntity oGrupoTipoAsientoEntity) {
+        return new ResponseEntity<GrupotipoasientoEntity>(oGrupoTipoasientoService.create(oGrupoTipoAsientoEntity),
+                HttpStatus.OK);
     }
 
     @PostMapping("")
-    public ResponseEntity<GrupocuentaEntity> update(@RequestBody GrupocuentaEntity oGrupoCuentaEntity) {
-        return new ResponseEntity<GrupocuentaEntity>(oGrupoCuentaService.update(oGrupoCuentaEntity), HttpStatus.OK);
+    public ResponseEntity<GrupotipoasientoEntity> update(@RequestBody GrupotipoasientoEntity oGrupoTipoAsientoEntity) {
+        return new ResponseEntity<GrupotipoasientoEntity>(oGrupoTipoasientoService.update(oGrupoTipoAsientoEntity),
+                HttpStatus.OK);
     }
 
     @PutMapping("/random/{cantidad}")
     public ResponseEntity<Long> create(@PathVariable Long cantidad) {
-        return new ResponseEntity<Long>(oGrupoCuentaService.randomCreate(cantidad), HttpStatus.OK);
+        return new ResponseEntity<Long>(oGrupoTipoasientoService.randomCreate(cantidad), HttpStatus.OK);
     }
 
     @DeleteMapping("/all")
     public ResponseEntity<Long> deleteAll() {
-        return new ResponseEntity<Long>(oGrupoCuentaService.deleteAll(), HttpStatus.OK);
+        return new ResponseEntity<Long>(oGrupoTipoasientoService.deleteAll(), HttpStatus.OK);
     }
 
 }

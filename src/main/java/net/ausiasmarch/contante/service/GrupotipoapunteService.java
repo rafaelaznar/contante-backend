@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service;
 
 import net.ausiasmarch.contante.entity.GrupotipoapunteEntity;
 
-import net.ausiasmarch.contante.repository.GrupoTipoApunteRepository;
+import net.ausiasmarch.contante.repository.GrupotipoapunteRepository;
 
 @Service
 public class GrupotipoapunteService implements ServiceInterface<GrupotipoapunteEntity> {
     @Autowired
-    GrupoTipoApunteRepository oGrupoTipoApunteRepository;
+    GrupotipoapunteRepository oGrupoTipoApunteRepository;
 
     @Autowired
     RandomService oRandomService;
@@ -49,7 +49,7 @@ public class GrupotipoapunteService implements ServiceInterface<GrupotipoapunteE
             oGrupoTipoApunteEntity.setTitulo(arrTitulos[oRandomService.getRandomInt(0, arrTitulos.length - 1)]);
             oGrupoTipoApunteEntity
                     .setDescripcion(arrDescripcion[oRandomService.getRandomInt(0, arrDescripcion.length - 1)]);
-            oGrupoTipoApunteEntity.setOrden((long) arrorden[oRandomService.getRandomInt(0, arrorden.length - 1)]);
+            oGrupoTipoApunteEntity.setOrden(arrorden[oRandomService.getRandomInt(0, arrorden.length - 1)]);
 
             oGrupoTipoApunteEntity.setBalance(oBalanceService.randomSelection());
             oGrupoTipoApunteEntity.setTipoapunte(oTipoApunteService.randomSelection());    

@@ -10,30 +10,29 @@ import org.springframework.stereotype.Service;
 import net.ausiasmarch.contante.entity.TipoasientoEntity;
 
 import net.ausiasmarch.contante.exception.ResourceNotFoundException;
-import net.ausiasmarch.contante.repository.TipoAsientoRepository;
+import net.ausiasmarch.contante.repository.TipoasientoRepository;
 
 @Service
 public class TipoasientoService implements ServiceInterface<TipoasientoEntity> {
 
     @Autowired
-    private TipoAsientoRepository oTipoAsientoRepository;
+    private TipoasientoRepository oTipoAsientoRepository;
 
     @Autowired
     RandomService oRandomService;
 
-    private String[] arrDescripciones = { "Asiento simple", "Asiento doble", "Asiento triple", "Asiento cuadruple",
-            "Asiento quinuple",
-            "Asiento sexuple", "Asiento septuple", "Asiento octuple", "Asiento novuple", "Asiento decuple",
-            "Asiento decuple", "Asiento decuple",
-            "Asiento decuple", "Asiento decuple", "Asiento decuple", "Asiento decuple" };
+    private String[] arrDescripciones = {
+            "Ingreso", "Gasto", "Inversión", "Financiación", "Dividendo", "Impuesto",
+            "Regularización", "Cierre", "Apertura", "Compra", "Venta", "Alquiler", "Préstamo", "Devolución", "Intereses"
+    };
 
     public Long randomCreate(Long cantidad) {
-        for (int i = 0; i < cantidad; i++) {
+        // for each element in the array arrDescripciones, create a new TipoasientoEntity object and save it to the database
+        for (String descripcion : arrDescripciones) {
             TipoasientoEntity oTipoAsientoEntity = new TipoasientoEntity();
-            oTipoAsientoEntity
-                    .setDescripcion(arrDescripciones[oRandomService.getRandomInt(0, arrDescripciones.length - 1)]);
+            oTipoAsientoEntity.setDescripcion(descripcion);
             oTipoAsientoRepository.save(oTipoAsientoEntity);
-        }
+        }    
         return oTipoAsientoRepository.count();
     }
 

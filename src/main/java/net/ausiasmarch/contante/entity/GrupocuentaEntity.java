@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -24,6 +25,7 @@ public class GrupocuentaEntity {
     private String descripcion;
 
     @NotNull
+    @Max(value = 128)
     private int orden;
 
     @NotNull

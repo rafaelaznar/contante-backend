@@ -9,34 +9,31 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "tipocuenta")
+@Table(name = "grupotipocuenta")
 public class GrupotipocuentaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+
     @NotNull
     @Size(min = 3, max = 255)
     private String titulo;
-    @NotNull
-    @Digits(integer = 1, fraction = 0)
+    @NotNull    
     private String descripcion;
     @NotNull
-    @Digits(integer = 1, fraction = 0)
-    private Long orden;
-    @NotNull
-    @Digits(integer = 1, fraction = 0)
-    private Long id_tipocuenta;
-    @NotNull
-    @Digits(integer = 1, fraction = 0)
-    private Long id_balance;
+    @Max(value = 128)
+    private int orden;
+
 
     @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
     @JoinColumn(name = "id_tipocuenta")
-    private TipocuentaEntity tipoCuenta;
+    private TipocuentaEntity tipocuenta;
 
     @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
     @JoinColumn(name = "id_balance")
@@ -45,20 +42,9 @@ public class GrupotipocuentaEntity {
     public GrupotipocuentaEntity() {
     }
 
-    public GrupotipocuentaEntity(Long id, String titulo, String descripcion, Long orden,Long idTipoCuenta,Long idBalance ) {
-        this.id = id;
+    public GrupotipocuentaEntity(String titulo, String descripcion) {
         this.titulo = titulo;
         this.descripcion = descripcion;
-        this.orden = orden;
-        this.id_tipocuenta = idTipoCuenta;
-        this.id_balance = idBalance;
-    }
-
-    public GrupotipocuentaEntity(String titulo, String descripcion, Long idTipoCuenta, Long idBalance) {
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.id_tipocuenta = idTipoCuenta;
-        this.id_balance = idBalance;
         
     }
 
@@ -86,20 +72,20 @@ public class GrupotipocuentaEntity {
         this.descripcion = descripcion;
     }
 
-    public Long getOrden() {        
+    public int getOrden() {        
         return orden;
     }
 
-    public void setOrden(Long orden) {
+    public void setOrden(int orden) {
         this.orden = orden;
     }
 
     public TipocuentaEntity getTipocuenta() {
-        return tipoCuenta;
+        return tipocuenta;
     }
 
     public void setTipocuenta(TipocuentaEntity tipoCuenta) {
-        this.tipoCuenta = tipoCuenta;
+        this.tipocuenta = tipoCuenta;
     }
 
     public BalanceEntity getBalance() {

@@ -1,6 +1,5 @@
 package net.ausiasmarch.contante.service;
 
-
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +9,13 @@ import org.springframework.stereotype.Service;
 
 import net.ausiasmarch.contante.entity.TipocuentaEntity;
 import net.ausiasmarch.contante.exception.ResourceNotFoundException;
-import net.ausiasmarch.contante.repository.TipoCuentaRepository;
+import net.ausiasmarch.contante.repository.TipocuentaRepository;
 
 @Service
 public class TipocuentaService implements ServiceInterface<TipocuentaEntity> {
 
     @Autowired
-    private TipoCuentaRepository oTipoCuentaRepository;
+    private TipocuentaRepository oTipoCuentaRepository;
 
     @Autowired
     private RandomService oRandomService;
@@ -38,7 +37,7 @@ public class TipocuentaService implements ServiceInterface<TipocuentaEntity> {
 
     // Datos de la columna real o nominal
     private Long[] arrRealOnominal = {
-        0L, 1L
+            0L, 1L
     };
 
     // Datos de la columna comentarios
@@ -50,14 +49,14 @@ public class TipocuentaService implements ServiceInterface<TipocuentaEntity> {
             "Soporte técnico", "Pago mensual", "Banner web", "Asesoría fiscal", "Mobiliario antiguo"
     };
 
-
-
     public Long randomCreate(Long cantidad) {
         for (int i = 0; i < cantidad; i++) {
             TipocuentaEntity oTipoCuentaEntity = new TipocuentaEntity();
             oTipoCuentaEntity.setDescripcion(arrDescripcion[oRandomService.getRandomInt(0, arrDescripcion.length - 1)]);
-            oTipoCuentaEntity.setCreditoOdebito(arrCreditoOdebito[oRandomService.getRandomInt(0, arrCreditoOdebito.length - 1)]);
-            oTipoCuentaEntity.setRealOnominal(arrRealOnominal[oRandomService.getRandomInt(0, arrRealOnominal.length - 1)]);
+            oTipoCuentaEntity
+                    .setCreditoOdebito(arrCreditoOdebito[oRandomService.getRandomInt(0, arrCreditoOdebito.length - 1)]);
+            oTipoCuentaEntity
+                    .setRealOnominal(arrRealOnominal[oRandomService.getRandomInt(0, arrRealOnominal.length - 1)]);
             oTipoCuentaEntity.setComentarios(arrComentarios[oRandomService.getRandomInt(0, arrComentarios.length - 1)]);
             oTipoCuentaRepository.save(oTipoCuentaEntity);
         }
@@ -67,8 +66,8 @@ public class TipocuentaService implements ServiceInterface<TipocuentaEntity> {
     public Page<TipocuentaEntity> getPage(Pageable oPageable, Optional<String> filter) {
         if (filter.isPresent()) {
             return oTipoCuentaRepository
-                    .findByDescripcionContainingOrCreditoOdebitoContainingOrComentariosContainingOrRealOnominalContaining(
-                            filter.get(), filter.get(),filter.get(),filter.get(), oPageable);
+                    .findByDescripcionContainingOrCreditoOdebitoContainingOrComentariosContaining(
+                            filter.get(), filter.get(), filter.get(), oPageable);
         } else {
             return oTipoCuentaRepository.findAll(oPageable);
         }
@@ -93,7 +92,8 @@ public class TipocuentaService implements ServiceInterface<TipocuentaEntity> {
     }
 
     public TipocuentaEntity update(TipocuentaEntity oTipoCuentaEntity) {
-        TipocuentaEntity oTipoCuentaEntityFromDatabase = oTipoCuentaRepository.findById(oTipoCuentaEntity.getId()).get();
+        TipocuentaEntity oTipoCuentaEntityFromDatabase = oTipoCuentaRepository.findById(oTipoCuentaEntity.getId())
+                .get();
         if (oTipoCuentaEntity.getDescripcion() != null) {
             oTipoCuentaEntityFromDatabase.setDescripcion(oTipoCuentaEntity.getDescripcion());
         }
@@ -115,7 +115,8 @@ public class TipocuentaService implements ServiceInterface<TipocuentaEntity> {
     }
 
     public TipocuentaEntity randomSelection() {
-        return oTipoCuentaRepository.findAll().get(oRandomService.getRandomInt(0, (int) (oTipoCuentaRepository.count() - 1)));
+        return oTipoCuentaRepository.findAll()
+                .get(oRandomService.getRandomInt(0, (int) (oTipoCuentaRepository.count() - 1)));
     }
 
 }

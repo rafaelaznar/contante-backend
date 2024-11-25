@@ -41,16 +41,6 @@ public class PeriodoEntity {
 
     public PeriodoEntity(){}
 
-    public PeriodoEntity(Long id, @NotNull @Digits(integer = 4, fraction = 0) int anyo,
-            @NotNull @Size(min = 3, max = 255) String descripcion,
-            @NotNull @Size(min = 3, max = 255) String comentarios, @NotNull boolean cerrado) {
-        this.id = id;
-        this.anyo = anyo;
-        this.descripcion = descripcion;
-        this.comentarios = comentarios;
-        this.cerrado = cerrado;
-    }
-
     public PeriodoEntity(@NotNull @Digits(integer = 4, fraction = 0) int anyo,
             @NotNull @Size(min = 3, max = 255) String descripcion,
             @NotNull @Size(min = 3, max = 255) String comentarios, @NotNull boolean cerrado) {
