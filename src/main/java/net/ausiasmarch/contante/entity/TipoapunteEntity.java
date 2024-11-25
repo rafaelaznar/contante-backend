@@ -30,7 +30,8 @@ public class TipoapunteEntity {
 
     @OneToMany(mappedBy = "tipoapunte",fetch = FetchType.LAZY)
     private java.util.List<GrupotipoapunteEntity> grupotipoapuntes;
-    
+
+
     public TipoapunteEntity() {
     }
 
@@ -69,7 +70,7 @@ public class TipoapunteEntity {
         return apuntes.size();
     }
 
-    public int getGrupotipocuentas() {
+    public int getGrupotipoapuntes() {
         return grupotipoapuntes.size();
     }
 
