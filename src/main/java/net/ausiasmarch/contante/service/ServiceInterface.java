@@ -10,6 +10,8 @@ public interface ServiceInterface<T>{
 
     public Long randomCreate(Long cantidad);
 
+    public T randomSelection();
+
     public Page<T> getPage(Pageable oPageable, Optional<String> filter);
 
     public T get(Long id);

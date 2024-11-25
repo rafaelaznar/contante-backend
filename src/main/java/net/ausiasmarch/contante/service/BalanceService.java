@@ -93,4 +93,8 @@ public class BalanceService implements ServiceInterface<BalanceEntity> {
         oBalanceRepository.deleteAll();
         return this.count();
     }
+
+    public BalanceEntity randomSelection() {
+        return oBalanceRepository.findAll().get(oRandomService.getRandomInt(0, (int) (oBalanceRepository.count() - 1)));
+    }
 }

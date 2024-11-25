@@ -7,28 +7,31 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "tipousuario")
-public class TipousuarioEntity {
+@Table(name = "tipoasiento")
+public class TipoasientoEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Size(min = 3, max = 255)
     private String descripcion;
 
-    @OneToMany(mappedBy = "tipousuario", fetch = FetchType.LAZY)
-    private java.util.List<UsuarioEntity> usuarios;
+    @OneToMany(mappedBy = "tipoasiento", fetch = FetchType.LAZY)
+    private java.util.List<AsientoEntity> asientos;
 
-    public TipousuarioEntity() {
+    @OneToMany(mappedBy = "tipoasiento", fetch = FetchType.LAZY)
+    private java.util.List<GrupotipoasientoEntity> grupotipoasientos;
+
+    public TipoasientoEntity() {
     }
 
-    public TipousuarioEntity(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public TipousuarioEntity(Long id, String descripcion) {
-        this.id = id;
+    public TipoasientoEntity(@NotNull @Size(min = 3, max = 255) String descripcion) {
         this.descripcion = descripcion;
     }
 
@@ -48,7 +51,12 @@ public class TipousuarioEntity {
         this.descripcion = descripcion;
     }
 
-    public int getUsuarios() {
-        return usuarios.size();
+    public int getAsientos() {
+        return asientos.size();
     }
+
+    public int getGrupotipoasientos() {
+        return grupotipoasientos.size();
+    }
+
 }

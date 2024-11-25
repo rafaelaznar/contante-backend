@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import net.ausiasmarch.contante.api.Asiento;
 import net.ausiasmarch.contante.entity.ApunteEntity;
 import net.ausiasmarch.contante.exception.ResourceNotFoundException;
 import net.ausiasmarch.contante.repository.ApunteRepository;
@@ -18,6 +19,15 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
 
     @Autowired
     private ApunteRepository oApunteRepository;
+
+    @Autowired
+    private AsientoService oAsientoService;
+
+    @Autowired
+    private SubcuentaService oSubcuentaService;
+
+    @Autowired
+    private TipoapunteService oTipoapunteService;
 
     @Autowired
     private RandomService oRandomService;
@@ -71,7 +81,7 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
             "2024-11-06 15:00:00"
     };
 
-      LocalDateTime[] arrdateTimes = {
+    LocalDateTime[] arrdateTimes = {
             LocalDateTime.of(2023, 1, 1, 10, 0),
             LocalDateTime.of(2023, 2, 2, 12, 30),
             LocalDateTime.of(2023, 3, 3, 14, 15),
@@ -92,7 +102,7 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
             LocalDateTime.of(2024, 6, 18, 12, 30),
             LocalDateTime.of(2024, 7, 19, 14, 15),
             LocalDateTime.of(2024, 8, 20, 16, 45)
-        };
+    };
 
     // Datos de la columna orden
     private int[] arrorden = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
@@ -109,8 +119,7 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
     private long[] arrid_tipoapunte = { 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3011, 3012, 3013,
             3014, 3015, 3016, 3017, 3018, 3019, 3020 };
 
-
-     public Long randomCreate(Long cantidad) {
+    public Long randomCreate(Long cantidad) {
         for (int i = 0; i < cantidad; i++) {
             ApunteEntity oApunteEntity = new ApunteEntity();
             oApunteEntity.setDebe(arrdebe[oRandomService.getRandomInt(0, arrdebe.length - 1)]);
@@ -119,14 +128,13 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
             oApunteEntity.setComentarios(arrcomentarios[oRandomService.getRandomInt(0, arrcomentarios.length - 1)]);
             oApunteEntity.setMomentstamp(arrdateTimes[oRandomService.getRandomInt(0, arrdateTimes.length - 1)]);
             oApunteEntity.setOrden(arrorden[oRandomService.getRandomInt(0, arrorden.length - 1)]);
-         /*   oApunteEntity.setId_asiento(arrid_asiento[oRandomService.getRandomInt(0, arrid_asiento.length - 1)]);
-          oApunteEntity.setId_subcuenta(arrid_subcuenta[oRandomService.getRandomInt(0, arrid_subcuenta.length - 1)]);
-          oApunteEntity
-                 .setId_tipoapunte(arrid_tipoapunte[oRandomService.getRandomInt(0, arrid_tipoapunte.length - 1)]);
-           */ oApunteRepository.save(oApunteEntity);
+            oApunteEntity.setAsiento(oAsientoService.randomSelection());
+            oApunteEntity.setSubcuenta(oSubcuentaService.randomSelection());
+            oApunteEntity.setTipoapunte(oTipoapunteService.randomSelection());
+            oApunteRepository.save(oApunteEntity);
         }
         return oApunteRepository.count();
-    } 
+    }
 
     public Page<ApunteEntity> getPage(Pageable oPageable, Optional<String> filter) {
         if (filter.isPresent()) {
@@ -176,21 +184,27 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
         if (oApunteEntity.getOrden() != 0) {
             oApunteEntityFromDatabase.setOrden(oApunteEntity.getOrden());
         }
-    /*if (oApunteEntity.getId_asiento() != 0) {
-            oApunteEntityFromDatabase.setId_asiento(oApunteEntity.getId_asiento());
-        }
-        if (oApunteEntity.getId_subcuenta() != 0) {
-            oApunteEntityFromDatabase.setId_subcuenta(oApunteEntity.getId_subcuenta());
-        }
-        if (oApunteEntity.getId_tipoapunte() != 0) {
-            oApunteEntityFromDatabase.setId_tipoapunte(oApunteEntity.getId_tipoapunte());
-        }
-        */     return oApunteRepository.save(oApunteEntityFromDatabase);
+        /*
+         * if (oApunteEntity.getId_asiento() != 0) {
+         * oApunteEntityFromDatabase.setId_asiento(oApunteEntity.getId_asiento());
+         * }
+         * if (oApunteEntity.getId_subcuenta() != 0) {
+         * oApunteEntityFromDatabase.setId_subcuenta(oApunteEntity.getId_subcuenta());
+         * }
+         * if (oApunteEntity.getId_tipoapunte() != 0) {
+         * oApunteEntityFromDatabase.setId_tipoapunte(oApunteEntity.getId_tipoapunte());
+         * }
+         */ return oApunteRepository.save(oApunteEntityFromDatabase);
     }
 
     public Long deleteAll() {
         oApunteRepository.deleteAll();
         return this.count();
+    }
+
+    public ApunteEntity randomSelection() {
+        return oApunteRepository.findAll()
+                .get(oRandomService.getRandomInt(0, (int) (oApunteRepository.count() - 1)));
     }
 
 }

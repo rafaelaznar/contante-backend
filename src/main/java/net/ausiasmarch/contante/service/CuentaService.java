@@ -18,6 +18,9 @@ public class CuentaService implements ServiceInterface<CuentaEntity> {
     CuentaRepository oCuentaRepository;
 
     @Autowired
+    TipocuentaService oTipocuentaService;
+
+    @Autowired
     RandomService oRandomService;
 
     private String[] arrCodigo = { "1234", "5678", "9012", "3456", "7890" };
@@ -26,6 +29,8 @@ public class CuentaService implements ServiceInterface<CuentaEntity> {
         for (int i = 0; i < cantidad; i++) {
             CuentaEntity oCuentaEntity = new CuentaEntity();
             oCuentaEntity.setCodigo(arrCodigo[oRandomService.getRandomInt(0, arrCodigo.length - 1)]);
+            oCuentaEntity.setDescripcion("descripcion aleatoria");
+            oCuentaEntity.setTipocuenta(oTipocuentaService.randomSelection());
             oCuentaRepository.save(oCuentaEntity);
         }
         return oCuentaRepository.count();
@@ -67,8 +72,8 @@ public class CuentaService implements ServiceInterface<CuentaEntity> {
         if (oCuentaEntity.getDescripcion() != null) {
             oCuentaEntityFromDatabase.setDescripcion(oCuentaEntity.getDescripcion());
         }
-        if (oCuentaEntity.getId_tipocuenta() != null) {
-            oCuentaEntityFromDatabase.setId_tipocuenta(oCuentaEntity.getId_tipocuenta());
+        if (oCuentaEntity.getTipocuenta() != null) {
+            oCuentaEntityFromDatabase.setTipocuenta(oTipocuentaService.get(oCuentaEntity.getTipocuenta().getId()));
         }
         return oCuentaRepository.save(oCuentaEntityFromDatabase);
     }
@@ -76,6 +81,10 @@ public class CuentaService implements ServiceInterface<CuentaEntity> {
     public Long deleteAll() {
         oCuentaRepository.deleteAll();
         return this.count();
+    }
+
+    public CuentaEntity randomSelection() {
+        return oCuentaRepository.findAll().get(oRandomService.getRandomInt(0, (int) (oCuentaRepository.count() - 1)));
     }
 
 }

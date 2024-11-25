@@ -44,7 +44,7 @@ public class AsientoEntity {
     @NotNull
     @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
     @JoinColumn(name = "id_tipoasiento")
-    private TipoAsientoEntity tipoasiento;
+    private TipoasientoEntity tipoasiento;
 
     @NotNull
     @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
@@ -112,11 +112,11 @@ public class AsientoEntity {
         this.momentstamp = momentstamp;
     }
 
-    public TipoAsientoEntity getTipoasiento() {
+    public TipoasientoEntity getTipoasiento() {
         return tipoasiento;
     }
 
-    public void setTipoasiento(TipoAsientoEntity tipoasiento) {
+    public void setTipoasiento(TipoasientoEntity tipoasiento) {
         this.tipoasiento = tipoasiento;
     }
 
@@ -140,6 +140,5 @@ public class AsientoEntity {
         return apuntes.size();
     }
 
-    
 
 }

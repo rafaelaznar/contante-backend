@@ -1,9 +1,13 @@
 package net.ausiasmarch.contante.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -27,11 +31,16 @@ public class UsuarioEntity {
 
     @Size(min = 0, max = 255)
     private String apellido2;
-    
+
     @Email
     private String email;
 
-    private Long id_tipousuario;
+    @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
+    @JoinColumn(name = "id_tipousuario")
+    private TipousuarioEntity tipousuario;
+
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
+    private java.util.List<AsientoEntity> asientos;
 
     public UsuarioEntity() {
     }
@@ -91,12 +100,16 @@ public class UsuarioEntity {
         this.email = email;
     }
 
-    public Long getId_tipousuario() {
-        return id_tipousuario;
+    public TipousuarioEntity getTipousuario() {
+        return tipousuario;
     }
 
-    public void setId_tipousuario(Long id_tipousuario) {
-        this.id_tipousuario = id_tipousuario;
+    public void setTipousuario(TipousuarioEntity tipousuario) {
+        this.tipousuario = tipousuario;
+    }
+
+    public int getAsientos() {
+        return asientos.size();
     }
 
 }
