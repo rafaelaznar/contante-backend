@@ -30,8 +30,7 @@ public class TipoapunteEntity {
 
     @OneToMany(mappedBy = "tipoapunte",fetch = FetchType.LAZY)
     private java.util.List<GrupotipoapunteEntity> grupotipoapuntes;
-
-
+    
     public TipoapunteEntity() {
     }
 

@@ -46,24 +46,6 @@ public class CuentaService implements ServiceInterface<CuentaEntity> {
         }
     }
 
-    public Page<CuentaEntity> getPageXTipocuenta(Pageable oPageable, Optional<String> filter, Optional<Long> id_tipocuenta) {
-        if (filter.isPresent()) {
-            if (id_tipocuenta.isPresent()) {
-                return oCuentaRepository
-                        .findByTipocuentaIdAndCodigoContainingOrDescripcionContaining(
-                                id_tipocuenta.get(), filter.get(), filter.get(), oPageable);
-            } else {
-                throw new ResourceNotFoundException("Tipocuenta no encontrada");
-            }            
-        } else {
-            if (id_tipocuenta.isPresent()) {
-                return oCuentaRepository.findByTipocuentaId(id_tipocuenta.get(), oPageable);
-            } else {
-                throw new ResourceNotFoundException("Tipocuenta no encontrada");
-            }
-        }
-    }
-
     public CuentaEntity get(Long id) {
         return oCuentaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Cuenta no encontrada"));
