@@ -25,4 +25,10 @@ public interface ApunteRepository extends JpaRepository<ApunteEntity, Long> {
 
     Page<ApunteEntity> findByTipoapunteId(Long id_tipoapunte, Pageable oPageable);
 
+    @Query(value = "SELECT * FROM apunte WHERE descripcion LIKE %:strDescripcion% OR comentarios LIKE %:strComentarios% AND id_subcuenta=:id_subcuenta", nativeQuery = true)
+    Page<ApunteEntity> findBySubcuentaIdAndDescripcionContainingOrComentariosContaining(String strDescripcion,
+        String strComentarios, Long id_subcuenta, Pageable oPageable);
+
+    Page<ApunteEntity> findBySubcuentaId(Long id_subcuenta, Pageable oPageable);
+
 }
