@@ -73,6 +73,5 @@ public class TipoapunteEntity {
     public int getGrupotipoapuntes() {
         return grupotipoapuntes.size();
     }
-
     
 }
