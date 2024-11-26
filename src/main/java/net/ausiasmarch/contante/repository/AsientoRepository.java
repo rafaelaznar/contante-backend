@@ -17,5 +17,11 @@ public interface AsientoRepository extends JpaRepository<AsientoEntity, Long> {
       String strComentarios, Long id_usuario, Pageable oPageable);
 
   Page<AsientoEntity> findByUsuarioId(Long id_usuario, Pageable oPageable);
+  
+  @Query(value = "SELECT * FROM periodo WHERE (descripcion LIKE %:strDescripcion% OR comentarios LIKE %:strComentarios%) AND id_periodo=:id_periodo", nativeQuery = true)
+  Page<AsientoEntity> findByPeriodoIdAndDescripcionContainingOrComentariosContaining(String strDescripcion,
+      String strComentarios, Long id_periodo, Pageable oPageable);
+
+  Page<AsientoEntity> findByPeriodoId(Long id_periodo, Pageable oPageable);
 
 }
