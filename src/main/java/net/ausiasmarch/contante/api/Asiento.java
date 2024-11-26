@@ -45,6 +45,15 @@ public class Asiento {
                 HttpStatus.OK);
     }
 
+    @GetMapping("/xtipoasiento/{id}")
+    public ResponseEntity<Page<AsientoEntity>> getPageXTipoasiento(
+            Pageable oPageable,
+            @RequestParam Optional<String> filter,
+            @PathVariable Optional<Long> id) {
+        return new ResponseEntity<Page<AsientoEntity>>(oAsientoService.getPageXTipoasiento(oPageable, filter, id),
+                HttpStatus.OK);
+    }
+
     @GetMapping("/xperiodo/{id}")
     public ResponseEntity<Page<AsientoEntity>> getPageXPeriodo(
             Pageable oPageable,
