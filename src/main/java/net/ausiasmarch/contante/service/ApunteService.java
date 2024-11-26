@@ -9,7 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import net.ausiasmarch.contante.api.Asiento;
 import net.ausiasmarch.contante.entity.ApunteEntity;
 import net.ausiasmarch.contante.entity.AsientoEntity;
 import net.ausiasmarch.contante.exception.ResourceNotFoundException;
@@ -146,7 +145,6 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
             return oApunteRepository.findAll(oPageable);
         }
     }
-
     public Page<ApunteEntity> getPageXAsiento(Pageable oPageable, Optional<String> filter, Optional<Long> id_asiento) {
         if (filter.isPresent()) {
             if (id_asiento.isPresent()) {
@@ -165,6 +163,27 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
             }
         }
     }
+
+    public Page<ApunteEntity> getPageXTipoApunte(Pageable oPageable, Optional<String> filter,
+            Optional<Long> id_tipoapunte) {
+        if (filter.isPresent()) {
+            if (id_tipoapunte.isPresent()) {
+                return oApunteRepository
+                        .findByTipoApunteIdAndDescripcionContainingOrComentariosContaining(
+                                filter.get(), filter.get(), id_tipoapunte.get(), oPageable);
+            } else {
+                throw new ResourceNotFoundException("Apunte no encontrado");
+            }
+        } else {
+            if (id_tipoapunte.isPresent()) {
+                return oApunteRepository.findByTipoapunteId(id_tipoapunte.get(), oPageable);
+            } else {
+                throw new ResourceNotFoundException("Apunte no encontrado");
+            }
+        }
+    }
+
+    
 
     public ApunteEntity get(Long id) {
         return oApunteRepository.findById(id)
