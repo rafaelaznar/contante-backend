@@ -70,24 +70,20 @@ public class BalanceEntity {
         this.descripcion = descripcion;
     }
 
-    public int getGrupoTipoCuentas() {
-        return grupotipocuentas.size();
-    }
-
     public int getGrupoasientos() {
         return grupoasientos.size();
     }
 
-    public int getSubcuentas() {
+    public int getGruposubcuentas() {
         return gruposubcuentas.size();
-    }
-
-    public int getGrupocuentas() {
-        return grupocuentas.size();
     }
 
     public int getGrupotipocuentas() {
         return grupotipocuentas.size();
+    }
+
+    public int getGrupocuentas() {
+        return grupocuentas.size();
     }
 
     public int getGrupotipoapuntes() {
