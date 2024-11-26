@@ -18,6 +18,15 @@ public class AsientoService implements ServiceInterface<AsientoEntity> {
     AsientoRepository oAsientoRepository;
 
     @Autowired
+    TipoasientoService oTipoasientoService;
+
+    @Autowired
+    UsuarioService oUsuarioService;
+
+    @Autowired
+    PeriodoService oPeriodoService;
+
+    @Autowired
     RandomService oRandomService;
 
     String[] arrDescripciones = {
@@ -42,16 +51,14 @@ public class AsientoService implements ServiceInterface<AsientoEntity> {
     public Long randomCreate(Long cantidad) {
         for (int i = 0; i < cantidad; i++) {
             AsientoEntity oAsientoEntity = new AsientoEntity();
-
             oAsientoEntity
                     .setDescripcion(arrDescripciones[oRandomService.getRandomInt(0, arrDescripciones.length - 1)]);
             oAsientoEntity.setComentarios(arrComentarios[oRandomService.getRandomInt(0, arrComentarios.length - 1)]);
             oAsientoEntity.setInventariable(oRandomService.getRandomInt(0, 1));
             oAsientoEntity.setMomentstamp(LocalDateTime.now());
-          //  oAsientoEntity.setId_tipoasiento(1L);
-          //  oAsientoEntity.setId_usuario(1L);
-          //  oAsientoEntity.setId_periodo(1L);
-
+            oAsientoEntity.setTipoasiento(oTipoasientoService.randomSelection());
+            oAsientoEntity.setUsuario( oUsuarioService.randomSelection());
+            oAsientoEntity.setPeriodo(oPeriodoService.randomSelection());
             oAsientoRepository.save(oAsientoEntity);
         }
         return oAsientoRepository.count();
@@ -103,12 +110,20 @@ public class AsientoService implements ServiceInterface<AsientoEntity> {
         if (oAsientoEntity.getComentarios() != null) {
             oAsientoEntityFromDatabase.setComentarios(oAsientoEntity.getComentarios());
         }
-        // TODO
         if (oAsientoEntity.getInventariable() == 0 || oAsientoEntity.getInventariable() == 1) {
             oAsientoEntityFromDatabase.setInventariable(oAsientoEntity.getInventariable());
         }
         if (oAsientoEntity.getMomentstamp() != null) {
             oAsientoEntityFromDatabase.setMomentstamp(oAsientoEntity.getMomentstamp());
+        }
+        if (oAsientoEntity.getTipoasiento() != null) {
+            oAsientoEntityFromDatabase.setTipoasiento(oTipoasientoService.get(oTipoasientoService.randomSelection().getId()));
+        }
+        if (oAsientoEntity.getUsuario() != null) {
+            oAsientoEntityFromDatabase.setUsuario(oUsuarioService.get(oUsuarioService.randomSelection().getId()));
+        }
+        if (oAsientoEntity.getPeriodo() != null) {
+            oAsientoEntityFromDatabase.setPeriodo(oPeriodoService.get(oPeriodoService.randomSelection().getId()));
         }
         return oAsientoRepository.save(oAsientoEntityFromDatabase);
     }
@@ -117,6 +132,12 @@ public class AsientoService implements ServiceInterface<AsientoEntity> {
     public Long deleteAll() {
         oAsientoRepository.deleteAll();
         return this.count();
+    }
+
+    @Override
+    public AsientoEntity randomSelection() {
+        return oAsientoRepository.findAll()
+                .get(oRandomService.getRandomInt(0, (int) (oAsientoRepository.count() - 1)));
     }
 
 }

@@ -1,42 +1,45 @@
 package net.ausiasmarch.contante.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-
-
 
 @Entity
 @Table(name = "cuenta")
 public class CuentaEntity {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
 
     @NotNull
-    public String codigo;
+    private String codigo;
 
-    public String descripcion;
-
-    public Long id_tipocuenta;
+    private String descripcion;
 
     @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
     @JoinColumn(name = "id_tipocuenta")
-    private TipoCuentaEntity tipoCuenta;
+    private TipocuentaEntity tipocuenta;
+
+    @OneToMany(mappedBy = "cuenta", fetch = FetchType.LAZY)
+    private java.util.List<GrupocuentaEntity> grupocuentas;
+
+    @OneToMany(mappedBy = "cuenta", fetch = FetchType.LAZY)
+    private java.util.List<SubcuentaEntity> subcuentas;
 
     public CuentaEntity() {
     }
 
-    public CuentaEntity(@NotNull String codigo, String descripcion, Long id_tipocuenta) {
+    public CuentaEntity(@NotNull String codigo, String descripcion) {
         this.codigo = codigo;
         this.descripcion = descripcion;
-        this.id_tipocuenta = id_tipocuenta;
     }
 
     public Long getId() {
@@ -63,21 +66,19 @@ public class CuentaEntity {
         this.descripcion = descripcion;
     }
 
-    public Long getId_tipocuenta() {
-        return id_tipocuenta;
+    public TipocuentaEntity getTipocuenta() {
+        return tipocuenta;
     }
 
-    public void setId_tipocuenta(Long id_tipocuenta) {
-        this.id_tipocuenta = id_tipocuenta;
+    public void setTipocuenta(TipocuentaEntity tipocuenta) {
+        this.tipocuenta = tipocuenta;
     }
 
-    public TipoCuentaEntity getTipoCuenta() {
-        return tipoCuenta;
+    public int getGrupocuentas() {
+        return grupocuentas.size();
     }
-    public void setTipoCuenta(TipoCuentaEntity tipoCuenta) {
-        this.tipoCuenta = tipoCuenta;
+
+    public int getSubcuentas() {
+        return subcuentas.size();
     }
 }
-
-
-

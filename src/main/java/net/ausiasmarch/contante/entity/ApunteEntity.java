@@ -48,18 +48,18 @@ public class ApunteEntity {
 
     @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
     @JoinColumn(name = "id_subcuenta")
-    private SubCuentaEntity subcuenta;
+    private SubcuentaEntity subcuenta;
 
     @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
     @JoinColumn(name = "id_tipoapunte")
-    private TipoApunteEntity tipoapunte;
+    private TipoapunteEntity tipoapunte;
 
     public ApunteEntity() {
     }
 
     public ApunteEntity(Long id, BigDecimal debe, BigDecimal haber, String descripcion, String comentarios,
             LocalDateTime momentstamp,
-            long orden, AsientoEntity id_asiento, SubCuentaEntity id_subcuenta, TipoApunteEntity id_tipoapunte) {
+            long orden, AsientoEntity id_asiento, SubcuentaEntity id_subcuenta, TipoapunteEntity id_tipoapunte) {
         this.id = id;
         this.debe = debe;
         this.haber = haber;
@@ -73,7 +73,7 @@ public class ApunteEntity {
     }
 
     public ApunteEntity(BigDecimal debe, BigDecimal haber, String descripcion, String comentarios, LocalDateTime momentstamp,
-            long orden, AsientoEntity id_asiento, SubCuentaEntity id_subcuenta, TipoApunteEntity idtipo) {
+            long orden, AsientoEntity id_asiento, SubcuentaEntity id_subcuenta, TipoapunteEntity idtipo) {
         this.debe = debe;
         this.haber = haber;
         this.descripcion = descripcion;
@@ -149,19 +149,19 @@ public class ApunteEntity {
         this.asiento = asiento;
     }
 
-    public SubCuentaEntity getSubcuenta() {
+    public SubcuentaEntity getSubcuenta() {
         return subcuenta;
     }
 
-    public void setSubcuenta(SubCuentaEntity subcuenta) {    
+    public void setSubcuenta(SubcuentaEntity subcuenta) {    
         this.subcuenta = subcuenta;
     }
 
-    public TipoApunteEntity getTipoApunte() {
+    public TipoapunteEntity getTipoapunte() {
         return tipoapunte;
     }
 
-    public void setTipoApunte(TipoApunteEntity tipoapunte) {
+    public void setTipoapunte(TipoapunteEntity tipoapunte) {
         this.tipoapunte = tipoapunte;
     }
 

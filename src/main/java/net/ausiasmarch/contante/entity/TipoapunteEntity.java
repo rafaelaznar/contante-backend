@@ -6,23 +6,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "periodo")
-public class PeriodoEntity {
-
+@Table(name = "tipoapunte")
+public class TipoapunteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotNull
-    @Digits(integer = 4, fraction = 0)
-    private int anyo;
 
     @NotNull
     @Size(min = 3, max = 255)
@@ -32,22 +25,20 @@ public class PeriodoEntity {
     @Size(min = 3, max = 255)
     private String comentarios;
 
-    @NotNull
-    private boolean cerrado;
+    @OneToMany(mappedBy = "tipoapunte",fetch = FetchType.LAZY)
+    private java.util.List<ApunteEntity> apuntes;
 
+    @OneToMany(mappedBy = "tipoapunte",fetch = FetchType.LAZY)
+    private java.util.List<GrupotipoapunteEntity> grupotipoapuntes;
+    
+    public TipoapunteEntity() {
+    }
 
-    @OneToMany(mappedBy = "periodo",fetch = FetchType.LAZY)
-    private java.util.List<AsientoEntity> asientos; 
-
-    public PeriodoEntity(){}
-
-    public PeriodoEntity(@NotNull @Digits(integer = 4, fraction = 0) int anyo,
-            @NotNull @Size(min = 3, max = 255) String descripcion,
-            @NotNull @Size(min = 3, max = 255) String comentarios, @NotNull boolean cerrado) {
-        this.anyo = anyo;
+    public TipoapunteEntity(Long id, @NotNull @Size(min = 3, max = 255) String descripcion,
+            @NotNull @Size(min = 3, max = 255) String comentarios) {
+        this.id = id;
         this.descripcion = descripcion;
         this.comentarios = comentarios;
-        this.cerrado = cerrado;
     }
 
     public Long getId() {
@@ -56,14 +47,6 @@ public class PeriodoEntity {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public int getAnyo() {
-        return anyo;
-    }
-
-    public void setAnyo(int anyo) {
-        this.anyo = anyo;
     }
 
     public String getDescripcion() {
@@ -82,19 +65,13 @@ public class PeriodoEntity {
         this.comentarios = comentarios;
     }
 
-    public boolean isCerrado() {
-        return cerrado;
+    public int getApuntes() {
+        return apuntes.size();
     }
 
-    public void setCerrado(boolean cerrado) {
-        this.cerrado = cerrado;
+    public int getGrupotipoapuntes() {
+        return grupotipoapuntes.size();
     }
 
-    public int getAsientos() {
-        return asientos.size();
-    }
- 
-
-    
     
 }
