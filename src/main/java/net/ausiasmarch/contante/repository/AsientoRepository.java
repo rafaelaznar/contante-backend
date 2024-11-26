@@ -12,10 +12,23 @@ public interface AsientoRepository extends JpaRepository<AsientoEntity, Long> {
   Page<AsientoEntity> findByDescripcionContainingOrComentariosContaining(
       String filter2, String filter3, Pageable oPageable);
 
-  @Query(value = "SELECT * FROM asiento WHERE descripcion LIKE %:strDescripcion% AND comentarios LIKE %:strComentarios% AND id_usuario=:id_usuario", nativeQuery = true)
+  @Query(value = "SELECT * FROM asiento WHERE (descripcion LIKE %:strDescripcion% OR comentarios LIKE %:strComentarios%) AND id_usuario=:id_usuario", nativeQuery = true)
   Page<AsientoEntity> findByUsuarioIdAndDescripcionContainingOrComentariosContaining(String strDescripcion,
       String strComentarios, Long id_usuario, Pageable oPageable);
 
   Page<AsientoEntity> findByUsuarioId(Long id_usuario, Pageable oPageable);
+  
+  @Query(value = "SELECT * FROM periodo WHERE (descripcion LIKE %:strDescripcion% OR comentarios LIKE %:strComentarios%) AND id_periodo=:id_periodo", nativeQuery = true)
+  Page<AsientoEntity> findByPeriodoIdAndDescripcionContainingOrComentariosContaining(String strDescripcion,
+      String strComentarios, Long id_periodo, Pageable oPageable);
+
+  Page<AsientoEntity> findByPeriodoId(Long id_periodo, Pageable oPageable);
+
+  @Query(value = "SELECT * FROM asiento WHERE (descripcion LIKE %:strDescripcion% OR comentarios LIKE %:strComentarios%) AND id_tipoasiento=:id_tipoasiento", nativeQuery = true)
+  Page<AsientoEntity> findByTipoasientoIdAndDescripcionContainingOrComentariosContaining(String strDescripcion,
+      String strComentarios, Long id_tipoasiento, Pageable oPageable);
+
+  Page<AsientoEntity> findByTipoasientoId(Long id_tipoasiento, Pageable oPageable);
+  
 
 }

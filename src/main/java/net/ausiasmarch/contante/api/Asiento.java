@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import net.ausiasmarch.contante.entity.AsientoEntity;
 import net.ausiasmarch.contante.service.AsientoService;
+import net.ausiasmarch.contante.entity.PeriodoEntity;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
@@ -43,6 +44,26 @@ public class Asiento {
         return new ResponseEntity<Page<AsientoEntity>>(oAsientoService.getPageXUsuario(oPageable, filter, id),
                 HttpStatus.OK);
     }
+
+    @GetMapping("/xtipoasiento/{id}")
+    public ResponseEntity<Page<AsientoEntity>> getPageXTipoasiento(
+            Pageable oPageable,
+            @RequestParam Optional<String> filter,
+            @PathVariable Optional<Long> id) {
+        return new ResponseEntity<Page<AsientoEntity>>(oAsientoService.getPageXTipoasiento(oPageable, filter, id),
+                HttpStatus.OK);
+    }
+
+    @GetMapping("/xperiodo/{id}")
+    public ResponseEntity<Page<AsientoEntity>> getPageXPeriodo(
+            Pageable oPageable,
+            @RequestParam Optional<String> filter,
+            @PathVariable Optional<Long> id) {
+        return new ResponseEntity<Page<AsientoEntity>>(oAsientoService.getPageXPeriodo(oPageable, filter, id),
+                HttpStatus.OK);
+    }
+
+
 
     @GetMapping("/{id}")
     public ResponseEntity<AsientoEntity> getAsiento(@PathVariable Long id) {
