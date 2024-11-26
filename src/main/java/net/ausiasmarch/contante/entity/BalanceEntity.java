@@ -24,7 +24,7 @@ public class BalanceEntity {
     private String descripcion;
 
     @OneToMany(mappedBy = "balance", fetch = FetchType.LAZY)
-    private java.util.List<GrupotipoasientoEntity> grupoasientos;
+    private java.util.List<GrupotipoasientoEntity> grupotipoasientos;
 
     @OneToMany(mappedBy = "balance", fetch = FetchType.LAZY)
     private java.util.List<GruposubcuentaEntity> gruposubcuentas;
@@ -70,8 +70,8 @@ public class BalanceEntity {
         this.descripcion = descripcion;
     }
 
-    public int getGrupoasientos() {
-        return grupoasientos.size();
+    public int getGrupotipoasientos() {
+        return grupotipoasientos.size();
     }
 
     public int getGruposubcuentas() {
