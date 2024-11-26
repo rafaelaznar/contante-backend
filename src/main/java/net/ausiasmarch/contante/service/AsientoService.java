@@ -96,6 +96,25 @@ public class AsientoService implements ServiceInterface<AsientoEntity> {
         }
     }
 
+    public Page<AsientoEntity> getPageXTipoasiento(Pageable oPageable, Optional<String> filter, Optional<Long> id_tipoasiento) {
+        if (filter.isPresent()) {
+            if (id_tipoasiento.isPresent()) {
+                return oAsientoRepository
+                        .findByTipoasientoIdAndDescripcionContainingOrComentariosContaining(
+                                filter.get(), filter.get(), id_tipoasiento.get(),
+                                oPageable);
+            } else {
+                throw new ResourceNotFoundException("Tipo de Asiento no encontrado");
+            }
+        } else {
+            if (id_tipoasiento.isPresent()) {
+                return oAsientoRepository.findByTipoasientoId(id_tipoasiento.get(), oPageable);
+            } else {
+                throw new ResourceNotFoundException("Tipo de Asiento no encontrado");
+            }
+        }
+    }
+
     @Override
     public AsientoEntity get(Long id) {
         return oAsientoRepository.findById(id)
