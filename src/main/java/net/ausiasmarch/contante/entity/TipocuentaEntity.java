@@ -99,7 +99,7 @@ public class TipocuentaEntity {
         return cuentas.size();
     }
 
-    public int getGrupoTipoCuentas() {
+    public int getGrupotipocuentas() {
         return grupotipocuentas.size();
     }
 }

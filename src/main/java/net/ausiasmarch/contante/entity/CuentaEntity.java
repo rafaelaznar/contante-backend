@@ -74,11 +74,11 @@ public class CuentaEntity {
         this.tipocuenta = tipocuenta;
     }
 
-    public int getGrupocuenta() {
+    public int getGrupocuentas() {
         return grupocuentas.size();
     }
 
-    public int getSubcuenta() {
+    public int getSubcuentas() {
         return subcuentas.size();
     }
 }

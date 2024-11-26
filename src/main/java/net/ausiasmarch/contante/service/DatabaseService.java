@@ -58,10 +58,10 @@ public class DatabaseService {
         oPeriodoService.randomCreate(0L);
         oTipoasientoService.randomCreate(0L);
         oTipousuarioService.randomCreate(0L);
-        oUsuarioService.randomCreate(10L);  
+        oUsuarioService.randomCreate(25L);  
         oTipocuentaService.randomCreate(10L);
         oTipoapunteService.randomCreate(10L);
-        oBalanceService.randomCreate(5L);
+        oBalanceService.randomCreate(15L);
         oCuentaService.randomCreate(100L);
         oSubcuentaService.randomCreate(50L);
         oAsientoService.randomCreate(100L);

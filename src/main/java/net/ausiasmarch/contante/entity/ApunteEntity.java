@@ -157,7 +157,7 @@ public class ApunteEntity {
         this.subcuenta = subcuenta;
     }
 
-    public TipoapunteEntity getTipoApunte() {
+    public TipoapunteEntity getTipoapunte() {
         return tipoapunte;
     }
 
