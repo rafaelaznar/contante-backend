@@ -183,6 +183,25 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
         }
     }
 
+    public Page<ApunteEntity> getPageXSubcuenta(Pageable oPageable, Optional<String> filter, Optional<Long> id_subcuenta) {
+        if (filter.isPresent()) {
+            if (id_subcuenta.isPresent()) {
+                return oApunteRepository
+                .findBySubcuentaIdAndDescripcionContainingOrComentariosContaining(
+                                filter.get(), filter.get(), id_subcuenta.get(),
+                                oPageable);
+            } else {
+                throw new ResourceNotFoundException("Subcuenta no encontrada");
+            }
+        } else {
+            if (id_subcuenta.isPresent()) {
+                return oApunteRepository.findBySubcuentaId(id_subcuenta.get(), oPageable);
+            } else {
+                throw new ResourceNotFoundException("Subcuenta no encontrada");
+            }
+        }
+    }
+
     
 
     public ApunteEntity get(Long id) {
