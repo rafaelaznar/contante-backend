@@ -12,7 +12,7 @@ public interface AsientoRepository extends JpaRepository<AsientoEntity, Long> {
   Page<AsientoEntity> findByDescripcionContainingOrComentariosContaining(
       String filter2, String filter3, Pageable oPageable);
 
-  @Query(value = "SELECT * FROM asiento WHERE descripcion LIKE %:strDescripcion% AND comentarios LIKE %:strComentarios% AND id_usuario=:id_usuario", nativeQuery = true)
+  @Query(value = "SELECT * FROM asiento WHERE (descripcion LIKE %:strDescripcion% OR comentarios LIKE %:strComentarios%) AND id_usuario=:id_usuario", nativeQuery = true)
   Page<AsientoEntity> findByUsuarioIdAndDescripcionContainingOrComentariosContaining(String strDescripcion,
       String strComentarios, Long id_usuario, Pageable oPageable);
 
