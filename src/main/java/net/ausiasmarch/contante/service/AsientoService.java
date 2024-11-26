@@ -57,7 +57,7 @@ public class AsientoService implements ServiceInterface<AsientoEntity> {
             oAsientoEntity.setInventariable(oRandomService.getRandomInt(0, 1));
             oAsientoEntity.setMomentstamp(LocalDateTime.now());
             oAsientoEntity.setTipoasiento(oTipoasientoService.randomSelection());
-            oAsientoEntity.setUsuario( oUsuarioService.randomSelection());
+            oAsientoEntity.setUsuario(oUsuarioService.randomSelection());
             oAsientoEntity.setPeriodo(oPeriodoService.randomSelection());
             oAsientoRepository.save(oAsientoEntity);
         }
@@ -74,6 +74,25 @@ public class AsientoService implements ServiceInterface<AsientoEntity> {
                             oPageable);
         } else {
             return oAsientoRepository.findAll(oPageable);
+        }
+    }
+
+    public Page<AsientoEntity> getPageXUsuario(Pageable oPageable, Optional<String> filter, Optional<Long> id_usuario) {
+        if (filter.isPresent()) {
+            if (id_usuario.isPresent()) {
+                return oAsientoRepository
+                        .findByUsuarioIdAndDescripcionContainingOrComentariosContaining(
+                                filter.get(), filter.get(), id_usuario.get(),
+                                oPageable);
+            } else {
+                throw new ResourceNotFoundException("Usuario no encontrado");
+            }
+        } else {
+            if (id_usuario.isPresent()) {
+                return oAsientoRepository.findByUsuarioId(id_usuario.get(), oPageable);
+            } else {
+                throw new ResourceNotFoundException("Usuario no encontrado");
+            }
         }
     }
 
@@ -117,7 +136,8 @@ public class AsientoService implements ServiceInterface<AsientoEntity> {
             oAsientoEntityFromDatabase.setMomentstamp(oAsientoEntity.getMomentstamp());
         }
         if (oAsientoEntity.getTipoasiento() != null) {
-            oAsientoEntityFromDatabase.setTipoasiento(oTipoasientoService.get(oTipoasientoService.randomSelection().getId()));
+            oAsientoEntityFromDatabase
+                    .setTipoasiento(oTipoasientoService.get(oTipoasientoService.randomSelection().getId()));
         }
         if (oAsientoEntity.getUsuario() != null) {
             oAsientoEntityFromDatabase.setUsuario(oUsuarioService.get(oUsuarioService.randomSelection().getId()));

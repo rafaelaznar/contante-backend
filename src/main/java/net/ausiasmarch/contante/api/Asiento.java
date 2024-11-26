@@ -32,10 +32,16 @@ public class Asiento {
     public ResponseEntity<Page<AsientoEntity>> getPage(
             Pageable oPageable,
             @RequestParam Optional<String> filter) {
-
-
         return new ResponseEntity<Page<AsientoEntity>>(oAsientoService.getPage(oPageable, filter), HttpStatus.OK);
-    
+    }
+
+    @GetMapping("/xusuario/{id}")
+    public ResponseEntity<Page<AsientoEntity>> getPageXUsuario(
+            Pageable oPageable,
+            @RequestParam Optional<String> filter,
+            @PathVariable Optional<Long> id) {
+        return new ResponseEntity<Page<AsientoEntity>>(oAsientoService.getPageXUsuario(oPageable, filter, id),
+                HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -72,6 +78,5 @@ public class Asiento {
     public ResponseEntity<Long> deleteAll() {
         return new ResponseEntity<Long>(oAsientoService.deleteAll(), HttpStatus.OK);
     }
-
 
 }
