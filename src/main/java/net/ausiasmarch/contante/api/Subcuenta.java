@@ -30,6 +30,15 @@ public class Subcuenta {
     @Autowired
     SubcuentaService oSubCuentaService;
 
+    @GetMapping("/xcuenta/{id}")
+        public ResponseEntity<Page<SubcuentaEntity>> getPageXCuenta(
+                Pageable oPageable,
+                @RequestParam Optional<String> filter,
+                @PathVariable Optional<Long> id) {
+            return new ResponseEntity<Page<SubcuentaEntity>>(oSubCuentaService.getPageXCuenta(oPageable, filter, id),
+                    HttpStatus.OK);
+        }
+
     @GetMapping("")
     public ResponseEntity<Page<SubcuentaEntity>> getPage(
             Pageable oPageable,
