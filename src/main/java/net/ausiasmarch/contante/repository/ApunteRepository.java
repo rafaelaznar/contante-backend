@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import net.ausiasmarch.contante.entity.ApunteEntity;
-import net.ausiasmarch.contante.entity.AsientoEntity;
 
 public interface ApunteRepository extends JpaRepository<ApunteEntity, Long> {
 

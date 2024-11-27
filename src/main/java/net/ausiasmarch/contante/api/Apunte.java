@@ -19,10 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.ausiasmarch.contante.entity.ApunteEntity;
-import net.ausiasmarch.contante.entity.AsientoEntity;
 import net.ausiasmarch.contante.service.ApunteService;
-import net.ausiasmarch.contante.service.SubcuentaService;
-import net.ausiasmarch.contante.entity.SubcuentaEntity;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController

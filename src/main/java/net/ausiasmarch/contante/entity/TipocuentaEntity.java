@@ -23,13 +23,13 @@ public class TipocuentaEntity {
     private String descripcion;
     @NotNull
     @Digits(integer = 1, fraction = 0)
-    private Long credito_o_debito;
+    private Long creditoodebito;
     @NotNull
     @Size(min = 3, max = 255)
     private String comentarios;
     @NotNull
     @Digits(integer = 1, fraction = 0)
-    private Long real_o_nominal;
+    private Long realonominal;
   
     @OneToMany(mappedBy = "tipocuenta",fetch = FetchType.LAZY)
     private java.util.List<CuentaEntity> cuentas;
@@ -40,19 +40,19 @@ public class TipocuentaEntity {
     public TipocuentaEntity() {
     }
 
-    public TipocuentaEntity(Long id, String descripcion, Long creditoOdebito, String comentarios, Long realOnominal) {
+    public TipocuentaEntity(Long id, String descripcion, Long creditoodebito, String comentarios, Long realonominal) {
         this.id = id;
         this.descripcion = descripcion;
-        this.credito_o_debito = creditoOdebito;
+        this.creditoodebito = creditoodebito;
         this.comentarios = comentarios;
-        this.real_o_nominal = realOnominal;
+        this.realonominal = realonominal;
     }
 
-    public TipocuentaEntity(String descripcion, Long creditoOdebito, String comentarios, Long realOnominal) {
+    public TipocuentaEntity(String descripcion, Long creditoodebito, String comentarios, Long realonominal) {
         this.descripcion = descripcion;
-        this.credito_o_debito = creditoOdebito;
+        this.creditoodebito = creditoodebito;
         this.comentarios = comentarios;
-        this.real_o_nominal = realOnominal;
+        this.realonominal = realonominal;
         
     }
 
@@ -72,12 +72,12 @@ public class TipocuentaEntity {
         this.descripcion = descripcion;
     }
 
-    public Long getCreditoOdebito() {
-        return credito_o_debito;
+    public Long getCreditoodebito() {
+        return creditoodebito;
     }
 
-    public void setCreditoOdebito(Long creditoOdebito) {
-        this.credito_o_debito = creditoOdebito;
+    public void setCreditoodebito(Long creditoodebito) {
+        this.creditoodebito = creditoodebito;
     }
 
     public String getComentarios() {
@@ -88,12 +88,12 @@ public class TipocuentaEntity {
         this.comentarios = comentarios;
     }
 
-    public Long getRealOnominal() {
-        return real_o_nominal;
+    public Long getRealonominal() {
+        return realonominal;
     }
 
-    public void setRealOnominal(Long realOnominal) {
-        this.real_o_nominal = realOnominal;
+    public void setRealonominal(Long realonominal) {
+        this.realonominal = realonominal;
     }
     public int getCuentas() {
         return cuentas.size();

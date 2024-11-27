@@ -54,9 +54,9 @@ public class TipocuentaService implements ServiceInterface<TipocuentaEntity> {
             TipocuentaEntity oTipoCuentaEntity = new TipocuentaEntity();
             oTipoCuentaEntity.setDescripcion(arrDescripcion[oRandomService.getRandomInt(0, arrDescripcion.length - 1)]);
             oTipoCuentaEntity
-                    .setCreditoOdebito(arrCreditoOdebito[oRandomService.getRandomInt(0, arrCreditoOdebito.length - 1)]);
+                    .setCreditoodebito(arrCreditoOdebito[oRandomService.getRandomInt(0, arrCreditoOdebito.length - 1)]);
             oTipoCuentaEntity
-                    .setRealOnominal(arrRealOnominal[oRandomService.getRandomInt(0, arrRealOnominal.length - 1)]);
+                    .setRealonominal(arrRealOnominal[oRandomService.getRandomInt(0, arrRealOnominal.length - 1)]);
             oTipoCuentaEntity.setComentarios(arrComentarios[oRandomService.getRandomInt(0, arrComentarios.length - 1)]);
             oTipoCuentaRepository.save(oTipoCuentaEntity);
         }
@@ -66,8 +66,8 @@ public class TipocuentaService implements ServiceInterface<TipocuentaEntity> {
     public Page<TipocuentaEntity> getPage(Pageable oPageable, Optional<String> filter) {
         if (filter.isPresent()) {
             return oTipoCuentaRepository
-                    .findByDescripcionContainingOrCreditoOdebitoContainingOrComentariosContaining(
-                            filter.get(), filter.get(), filter.get(), oPageable);
+                    .findByDescripcionContainingOrComentariosContaining(
+                            filter.get(), filter.get(), oPageable);
         } else {
             return oTipoCuentaRepository.findAll(oPageable);
         }
@@ -97,14 +97,14 @@ public class TipocuentaService implements ServiceInterface<TipocuentaEntity> {
         if (oTipoCuentaEntity.getDescripcion() != null) {
             oTipoCuentaEntityFromDatabase.setDescripcion(oTipoCuentaEntity.getDescripcion());
         }
-        if (oTipoCuentaEntity.getCreditoOdebito() != null) {
-            oTipoCuentaEntityFromDatabase.setCreditoOdebito(oTipoCuentaEntity.getCreditoOdebito());
+        if (oTipoCuentaEntity.getCreditoodebito() != null) {
+            oTipoCuentaEntityFromDatabase.setCreditoodebito(oTipoCuentaEntity.getCreditoodebito());
         }
         if (oTipoCuentaEntity.getComentarios() != null) {
             oTipoCuentaEntityFromDatabase.setComentarios(oTipoCuentaEntity.getComentarios());
         }
-        if (oTipoCuentaEntity.getRealOnominal() != null) {
-            oTipoCuentaEntityFromDatabase.setRealOnominal(oTipoCuentaEntity.getRealOnominal());
+        if (oTipoCuentaEntity.getRealonominal() != null) {
+            oTipoCuentaEntityFromDatabase.setRealonominal(oTipoCuentaEntity.getRealonominal());
         }
         return oTipoCuentaRepository.save(oTipoCuentaEntityFromDatabase);
     }

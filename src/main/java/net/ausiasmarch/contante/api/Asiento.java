@@ -17,9 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import net.ausiasmarch.contante.entity.AsientoEntity;
 import net.ausiasmarch.contante.service.AsientoService;
-import net.ausiasmarch.contante.entity.PeriodoEntity;
+
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
