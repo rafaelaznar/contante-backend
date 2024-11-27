@@ -236,9 +236,9 @@ CREATE TABLE `tipoasiento` (
 CREATE TABLE `tipocuenta` (
   `id` bigint NOT NULL,
   `descripcion` varchar(255) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
-  `credito_o_debito` tinyint(1) NOT NULL,
+  `creditoodebito` tinyint(1) NOT NULL,
   `comentarios` varchar(255) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
-  `real_o_nominal` tinyint(1) NOT NULL
+  `realonominal` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
 -- --------------------------------------------------------

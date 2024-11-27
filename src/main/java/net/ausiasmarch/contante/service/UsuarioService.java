@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import net.ausiasmarch.contante.entity.UsuarioEntity;
 import net.ausiasmarch.contante.exception.ResourceNotFoundException;
-import net.ausiasmarch.contante.repository.TipousuarioRepository;
 import net.ausiasmarch.contante.repository.UsuarioRepository;
 
 @Service
@@ -28,7 +27,7 @@ public class UsuarioService implements ServiceInterface<UsuarioEntity> {
         "Ana", "Rafa", "Manolo", "Lucia", "Marta", "Sara", "Rocio"};
 
     private String[] arrApellidos = {"Sancho", "Gomez", "Pérez", "Rodriguez", "Garcia", "Fernandez", "Lopez",
-        "Martinez", "Sanchez", "Gonzalez", "Gimenez", "Feliu", "Gonzalez", "Hermoso", "Vidal", "Escriche"};
+        "Martinez", "Sanchez", "Gonzalez", "Gimenez", "Feliu", "Gonzalez", "Hermoso", "Vidal", "Escriche", "Moreno"};
 
 
     public Long randomCreate(Long cantidad) {

@@ -35,7 +35,33 @@ public class Apunte {
                 @RequestParam  Optional<String> filter) {
             return new ResponseEntity<Page<ApunteEntity>>(oApunteService.getPage(oPageable, filter), HttpStatus.OK);
         }
+         @GetMapping("/xtipoapunte/{id}")
+    public ResponseEntity<Page<ApunteEntity>> getPageXTipoApunte(
+            Pageable oPageable,
+            @RequestParam Optional<String> filter,
+            @PathVariable Optional<Long> id) {
+        return new ResponseEntity<Page<ApunteEntity>>(oApunteService.getPageXTipoApunte(oPageable, filter, id),
+                HttpStatus.OK);
+    }
     
+        @GetMapping("/xasiento/{id}")
+    public ResponseEntity<Page<ApunteEntity>> getPageXAsiento(
+            Pageable oPageable,
+            @RequestParam Optional<String> filter,
+            @PathVariable Optional<Long> id) {
+        return new ResponseEntity<Page<ApunteEntity>>(oApunteService.getPageXAsiento(oPageable, filter, id),
+                HttpStatus.OK);
+    }
+
+    @GetMapping("/xsubcuenta/{id}")
+        public ResponseEntity<Page<ApunteEntity>> getPageXSubcuenta(
+                Pageable oPageable,
+                @RequestParam Optional<String> filter,
+                @PathVariable Optional<Long> id) {
+            return new ResponseEntity<Page<ApunteEntity>>(oApunteService.getPageXSubcuenta(oPageable, filter, id),
+                    HttpStatus.OK);
+        }
+
         @GetMapping("/{id}")
         public ResponseEntity<ApunteEntity> getApunte(@PathVariable Long id) {
             return new ResponseEntity<ApunteEntity>(oApunteService.get(id), HttpStatus.OK);

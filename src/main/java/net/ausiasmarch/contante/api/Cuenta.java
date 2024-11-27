@@ -36,6 +36,15 @@ public class Cuenta {
         return new ResponseEntity<Page<CuentaEntity>>(oCuentaService.getPage(oPageable, filter), HttpStatus.OK);
     }
 
+    @GetMapping("xtipocuenta/{id}")
+    public ResponseEntity<Page<CuentaEntity>> getPageXTipocuenta(
+            Pageable oPageable,
+            @RequestParam Optional<String> filter,
+            @PathVariable Optional<Long> id) {
+        return new ResponseEntity<Page<CuentaEntity>>(oCuentaService.getPageXTipocuenta(oPageable, filter, id),
+                HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<CuentaEntity> getCuenta(@PathVariable Long id) {
         return new ResponseEntity<CuentaEntity>(oCuentaService.get(id), HttpStatus.OK);
