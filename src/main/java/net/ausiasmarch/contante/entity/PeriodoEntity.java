@@ -35,7 +35,6 @@ public class PeriodoEntity {
     @NotNull
     private boolean cerrado;
 
-
     @OneToMany(mappedBy = "periodo",fetch = FetchType.LAZY)
     private java.util.List<AsientoEntity> asientos; 
 

@@ -9,9 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import net.ausiasmarch.contante.api.Asiento;
 import net.ausiasmarch.contante.entity.ApunteEntity;
-import net.ausiasmarch.contante.entity.AsientoEntity;
 import net.ausiasmarch.contante.exception.ResourceNotFoundException;
 import net.ausiasmarch.contante.repository.ApunteRepository;
 
@@ -70,18 +68,6 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
             "Soporte técnico", "Pago mensual", "Banner web", "Asesoría fiscal", "Mobiliario antiguo"
     };
 
-    // Datos de la columna momentstamp
-    private String[] arrmomentstamp = {
-            "2024-11-06 10:15:00", "2024-11-06 10:30:00", "2024-11-06 10:45:00", "2024-11-06 11:00:00",
-            "2024-11-06 11:15:00",
-            "2024-11-06 11:30:00", "2024-11-06 11:45:00", "2024-11-06 12:00:00", "2024-11-06 12:15:00",
-            "2024-11-06 12:30:00",
-            "2024-11-06 12:45:00", "2024-11-06 13:00:00", "2024-11-06 13:15:00", "2024-11-06 13:30:00",
-            "2024-11-06 13:45:00",
-            "2024-11-06 14:00:00", "2024-11-06 14:15:00", "2024-11-06 14:30:00", "2024-11-06 14:45:00",
-            "2024-11-06 15:00:00"
-    };
-
     LocalDateTime[] arrdateTimes = {
             LocalDateTime.of(2023, 1, 1, 10, 0),
             LocalDateTime.of(2023, 2, 2, 12, 30),
@@ -105,20 +91,6 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
             LocalDateTime.of(2024, 8, 20, 16, 45)
     };
 
-    // Datos de la columna orden
-    private int[] arrorden = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
-
-    // Datos de la columna id_asiento
-    private long[] arrid_asiento = { 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014,
-            1015, 1016, 1017, 1018, 1019, 1020 };
-
-    // Datos de la columna id_subcuenta
-    private long[] arrid_subcuenta = { 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013,
-            2014, 2015, 2016, 2017, 2018, 2019, 2020 };
-
-    // Datos de la columna id_tipoapunte
-    private long[] arrid_tipoapunte = { 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3011, 3012, 3013,
-            3014, 3015, 3016, 3017, 3018, 3019, 3020 };
 
     public Long randomCreate(Long cantidad) {
         for (int i = 0; i < cantidad; i++) {
@@ -128,7 +100,7 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
             oApunteEntity.setDescripcion(arrdescripcion[oRandomService.getRandomInt(0, arrdescripcion.length - 1)]);
             oApunteEntity.setComentarios(arrcomentarios[oRandomService.getRandomInt(0, arrcomentarios.length - 1)]);
             oApunteEntity.setMomentstamp(arrdateTimes[oRandomService.getRandomInt(0, arrdateTimes.length - 1)]);
-            oApunteEntity.setOrden(arrorden[oRandomService.getRandomInt(0, arrorden.length - 1)]);
+            oApunteEntity.setOrden(oRandomService.getRandomInt(0, 100));
             oApunteEntity.setAsiento(oAsientoService.randomSelection());
             oApunteEntity.setSubcuenta(oSubcuentaService.randomSelection());
             oApunteEntity.setTipoapunte(oTipoapunteService.randomSelection());
@@ -146,7 +118,6 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
             return oApunteRepository.findAll(oPageable);
         }
     }
-
     public Page<ApunteEntity> getPageXAsiento(Pageable oPageable, Optional<String> filter, Optional<Long> id_asiento) {
         if (filter.isPresent()) {
             if (id_asiento.isPresent()) {
@@ -165,6 +136,46 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
             }
         }
     }
+
+    public Page<ApunteEntity> getPageXTipoApunte(Pageable oPageable, Optional<String> filter,
+            Optional<Long> id_tipoapunte) {
+        if (filter.isPresent()) {
+            if (id_tipoapunte.isPresent()) {
+                return oApunteRepository
+                        .findByTipoApunteIdAndDescripcionContainingOrComentariosContaining(
+                                filter.get(), filter.get(), id_tipoapunte.get(), oPageable);
+            } else {
+                throw new ResourceNotFoundException("Apunte no encontrado");
+            }
+        } else {
+            if (id_tipoapunte.isPresent()) {
+                return oApunteRepository.findByTipoapunteId(id_tipoapunte.get(), oPageable);
+            } else {
+                throw new ResourceNotFoundException("Apunte no encontrado");
+            }
+        }
+    }
+
+    public Page<ApunteEntity> getPageXSubcuenta(Pageable oPageable, Optional<String> filter, Optional<Long> id_subcuenta) {
+        if (filter.isPresent()) {
+            if (id_subcuenta.isPresent()) {
+                return oApunteRepository
+                .findBySubcuentaIdAndDescripcionContainingOrComentariosContaining(
+                                filter.get(), filter.get(), id_subcuenta.get(),
+                                oPageable);
+            } else {
+                throw new ResourceNotFoundException("Subcuenta no encontrada");
+            }
+        } else {
+            if (id_subcuenta.isPresent()) {
+                return oApunteRepository.findBySubcuentaId(id_subcuenta.get(), oPageable);
+            } else {
+                throw new ResourceNotFoundException("Subcuenta no encontrada");
+            }
+        }
+    }
+
+    
 
     public ApunteEntity get(Long id) {
         return oApunteRepository.findById(id)
