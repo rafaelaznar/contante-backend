@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import net.ausiasmarch.contante.entity.ApunteEntity;
-import net.ausiasmarch.contante.entity.AsientoEntity;
 
 public interface ApunteRepository extends JpaRepository<ApunteEntity, Long> {
 
@@ -24,5 +23,11 @@ public interface ApunteRepository extends JpaRepository<ApunteEntity, Long> {
             String strComentarios, Long id_tipoapunte, Pageable oPageable);
 
     Page<ApunteEntity> findByTipoapunteId(Long id_tipoapunte, Pageable oPageable);
+
+    @Query(value = "SELECT * FROM apunte WHERE descripcion LIKE %:strDescripcion% OR comentarios LIKE %:strComentarios% AND id_subcuenta=:id_subcuenta", nativeQuery = true)
+    Page<ApunteEntity> findBySubcuentaIdAndDescripcionContainingOrComentariosContaining(String strDescripcion,
+        String strComentarios, Long id_subcuenta, Pageable oPageable);
+
+    Page<ApunteEntity> findBySubcuentaId(Long id_subcuenta, Pageable oPageable);
 
 }

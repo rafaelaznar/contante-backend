@@ -31,26 +31,13 @@ public class GrupotipoapunteService implements ServiceInterface<GrupotipoapunteE
     private String[] arrDescripcion = { "Sancho", "Gomez", "Pérez", "Rodriguez", "Garcia", "Fernandez", "Lopez",
             "Martinez", "Sanchez", "Gonzalez", "Gimenez", "Feliu", "Gonzalez", "Hermoso", "Vidal", "Escriche" };
 
-    // Datos de la columna orden
-    private int[] arrorden = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
-
-    // Datos de la columna id_asiento
-    private long[] arrid_balance = { 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014,
-            1015, 1016, 1017, 1018, 1019, 1020 };
-
-    // Datos de la columna id_asiento
-    private long[] arrid_tipoapunte = { 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013,
-            1014,
-            1015, 1016, 1017, 1018, 1019, 1020 };
-
     public Long randomCreate(Long cantidad) {
         for (int i = 0; i < cantidad; i++) {
             GrupotipoapunteEntity oGrupoTipoApunteEntity = new GrupotipoapunteEntity();
             oGrupoTipoApunteEntity.setTitulo(arrTitulos[oRandomService.getRandomInt(0, arrTitulos.length - 1)]);
             oGrupoTipoApunteEntity
                     .setDescripcion(arrDescripcion[oRandomService.getRandomInt(0, arrDescripcion.length - 1)]);
-            oGrupoTipoApunteEntity.setOrden(arrorden[oRandomService.getRandomInt(0, arrorden.length - 1)]);
-
+            oGrupoTipoApunteEntity.setOrden(oRandomService.getRandomInt(0, 100));
             oGrupoTipoApunteEntity.setBalance(oBalanceService.randomSelection());
             oGrupoTipoApunteEntity.setTipoapunte(oTipoApunteService.randomSelection());    
             oGrupoTipoApunteRepository.save(oGrupoTipoApunteEntity);

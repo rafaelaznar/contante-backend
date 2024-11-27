@@ -11,6 +11,7 @@ import net.ausiasmarch.contante.entity.AsientoEntity;
 import net.ausiasmarch.contante.exception.ResourceNotFoundException;
 import net.ausiasmarch.contante.repository.AsientoRepository;
 
+
 @Service
 public class AsientoService implements ServiceInterface<AsientoEntity> {
 
@@ -111,6 +112,25 @@ public class AsientoService implements ServiceInterface<AsientoEntity> {
                 return oAsientoRepository.findByTipoasientoId(id_tipoasiento.get(), oPageable);
             } else {
                 throw new ResourceNotFoundException("Tipo de Asiento no encontrado");
+            }
+        }
+    }
+
+    public Page<AsientoEntity> getPageXPeriodo(Pageable oPageable, Optional<String> filter, Optional<Long> id_periodo) {
+        if (filter.isPresent()) {
+            if (id_periodo.isPresent()) {
+                return oAsientoRepository
+                        .findByPeriodoIdAndDescripcionContainingOrComentariosContaining(
+                                filter.get(), filter.get(), id_periodo.get(),
+                                oPageable);
+            } else {
+                throw new ResourceNotFoundException("Periodo no encontrado");
+            }
+        } else {
+            if (id_periodo.isPresent()) {
+                return oAsientoRepository.findByPeriodoId(id_periodo.get(), oPageable);
+            } else {
+                throw new ResourceNotFoundException("Periodo no encontrado");
             }
         }
     }
