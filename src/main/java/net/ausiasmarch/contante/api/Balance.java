@@ -45,6 +45,15 @@ public class Balance {
                 oBalanceService.getPageXTipoapunte(oPageable, filter, id_tipoapunte), HttpStatus.OK);
     }
 
+    @GetMapping("/xtipocuenta/{id_tipocuenta}")
+    public ResponseEntity<Page<BalanceEntity>> getPageXtTipocuenta(
+            Pageable oPageable,
+            @RequestParam Optional<String> filter,
+            @PathVariable Optional<Long> id_tipocuenta) {
+        return new ResponseEntity<Page<BalanceEntity>>(
+                oBalanceService.getPageXTipocuenta(oPageable, filter, id_tipocuenta), HttpStatus.OK);
+    }
+    
     @GetMapping("/xtipoasiento/{id_tipoasiento}")
     public ResponseEntity<Page<BalanceEntity>> getPageXTipoasiento(
             Pageable oPageable,
