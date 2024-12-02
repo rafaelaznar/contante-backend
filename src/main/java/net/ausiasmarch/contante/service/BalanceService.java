@@ -82,6 +82,29 @@ public class BalanceService implements ServiceInterface<BalanceEntity> {
         }
     }
 
+    public Page<BalanceEntity> getPageXTipoasiento(Pageable oPageable, Optional<String> filter,
+            Optional<Long> id_tipoasiento) {
+        if (filter.isPresent()) {
+            if (id_tipoasiento.isPresent()) {
+                return oBalanceRepository
+                        .findByTituloContainingOrDescripcionContainingXTipoasiento(id_tipoasiento.get(), filter.get(),
+                                oPageable);
+            } else {
+                return oBalanceRepository
+                        .findByTituloContainingOrDescripcionContaining(
+                                filter.get(), filter.get(),
+                                oPageable);
+            }
+        } else {
+            if (id_tipoasiento.isPresent()) {
+                return oBalanceRepository.findAllXTipoasiento(id_tipoasiento.get(), oPageable);
+            } else {
+                return oBalanceRepository.findAll(oPageable);            
+            }
+
+        }
+    }
+
     public BalanceEntity get(Long id) {
         return oBalanceRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Balance no encontrado"));
