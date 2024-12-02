@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.ausiasmarch.contante.entity.ApunteEntity;
+import net.ausiasmarch.contante.entity.SumasProjection;
 import net.ausiasmarch.contante.service.ApunteService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
@@ -62,6 +63,22 @@ public class Apunte {
                     HttpStatus.OK);
         }
 
+        @GetMapping("/asiento/total/{id}")
+        public ResponseEntity<SumasProjection> getAsientoTotal(@PathVariable Long id) {
+            return new ResponseEntity<SumasProjection>(oApunteService.getTotalAsiento(id), HttpStatus.OK);
+        }
+        @GetMapping ("/subcuenta/total/{id}")
+        public ResponseEntity<SumasProjection> getSubcuentaTotal( @PathVariable Long id) {
+            return new ResponseEntity<SumasProjection>(oApunteService.getTotalSubcuenta(id), HttpStatus.OK);
+        }
+    
+        @GetMapping("tipoapunte/total/{id}")
+        public ResponseEntity<SumasProjection> getTipoApunteTotal(@PathVariable Long id) {
+            return new ResponseEntity<SumasProjection>(oApunteService.getTotalTipoapunte(id), HttpStatus.OK);
+        }
+
+       
+    
         @GetMapping("/{id}")
         public ResponseEntity<ApunteEntity> getApunte(@PathVariable Long id) {
             return new ResponseEntity<ApunteEntity>(oApunteService.get(id), HttpStatus.OK);

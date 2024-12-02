@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import net.ausiasmarch.contante.entity.ApunteEntity;
+import net.ausiasmarch.contante.entity.SumasProjection;
 import net.ausiasmarch.contante.exception.ResourceNotFoundException;
 import net.ausiasmarch.contante.repository.ApunteRepository;
 
@@ -91,7 +92,6 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
             LocalDateTime.of(2024, 8, 20, 16, 45)
     };
 
-
     public Long randomCreate(Long cantidad) {
         for (int i = 0; i < cantidad; i++) {
             ApunteEntity oApunteEntity = new ApunteEntity();
@@ -118,6 +118,7 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
             return oApunteRepository.findAll(oPageable);
         }
     }
+
     public Page<ApunteEntity> getPageXAsiento(Pageable oPageable, Optional<String> filter, Optional<Long> id_asiento) {
         if (filter.isPresent()) {
             if (id_asiento.isPresent()) {
@@ -156,11 +157,12 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
         }
     }
 
-    public Page<ApunteEntity> getPageXSubcuenta(Pageable oPageable, Optional<String> filter, Optional<Long> id_subcuenta) {
+    public Page<ApunteEntity> getPageXSubcuenta(Pageable oPageable, Optional<String> filter,
+            Optional<Long> id_subcuenta) {
         if (filter.isPresent()) {
             if (id_subcuenta.isPresent()) {
                 return oApunteRepository
-                .findBySubcuentaIdAndDescripcionContainingOrComentariosContaining(
+                        .findBySubcuentaIdAndDescripcionContainingOrComentariosContaining(
                                 filter.get(), filter.get(), id_subcuenta.get(),
                                 oPageable);
             } else {
@@ -175,7 +177,18 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
         }
     }
 
-    
+    public SumasProjection getTotalAsiento(Long id_asiento) {
+        oApunteRepository.totalByAsientoId(id_asiento);
+        return oApunteRepository.totalByAsientoId(id_asiento);
+    }
+
+    public SumasProjection getTotalTipoapunte(Long id_tipoapunte) {
+        return oApunteRepository.totalByTipoapunteId(id_tipoapunte);
+    }
+
+    public SumasProjection getTotalSubcuenta(Long id_subcuenta) {
+        return oApunteRepository.totalBySubcuentaId(id_subcuenta);
+    }
 
     public ApunteEntity get(Long id) {
         return oApunteRepository.findById(id)
