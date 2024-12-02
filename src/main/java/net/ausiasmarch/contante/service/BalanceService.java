@@ -128,6 +128,7 @@ public class BalanceService implements ServiceInterface<BalanceEntity> {
         }
     }
 
+
     public BalanceEntity get(Long id) {
         return oBalanceRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Balance no encontrado"));

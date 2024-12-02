@@ -21,7 +21,7 @@ public interface BalanceRepository extends JpaRepository<BalanceEntity, Long> {
     @Query(value = "SELECT b.* FROM balance b, grupotipocuenta g WHERE b.id = g.id_balance and g.id_tipocuenta=:id_tipocuenta", nativeQuery = true)
     Page<BalanceEntity> findAllXTipocuenta(Long id_tipocuenta, Pageable oPageable);
 
-    @Query(value = "SELECT b.* FROM balance b, grupotipocuentag WHERE b.id = g.id_balance and g.id_tipocuenta=:id_tipocuenta and (b.titulo LIKE %:strFilter% or b.descripcion LIKE %:strFilter%)", nativeQuery = true)
+    @Query(value = "SELECT b.* FROM balance b, grupotipocuenta g WHERE b.id = g.id_balance and g.id_tipocuenta=:id_tipocuenta and (b.titulo LIKE %:strFilter% or b.descripcion LIKE %:strFilter%)", nativeQuery = true)
     Page<BalanceEntity> findByTituloContainingOrDescripcionContainingXTipocuenta(Long id_tipocuenta,String strFilter, Pageable oPageable);
 
     @Query(value = "SELECT b.* FROM balance b, grupotipoasiento g WHERE b.id = g.id_balance and g.id_tipoasiento=:id_tipoasiento", nativeQuery = true)
