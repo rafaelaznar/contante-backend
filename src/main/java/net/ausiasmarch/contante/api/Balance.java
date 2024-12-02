@@ -26,14 +26,23 @@ import net.ausiasmarch.contante.service.BalanceService;
 @RequestMapping("/balance")
 public class Balance {
 
-     @Autowired
+    @Autowired
     BalanceService oBalanceService;
 
     @GetMapping("")
     public ResponseEntity<Page<BalanceEntity>> getPage(
             Pageable oPageable,
-            @RequestParam  Optional<String> filter) {
+            @RequestParam Optional<String> filter) {
         return new ResponseEntity<Page<BalanceEntity>>(oBalanceService.getPage(oPageable, filter), HttpStatus.OK);
+    }
+
+    @GetMapping("/xtipoapunte/{id_tipoapunte}")
+    public ResponseEntity<Page<BalanceEntity>> getPageXtTpoapunte(
+            Pageable oPageable,
+            @RequestParam Optional<String> filter,
+            @PathVariable Optional<Long> id_tipoapunte) {
+        return new ResponseEntity<Page<BalanceEntity>>(
+                oBalanceService.getPageXTipoapunte(oPageable, filter, id_tipoapunte), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -70,5 +79,5 @@ public class Balance {
     public ResponseEntity<Long> deleteAll() {
         return new ResponseEntity<Long>(oBalanceService.deleteAll(), HttpStatus.OK);
     }
-    
+
 }

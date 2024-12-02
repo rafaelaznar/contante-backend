@@ -21,20 +21,20 @@ public class BalanceService implements ServiceInterface<BalanceEntity> {
     RandomService oRandomService;
 
     String[] arrTitulo = {
-        "Activo corriente",
-        "Activo no corriente",
-        "Pasivo corriente",
-        "Pasivo no corriente",
-        "Patrimonio neto"
+            "Activo corriente",
+            "Activo no corriente",
+            "Pasivo corriente",
+            "Pasivo no corriente",
+            "Patrimonio neto"
     };
 
     // Array de descripciones para cada partida del balance
     String[] arrDescripcion = {
-        "Recursos y activos de la empresa que se espera se conviertan en efectivo en el corto plazo (menos de un año).",
-        "Activos que se utilizan a largo plazo para generar ingresos, como edificios, maquinaria y equipo.",
-        "Deudas y obligaciones de la empresa que deben pagarse en el corto plazo (menos de un año).",
-        "Obligaciones financieras de la empresa a largo plazo, que no se espera pagar en el próximo año.",
-        "Valor residual que queda después de restar los pasivos de los activos; representa la inversión de los propietarios."
+            "Recursos y activos de la empresa que se espera se conviertan en efectivo en el corto plazo (menos de un año).",
+            "Activos que se utilizan a largo plazo para generar ingresos, como edificios, maquinaria y equipo.",
+            "Deudas y obligaciones de la empresa que deben pagarse en el corto plazo (menos de un año).",
+            "Obligaciones financieras de la empresa a largo plazo, que no se espera pagar en el próximo año.",
+            "Valor residual que queda después de restar los pasivos de los activos; representa la inversión de los propietarios."
     };
 
     public Long randomCreate(Long cantidad) {
@@ -46,7 +46,7 @@ public class BalanceService implements ServiceInterface<BalanceEntity> {
         }
         return oBalanceRepository.count();
     }
-    
+
     public Page<BalanceEntity> getPage(Pageable oPageable, Optional<String> filter) {
 
         if (filter.isPresent()) {
@@ -56,6 +56,29 @@ public class BalanceService implements ServiceInterface<BalanceEntity> {
                             oPageable);
         } else {
             return oBalanceRepository.findAll(oPageable);
+        }
+    }
+
+    public Page<BalanceEntity> getPageXTipoapunte(Pageable oPageable, Optional<String> filter,
+            Optional<Long> id_tipoapunte) {
+        if (filter.isPresent()) {
+            if (id_tipoapunte.isPresent()) {
+                return oBalanceRepository
+                        .findByTituloContainingOrDescripcionContainingXTipoapunte(id_tipoapunte.get(), filter.get(),
+                                oPageable);
+            } else {
+                return oBalanceRepository
+                        .findByTituloContainingOrDescripcionContaining(
+                                filter.get(), filter.get(),
+                                oPageable);
+            }
+        } else {
+            if (id_tipoapunte.isPresent()) {
+                return oBalanceRepository.findAllXTipoapunte(id_tipoapunte.get(), oPageable);
+            } else {
+                return oBalanceRepository.findAll(oPageable);            
+            }
+
         }
     }
 

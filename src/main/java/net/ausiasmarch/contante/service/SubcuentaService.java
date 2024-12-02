@@ -37,6 +37,25 @@ public class SubcuentaService implements ServiceInterface<SubcuentaEntity> {
             "Venta de activos"
     };
 
+    public Page<SubcuentaEntity> getPageXCuenta(Pageable oPageable, Optional<String> filter,
+            Optional<Long> id_cuenta) {
+        if (filter.isPresent()) {
+            if (id_cuenta.isPresent()) {
+                return oSubCuentaRepository
+                        .findByCuentaIdAndCodigoContainingOrDescripcionContaining(
+                                filter.get(), filter.get(), id_cuenta.get(), oPageable);
+            } else {
+                throw new ResourceNotFoundException("Subcuenta no encontrada");
+            }
+        } else {
+            if (id_cuenta.isPresent()) {
+                return oSubCuentaRepository.findByCuentaId(id_cuenta.get(), oPageable);
+            } else {
+                throw new ResourceNotFoundException("Subcuenta no encontrada");
+            }
+        }
+    }
+
 
     public Long randomCreate(Long cantidad) {
         for (int i = 0; i < cantidad; i++) {
