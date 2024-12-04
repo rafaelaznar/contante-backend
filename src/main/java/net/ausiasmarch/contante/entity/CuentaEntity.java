@@ -35,11 +35,19 @@ public class CuentaEntity {
     private java.util.List<SubcuentaEntity> subcuentas;
 
     public CuentaEntity() {
+        this.grupocuentas = new java.util.ArrayList<>();
+        this.subcuentas = new java.util.ArrayList<>();
     }
 
     public CuentaEntity(@NotNull String codigo, String descripcion) {
         this.codigo = codigo;
         this.descripcion = descripcion;
+    }
+
+    public CuentaEntity(@NotNull String codigo, String descripcion, TipocuentaEntity tipocuenta) {
+        this.codigo = codigo;
+        this.descripcion = descripcion;
+        this.tipocuenta = tipocuenta;
     }
 
     public Long getId() {

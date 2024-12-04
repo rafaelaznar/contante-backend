@@ -38,6 +38,8 @@ public class TipocuentaEntity {
     private java.util.List<GrupotipocuentaEntity> grupotipocuentas;
 
     public TipocuentaEntity() {
+        this.cuentas = new java.util.ArrayList<>();
+        this.grupotipocuentas = new java.util.ArrayList<>();
     }
 
     public TipocuentaEntity(Long id, String descripcion, Long creditoodebito, String comentarios, Long realonominal) {

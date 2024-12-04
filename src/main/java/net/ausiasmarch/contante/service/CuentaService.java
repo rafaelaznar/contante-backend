@@ -79,6 +79,8 @@ public class CuentaService implements ServiceInterface<CuentaEntity> {
     }
 
     public CuentaEntity create(CuentaEntity oCuentaEntity) {
+        // buscar el objeto tipocuenta por el id y rellenar el campo tipocuenta
+        oCuentaEntity.setTipocuenta(oTipocuentaService.get(oCuentaEntity.getTipocuenta().getId()));
         return oCuentaRepository.save(oCuentaEntity);
     }
 
