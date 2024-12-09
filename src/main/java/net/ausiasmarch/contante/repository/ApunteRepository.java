@@ -33,7 +33,7 @@ public interface ApunteRepository extends JpaRepository<ApunteEntity, Long> {
         Page<ApunteEntity> findBySubcuentaId(Long id_subcuenta, Pageable oPageable);
 
         @Query(value = "SELECT sum(debe) AS totalDebe, sum(haber) AS totalHaber FROM apunte WHERE id_asiento = :id_asiento", nativeQuery = true)
-        SumasProjection totalByAsientoId(@Param("id_asiento") Long id_asiento);
+        SumasProjection totalByAsientoId(Long id_asiento);
 
         @Query(value = "SELECT sum(debe) AS totalDebe, sum(haber) AS totalHaber  FROM apunte WHERE id_subcuenta=:id_subcuenta", nativeQuery = true)
         SumasProjection totalBySubcuentaId(Long id_subcuenta);
