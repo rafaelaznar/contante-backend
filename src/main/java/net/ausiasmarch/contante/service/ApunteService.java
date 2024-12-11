@@ -177,8 +177,7 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
         }
     }
 
-    public SumasProjection getTotalAsiento(Long id_asiento) {
-        oApunteRepository.totalByAsientoId(id_asiento);
+    public SumasProjection getTotalAsiento(Long id_asiento) {      
         return oApunteRepository.totalByAsientoId(id_asiento);
     }
 

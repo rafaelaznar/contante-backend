@@ -65,7 +65,7 @@ public class DatabaseService {
         oCuentaService.randomCreate(100L);
         oSubcuentaService.randomCreate(50L);
         oAsientoService.randomCreate(100L);
-        oApunteService.randomCreate(50L);
+        oApunteService.randomCreate(250L);
         oGrupotipoasientoService.randomCreate(25L);
         oGruposubcuentaService.randomCreate(25L);
         oGrupotipocuentaService.randomCreate(25L);
