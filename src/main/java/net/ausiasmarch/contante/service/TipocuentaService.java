@@ -119,4 +119,10 @@ public class TipocuentaService implements ServiceInterface<TipocuentaEntity> {
                 .get(oRandomService.getRandomInt(0, (int) (oTipoCuentaRepository.count() - 1)));
     }
 
+
+    public Page<TipocuentaEntity> getPageXBalance(Long id_balance, Pageable oPageable){
+
+        return oTipoCuentaRepository.findAllXBalance(id_balance, oPageable);
+    }
+
 }
