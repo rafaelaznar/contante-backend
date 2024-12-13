@@ -21,19 +21,18 @@ import org.springframework.web.bind.annotation.RestController;
 import net.ausiasmarch.contante.entity.PeriodoEntity;
 import net.ausiasmarch.contante.service.PeriodoService;
 
-
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/periodo")
 public class Periodo {
-    
+
     @Autowired
     PeriodoService oPeriodoService;
 
     @GetMapping("")
     public ResponseEntity<Page<PeriodoEntity>> getPage(
             Pageable oPageable,
-            @RequestParam  Optional<String> filter) {
+            @RequestParam Optional<String> filter) {
         return new ResponseEntity<Page<PeriodoEntity>>(oPeriodoService.getPage(oPageable, filter), HttpStatus.OK);
     }
 
@@ -52,25 +51,29 @@ public class Periodo {
         return new ResponseEntity<Long>(oPeriodoService.delete(id), HttpStatus.OK);
     }
 
-       @PutMapping("")
+    @PostMapping("")
     public ResponseEntity<PeriodoEntity> create(@RequestBody PeriodoEntity oPeriodoEntity) {
         return new ResponseEntity<PeriodoEntity>(oPeriodoService.create(oPeriodoEntity), HttpStatus.OK);
     }
 
-        @PostMapping("")
+    @PutMapping("")
     public ResponseEntity<PeriodoEntity> update(@RequestBody PeriodoEntity oPeriodoEntity) {
         return new ResponseEntity<PeriodoEntity>(oPeriodoService.update(oPeriodoEntity), HttpStatus.OK);
     }
 
-    @PutMapping("/random/{cantidad}")
+    @PostMapping("/random/{cantidad}")
     public ResponseEntity<Long> create(@PathVariable Long cantidad) {
         return new ResponseEntity<Long>(oPeriodoService.randomCreate(cantidad), HttpStatus.OK);
     }
 
-    
     @DeleteMapping("/all")
     public ResponseEntity<Long> deleteAll() {
         return new ResponseEntity<Long>(oPeriodoService.deleteAll(), HttpStatus.OK);
+    }
+
+    @PutMapping("/flip/{id}")
+    public ResponseEntity<PeriodoEntity> flip(@PathVariable Long id) {
+        return new ResponseEntity<PeriodoEntity>(oPeriodoService.flip(id), HttpStatus.OK);
     }
 
 }
