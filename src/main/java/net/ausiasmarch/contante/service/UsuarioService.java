@@ -100,4 +100,12 @@ public class UsuarioService implements ServiceInterface<UsuarioEntity> {
         return oUsuarioRepository.findById((long) oRandomService.getRandomInt(1, (int) (long) this.count())).get();
     }
 
+    public Long getApuntes(Long id) {
+        return oUsuarioRepository.getApuntes(id);
+    }
+
+    public Long getApuntesAbiertos(Long id) {
+        return oUsuarioRepository.getApuntesAbiertos(id);
+    }
+
 }
