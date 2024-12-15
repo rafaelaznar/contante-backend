@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.ausiasmarch.contante.entity.GrupocuentaEntity;
+import net.ausiasmarch.contante.entity.TipoasientoEntity;
 import net.ausiasmarch.contante.service.GrupocuentaService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
