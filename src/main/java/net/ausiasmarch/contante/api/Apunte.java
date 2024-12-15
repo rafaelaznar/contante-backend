@@ -114,4 +114,9 @@ public class Apunte {
         return new ResponseEntity<Long>(oApunteService.deleteAll(), HttpStatus.OK);
     }
 
+    @PutMapping("/settipoapunte/{id}/{idtipoapunte}")
+    public ResponseEntity<ApunteEntity> setTipoApunte(@PathVariable Long id, @PathVariable Long idtipoapunte) {
+        return new ResponseEntity<ApunteEntity>(oApunteService.setTipoApunte(id, idtipoapunte), HttpStatus.OK);
+    }
+
 }
