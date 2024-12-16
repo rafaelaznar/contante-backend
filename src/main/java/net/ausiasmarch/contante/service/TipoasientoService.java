@@ -36,7 +36,7 @@ public class TipoasientoService implements ServiceInterface<TipoasientoEntity> {
             oTipoAsientoEntity.setDescripcion(descripcion);
             oTipoAsientoRepository.save(oTipoAsientoEntity);
         }
-        }return oTipoAsientoRepository.count();
+        return oTipoAsientoRepository.count();
 
     }
 
@@ -97,11 +97,6 @@ public class TipoasientoService implements ServiceInterface<TipoasientoEntity> {
                 .get(oRandomService.getRandomInt(0, (int) (oTipoAsientoRepository.count() - 1)));
     }
 
-    public Long deleteRelation(Long idTipoasiento, Long idBalance) {
-        int rowsDeleted = oTipoAsientoRepository.deleteRelation(idTipoasiento, idBalance);
-        return (long) rowsDeleted;
-    }
-
     public Long addRelation(Long idTipoasiento, Long idBalance) {
         int rowsAdded = oTipoAsientoRepository.addRelation(idTipoasiento, idBalance);
         return (long) rowsAdded;
@@ -110,10 +105,5 @@ public class TipoasientoService implements ServiceInterface<TipoasientoEntity> {
     public Long deleteRelation(Long idTipoasiento, Long idBalance) {
         int rowsDeleted = oTipoAsientoRepository.deleteRelation(idTipoasiento, idBalance);
         return (long) rowsDeleted;
-    }
-
-    public Long addRelation(Long idTipoasiento, Long idBalance) {
-        int rowsAdded = oTipoAsientoRepository.addRelation(idTipoasiento, idBalance);
-        return (long) rowsAdded;
     }
 }
