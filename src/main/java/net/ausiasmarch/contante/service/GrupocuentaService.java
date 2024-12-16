@@ -100,4 +100,6 @@ public class GrupocuentaService implements ServiceInterface<GrupocuentaEntity> {
                 .get(oRandomService.getRandomInt(0, (int) (oGrupoCuentaRepository.count() - 1)));
     }
 
+    
+
 }

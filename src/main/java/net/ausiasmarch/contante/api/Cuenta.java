@@ -80,4 +80,11 @@ public class Cuenta {
         return new ResponseEntity<Long>(oCuentaService.deleteAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/filter")
+    public ResponseEntity<Page<CuentaEntity>> filterByBalance(
+            @RequestParam Long id_balance,
+            Pageable pageable) {
+        return ResponseEntity.ok(oCuentaService.findByBalance(id_balance, pageable));
+    }
+
 }

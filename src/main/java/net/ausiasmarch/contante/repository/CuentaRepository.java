@@ -17,5 +17,8 @@ public interface CuentaRepository extends JpaRepository<CuentaEntity, Long> {
             Long id_tipocuenta, String strCodigo, String strDescripcion, Pageable oPageable);
 
     Page<CuentaEntity> findByTipocuentaId(Long id_tipocuenta, Pageable oPageable);
+
+    @Query(value = "SELECT c.* FROM cuenta c, grupocuenta g WHERE c.id = g.id_cuenta and g.id_balance=:id_balance ", nativeQuery = true)
+    Page<CuentaEntity> findByBalance(Long id_balance, Pageable oPageable);
     
 }

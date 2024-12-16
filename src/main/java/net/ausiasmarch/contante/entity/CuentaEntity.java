@@ -10,6 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
+import net.ausiasmarch.contante.repository.CuentaRepository;
 
 @Entity
 @Table(name = "cuenta")
@@ -33,22 +34,6 @@ public class CuentaEntity {
 
     @OneToMany(mappedBy = "cuenta", fetch = FetchType.LAZY)
     private java.util.List<SubcuentaEntity> subcuentas;
-
-    public CuentaEntity() {
-        this.grupocuentas = new java.util.ArrayList<>();
-        this.subcuentas = new java.util.ArrayList<>();
-    }
-
-    public CuentaEntity(@NotNull String codigo, String descripcion) {
-        this.codigo = codigo;
-        this.descripcion = descripcion;
-    }
-
-    public CuentaEntity(@NotNull String codigo, String descripcion, TipocuentaEntity tipocuenta) {
-        this.codigo = codigo;
-        this.descripcion = descripcion;
-        this.tipocuenta = tipocuenta;
-    }
 
     public Long getId() {
         return id;
@@ -89,4 +74,6 @@ public class CuentaEntity {
     public int getSubcuentas() {
         return subcuentas.size();
     }
+
+
 }

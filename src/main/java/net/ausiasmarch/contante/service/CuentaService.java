@@ -107,4 +107,8 @@ public class CuentaService implements ServiceInterface<CuentaEntity> {
         return oCuentaRepository.findAll().get(oRandomService.getRandomInt(0, (int) (oCuentaRepository.count() - 1)));
     }
 
+    public Page<CuentaEntity> findByBalance(Long id_balance, Pageable pageable) {
+        return oCuentaRepository.findByBalance(id_balance, pageable);
+    }
+
 }

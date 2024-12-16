@@ -72,4 +72,6 @@ public class Grupocuenta {
         return new ResponseEntity<Long>(oGrupoCuentaService.deleteAll(), HttpStatus.OK);
     }
 
+    
+
 }
