@@ -29,12 +29,15 @@ public class TipoasientoService implements ServiceInterface<TipoasientoEntity> {
     public Long randomCreate(Long cantidad) {
         // for each element in the array arrDescripciones, create a new
         // TipoasientoEntity object and save it to the database
+        // for each element in the array arrDescripciones, create a new
+        // TipoasientoEntity object and save it to the database
         for (String descripcion : arrDescripciones) {
             TipoasientoEntity oTipoAsientoEntity = new TipoasientoEntity();
             oTipoAsientoEntity.setDescripcion(descripcion);
             oTipoAsientoRepository.save(oTipoAsientoEntity);
         }
         return oTipoAsientoRepository.count();
+
     }
 
     public Page<TipoasientoEntity> getPage(Pageable oPageable, Optional<String> filter) {
@@ -48,8 +51,12 @@ public class TipoasientoService implements ServiceInterface<TipoasientoEntity> {
         }
     }
 
-    public Page<TipoasientoEntity> getPageByBalance(Pageable oPageable, Long id) {
-        return oTipoAsientoRepository.findByBalance(oPageable, id);
+    public Page<TipoasientoEntity> getPageByBalance(Pageable oPageable, Long id, Optional<String> filter) {
+        return oTipoAsientoRepository.findByBalance(oPageable, id, filter);
+    }
+
+    public Page<TipoasientoEntity> getTipoasientoSinRelacionar(Long id, Pageable oPageable, Optional<String> filter) {
+        return oTipoAsientoRepository.getTipoasientoSinRelacionar(id, oPageable, filter);
     }
 
     public TipoasientoEntity get(Long id) {
@@ -90,13 +97,13 @@ public class TipoasientoService implements ServiceInterface<TipoasientoEntity> {
                 .get(oRandomService.getRandomInt(0, (int) (oTipoAsientoRepository.count() - 1)));
     }
 
-    public Long deleteRelation(Long idTipoasiento, Long idBalance) {
-        int rowsDeleted = oTipoAsientoRepository.deleteRelation(idTipoasiento, idBalance);
-        return (long) rowsDeleted;
-    }
-
     public Long addRelation(Long idTipoasiento, Long idBalance) {
         int rowsAdded = oTipoAsientoRepository.addRelation(idTipoasiento, idBalance);
         return (long) rowsAdded;
+    }
+
+    public Long deleteRelation(Long idTipoasiento, Long idBalance) {
+        int rowsDeleted = oTipoAsientoRepository.deleteRelation(idTipoasiento, idBalance);
+        return (long) rowsDeleted;
     }
 }
