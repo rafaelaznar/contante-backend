@@ -24,53 +24,52 @@ import net.ausiasmarch.contante.service.TipocuentaService;
 @RequestMapping("/tipoCuenta")
 public class Tipocuenta {
 
-     @Autowired
-        TipocuentaService oTipoCuentaService;
-    
-        @GetMapping("")
-        public ResponseEntity<Page<TipocuentaEntity>> getPage(
-                Pageable oPageable,
-                @RequestParam  Optional<String> filter) {
-            return new ResponseEntity<Page<TipocuentaEntity>>(oTipoCuentaService.getPage(oPageable, filter), HttpStatus.OK);
-        }
-    
-        @GetMapping("/{id}")
-        public ResponseEntity<TipocuentaEntity> getTipoCuenta(@PathVariable Long id) {
-            return new ResponseEntity<TipocuentaEntity>(oTipoCuentaService.get(id), HttpStatus.OK);
-        }
-    
-        @GetMapping("/count")
-        public ResponseEntity<Long> count() {
-            return new ResponseEntity<Long>(oTipoCuentaService.count(), HttpStatus.OK);
-        }
-    
-        @DeleteMapping("/{id}")
-        public ResponseEntity<Long> delete(@PathVariable Long id) {
-            return new ResponseEntity<Long>(oTipoCuentaService.delete(id), HttpStatus.OK);
-        }
-    
-        @PutMapping("")
-        public ResponseEntity<TipocuentaEntity> create(@RequestBody TipocuentaEntity oTipoCuentaEntity) {
-            return new ResponseEntity<TipocuentaEntity>(oTipoCuentaService.create(oTipoCuentaEntity), HttpStatus.OK);
-        }
-    
-        @PostMapping("")
-        public ResponseEntity<TipocuentaEntity> update(@RequestBody TipocuentaEntity oTipoCuentaEntity) {
-            return new ResponseEntity<TipocuentaEntity>(oTipoCuentaService.update(oTipoCuentaEntity), HttpStatus.OK);
-        }
-    
-    
-        @PutMapping("/random/{cantidad}")
-        public ResponseEntity<Long> create(@PathVariable Long cantidad) {
-            return new ResponseEntity<Long>(oTipoCuentaService.randomCreate(cantidad), HttpStatus.OK);
-        }
-        
-        @DeleteMapping("/all")
-        public ResponseEntity<Long> deleteAll() {
-            return new ResponseEntity<Long>(oTipoCuentaService.deleteAll(), HttpStatus.OK);
-        }
+    @Autowired
+    TipocuentaService oTipoCuentaService;
 
-        @GetMapping("/xbalance/{id}")
+    @GetMapping("")
+    public ResponseEntity<Page<TipocuentaEntity>> getPage(
+            Pageable oPageable,
+            @RequestParam Optional<String> filter) {
+        return new ResponseEntity<Page<TipocuentaEntity>>(oTipoCuentaService.getPage(oPageable, filter), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<TipocuentaEntity> getTipoCuenta(@PathVariable Long id) {
+        return new ResponseEntity<TipocuentaEntity>(oTipoCuentaService.get(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity<Long> count() {
+        return new ResponseEntity<Long>(oTipoCuentaService.count(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Long> delete(@PathVariable Long id) {
+        return new ResponseEntity<Long>(oTipoCuentaService.delete(id), HttpStatus.OK);
+    }
+
+    @PutMapping("")
+    public ResponseEntity<TipocuentaEntity> create(@RequestBody TipocuentaEntity oTipoCuentaEntity) {
+        return new ResponseEntity<TipocuentaEntity>(oTipoCuentaService.create(oTipoCuentaEntity), HttpStatus.OK);
+    }
+
+    @PostMapping("")
+    public ResponseEntity<TipocuentaEntity> update(@RequestBody TipocuentaEntity oTipoCuentaEntity) {
+        return new ResponseEntity<TipocuentaEntity>(oTipoCuentaService.update(oTipoCuentaEntity), HttpStatus.OK);
+    }
+
+    @PutMapping("/random/{cantidad}")
+    public ResponseEntity<Long> create(@PathVariable Long cantidad) {
+        return new ResponseEntity<Long>(oTipoCuentaService.randomCreate(cantidad), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/all")
+    public ResponseEntity<Long> deleteAll() {
+        return new ResponseEntity<Long>(oTipoCuentaService.deleteAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/xbalance/{id}")
     public ResponseEntity<Page<TipocuentaEntity>> getPageXBalance(
             Pageable oPageable, @PathVariable Long id) {
         return new ResponseEntity<Page<TipocuentaEntity>>(oTipoCuentaService.getPageXBalance(id, oPageable),
@@ -85,9 +84,8 @@ public class Tipocuenta {
     }
 
     @GetMapping("/subcuenta/{id}")
-        public ResponseEntity<Long> getPageSubcuenta(@PathVariable Long id) {
-            return new ResponseEntity<Long>(oTipoCuentaService.getPageSubcuenta(id), HttpStatus.OK);
-        }
-    
+    public ResponseEntity<Long> getPageSubcuenta(@PathVariable Long id) {
+        return new ResponseEntity<Long>(oTipoCuentaService.getPageSubcuenta(id), HttpStatus.OK);
     }
-    
+
+}
