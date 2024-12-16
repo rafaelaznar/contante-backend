@@ -71,4 +71,14 @@ public class Usuario {
         return new ResponseEntity<Long>(oUsuarioService.deleteAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/apuntes/{id}")
+    public ResponseEntity<Long> getApuntes(@PathVariable Long id) {
+        return new ResponseEntity<Long>(oUsuarioService.getApuntes(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/apuntesabiertos/{id}")
+    public ResponseEntity<Long> getApuntesAbiertos(@PathVariable Long id) {
+        return new ResponseEntity<Long>(oUsuarioService.getApuntesAbiertos(id), HttpStatus.OK);
+    }
+
 }

@@ -77,6 +77,13 @@ public class PeriodoService implements ServiceInterface<PeriodoEntity> {
         return oPeriodoRepository.save(oPeriodoEntityFromDatabase);
     }
 
+    public PeriodoEntity flip(Long id) {
+        PeriodoEntity oPeriodoEntityFromDatabase = oPeriodoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Periodo no encontrado"));                
+        oPeriodoEntityFromDatabase.setCerrado(!oPeriodoEntityFromDatabase.isCerrado());        
+        return oPeriodoRepository.save(oPeriodoEntityFromDatabase);
+    }
+
     public Long deleteAll() {
         oPeriodoRepository.deleteAll();
         return this.count();
