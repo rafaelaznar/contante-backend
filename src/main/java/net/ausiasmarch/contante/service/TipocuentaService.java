@@ -123,4 +123,14 @@ public class TipocuentaService implements ServiceInterface<TipocuentaEntity> {
         return oTipoCuentaRepository.getPageSubcuenta(id);
     }
 
+    public Page<TipocuentaEntity> getPageXBalance(Long id_balance, Pageable oPageable){
+
+        return oTipoCuentaRepository.findAllXBalance(id_balance, oPageable);
+    }
+
+    public Page<TipocuentaEntity> getPageXBalanceNoTiene(Long id_balance, Pageable oPageable){
+
+        return oTipoCuentaRepository.findAllXBalanceNoTiene(id_balance, oPageable);
+    }
+
 }

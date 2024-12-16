@@ -1,7 +1,6 @@
 package net.ausiasmarch.contante.api;
 
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import net.ausiasmarch.contante.entity.TipocuentaEntity;
 import net.ausiasmarch.contante.service.TipocuentaService;
 
@@ -72,7 +70,21 @@ public class Tipocuenta {
             return new ResponseEntity<Long>(oTipoCuentaService.deleteAll(), HttpStatus.OK);
         }
 
-        @GetMapping("/subcuenta/{id}")
+        @GetMapping("/xbalance/{id}")
+    public ResponseEntity<Page<TipocuentaEntity>> getPageXBalance(
+            Pageable oPageable, @PathVariable Long id) {
+        return new ResponseEntity<Page<TipocuentaEntity>>(oTipoCuentaService.getPageXBalance(id, oPageable),
+                HttpStatus.OK);
+    }
+
+    @GetMapping("/xbalancenotiene/{id}")
+    public ResponseEntity<Page<TipocuentaEntity>> getPageXBalanceNotiene(
+            Pageable oPageable, @PathVariable Long id) {
+        return new ResponseEntity<Page<TipocuentaEntity>>(oTipoCuentaService.getPageXBalanceNoTiene(id, oPageable),
+                HttpStatus.OK);
+    }
+
+    @GetMapping("/subcuenta/{id}")
         public ResponseEntity<Long> getPageSubcuenta(@PathVariable Long id) {
             return new ResponseEntity<Long>(oTipoCuentaService.getPageSubcuenta(id), HttpStatus.OK);
         }

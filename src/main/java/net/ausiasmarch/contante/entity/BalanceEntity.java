@@ -46,6 +46,11 @@ public class BalanceEntity {
     private TipobalanceEntity tipobalance;
 
     public BalanceEntity() {
+        this.grupotipoasientos = new java.util.ArrayList<>();
+        this.gruposubcuentas = new java.util.ArrayList<>();
+        this.grupotipocuentas = new java.util.ArrayList<>();
+        this.grupocuentas = new java.util.ArrayList<>();
+        this.grupotipoapuntes = new java.util.ArrayList<>();
     }
 
     public BalanceEntity(String titulo, String descripcion) {
