@@ -48,8 +48,12 @@ public class TipoasientoService implements ServiceInterface<TipoasientoEntity> {
         }
     }
 
-    public Page<TipoasientoEntity> getPageByBalance(Pageable oPageable, Long id) {
-        return oTipoAsientoRepository.findByBalance(oPageable, id);
+    public Page<TipoasientoEntity> getPageByBalance(Pageable oPageable, Long id, Optional<String> filter) {
+        return oTipoAsientoRepository.findByBalance(oPageable, id, filter);
+    }
+
+    public Page<TipoasientoEntity> getTipoasientoSinRelacionar(Long id, Pageable oPageable, Optional<String> filter) {
+        return oTipoAsientoRepository.getTipoasientoSinRelacionar(id, oPageable, filter);
     }
 
     public TipoasientoEntity get(Long id) {
