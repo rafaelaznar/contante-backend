@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.ausiasmarch.contante.entity.CuentaEntity;
+import net.ausiasmarch.contante.entity.GrupocuentaEntity;
 import net.ausiasmarch.contante.service.CuentaService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
@@ -55,6 +56,12 @@ public class Cuenta {
         return new ResponseEntity<Long>(oCuentaService.count(), HttpStatus.OK);
     }
 
+        @GetMapping("/xbalance/{id}")
+    public ResponseEntity<Page<CuentaEntity>> getByBalance(Pageable oPageable, @PathVariable Long id) {
+        return new ResponseEntity<Page<CuentaEntity>>(oCuentaService.getPageByBalance(oPageable, id),
+                HttpStatus.OK);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Long> delete(@PathVariable Long id) {
         return new ResponseEntity<Long>(oCuentaService.delete(id), HttpStatus.OK);
@@ -80,11 +87,14 @@ public class Cuenta {
         return new ResponseEntity<Long>(oCuentaService.deleteAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/filter")
-    public ResponseEntity<Page<CuentaEntity>> filterByBalance(
-            @RequestParam Long id_balance,
-            Pageable pageable) {
-        return ResponseEntity.ok(oCuentaService.findByBalance(id_balance, pageable));
+    @DeleteMapping("/quitarBalance")
+    public ResponseEntity<Long> deleteRelation(@RequestParam Long idCuenta, @RequestParam Long idBalance) {
+        return new ResponseEntity<Long>(oCuentaService.deleteRelation(idCuenta, idBalance), HttpStatus.OK);
+    }
+    // agregar relacion con parametros de tipoasiento y balance
+    @PutMapping("/agregarBalance")
+    public ResponseEntity<Long> addRelation(@RequestParam Long idCuenta, @RequestParam Long idBalance) {
+        return new ResponseEntity<Long>(oCuentaService.addRelation(idCuenta, idBalance), HttpStatus.OK);
     }
 
 }

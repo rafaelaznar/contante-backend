@@ -107,8 +107,17 @@ public class CuentaService implements ServiceInterface<CuentaEntity> {
         return oCuentaRepository.findAll().get(oRandomService.getRandomInt(0, (int) (oCuentaRepository.count() - 1)));
     }
 
-    public Page<CuentaEntity> findByBalance(Long id_balance, Pageable pageable) {
-        return oCuentaRepository.findByBalance(id_balance, pageable);
+       public Page<CuentaEntity> getPageByBalance(Pageable oPageable, Long id) {
+        return oCuentaRepository.findByBalance(oPageable, id);
+    }
+
+    public Long deleteRelation(Long idCuenta, Long idBalance) {
+        int rowsDeleted = oCuentaRepository.deleteRelation(idCuenta, idBalance);
+        return (long) rowsDeleted;
+    }
+    public Long addRelation(Long idCuenta, Long idBalance) {
+        int rowsAdded = oCuentaRepository.addRelation(idCuenta, idBalance);
+        return (long) rowsAdded;
     }
 
 }
