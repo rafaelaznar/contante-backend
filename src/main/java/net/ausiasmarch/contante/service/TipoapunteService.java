@@ -99,4 +99,11 @@ public class TipoapunteService implements ServiceInterface<TipoapunteEntity>{
         return oTipoApunteRepository.findAll().get(oRandomService.getRandomInt(0, (int) (oTipoApunteRepository.count() - 1)));
     }
 
+    public Page<TipoapunteEntity> getXBalance(Long idBalance, Pageable oPageable) {
+        return oTipoApunteRepository.BalanceIdTipoApunte(idBalance, oPageable);
+    }
+    public Page<TipoapunteEntity> getRestXBalance(Long idBalance, Pageable oPageable) {
+        return oTipoApunteRepository.RestXBalance(idBalance, oPageable);
+    }
+  
 }
