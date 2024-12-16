@@ -71,6 +71,11 @@ public class Tipocuenta {
         public ResponseEntity<Long> deleteAll() {
             return new ResponseEntity<Long>(oTipoCuentaService.deleteAll(), HttpStatus.OK);
         }
+
+        @GetMapping("/subcuenta/{id}")
+        public ResponseEntity<Long> getPageSubcuenta(@PathVariable Long id) {
+            return new ResponseEntity<Long>(oTipoCuentaService.getPageSubcuenta(id), HttpStatus.OK);
+        }
     
     }
     

@@ -119,4 +119,8 @@ public class TipocuentaService implements ServiceInterface<TipocuentaEntity> {
                 .get(oRandomService.getRandomInt(0, (int) (oTipoCuentaRepository.count() - 1)));
     }
 
+    public Long getPageSubcuenta(Long id) {
+        return oTipoCuentaRepository.getPageSubcuenta(id);
+    }
+
 }
