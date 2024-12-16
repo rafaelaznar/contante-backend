@@ -73,6 +73,15 @@ public class Grupocuenta {
         return new ResponseEntity<Long>(oGrupoCuentaService.deleteAll(), HttpStatus.OK);
     }
 
+
+    @DeleteMapping("/delete/{idb}/{idtc}")
+    public ResponseEntity<Long> deleteByIds(@PathVariable Long idb, @PathVariable Long idtc) {
+        return new ResponseEntity<Long>(oGrupoCuentaService.deleteByIds(idb, idtc), HttpStatus.OK);
+    }
     
+    @PutMapping("/create/{idb}/{idtc}")
+    public ResponseEntity<Long> createByIds(@PathVariable Long idb, @PathVariable Long idtc) {
+        return new ResponseEntity<Long>(oGrupoCuentaService.createByIds(idb, idtc), HttpStatus.OK);
+    }
 
 }

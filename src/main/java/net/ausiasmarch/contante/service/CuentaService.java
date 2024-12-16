@@ -108,16 +108,11 @@ public class CuentaService implements ServiceInterface<CuentaEntity> {
     }
 
        public Page<CuentaEntity> getPageByBalance(Pageable oPageable, Long id) {
-        return oCuentaRepository.findByBalance(oPageable, id);
+        return oCuentaRepository.findAllXBalance(id, oPageable);
     }
 
-    public Long deleteRelation(Long idCuenta, Long idBalance) {
-        int rowsDeleted = oCuentaRepository.deleteRelation(idCuenta, idBalance);
-        return (long) rowsDeleted;
-    }
-    public Long addRelation(Long idCuenta, Long idBalance) {
-        int rowsAdded = oCuentaRepository.addRelation(idCuenta, idBalance);
-        return (long) rowsAdded;
+    public Page<CuentaEntity> findAllXBalanceNoTiene(Long id_balance, Pageable oPageable) {
+        return oCuentaRepository.findAllXBalanceNoTiene(id_balance, oPageable);
     }
 
 }

@@ -87,14 +87,9 @@ public class Cuenta {
         return new ResponseEntity<Long>(oCuentaService.deleteAll(), HttpStatus.OK);
     }
 
-    @DeleteMapping("/quitarBalance")
-    public ResponseEntity<Long> deleteRelation(@RequestParam Long idCuenta, @RequestParam Long idBalance) {
-        return new ResponseEntity<Long>(oCuentaService.deleteRelation(idCuenta, idBalance), HttpStatus.OK);
+    @GetMapping("/xbalancenotiene/{id}")
+    public ResponseEntity<Page<CuentaEntity>> getNotInXBalance(Pageable oPageable, @PathVariable Long id) {
+        return new ResponseEntity<Page<CuentaEntity>>(oCuentaService.findAllXBalanceNoTiene(id, oPageable),
+                HttpStatus.OK);
     }
-    // agregar relacion con parametros de tipoasiento y balance
-    @PutMapping("/agregarBalance")
-    public ResponseEntity<Long> addRelation(@RequestParam Long idCuenta, @RequestParam Long idBalance) {
-        return new ResponseEntity<Long>(oCuentaService.addRelation(idCuenta, idBalance), HttpStatus.OK);
-    }
-
 }
