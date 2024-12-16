@@ -31,7 +31,7 @@ public class Tipoapunte {
     @GetMapping("")
     public ResponseEntity<Page<TipoapunteEntity>> getPage(
             Pageable oPageable,
-            @RequestParam  Optional<String> filter) {
+            @RequestParam Optional<String> filter) {
         return new ResponseEntity<Page<TipoapunteEntity>>(oTipoApunteService.getPage(oPageable, filter), HttpStatus.OK);
     }
 
@@ -60,14 +60,24 @@ public class Tipoapunte {
         return new ResponseEntity<TipoapunteEntity>(oTipoApunteService.update(oTipoApunteEntity), HttpStatus.OK);
     }
 
-
     @PutMapping("/random/{cantidad}")
     public ResponseEntity<Long> create(@PathVariable Long cantidad) {
         return new ResponseEntity<Long>(oTipoApunteService.randomCreate(cantidad), HttpStatus.OK);
     }
+
     @DeleteMapping("/all")
     public ResponseEntity<Long> deleteAll() {
         return new ResponseEntity<Long>(oTipoApunteService.deleteAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/xbalance/{idBalance}")
+    public ResponseEntity<Page<TipoapunteEntity>>getXBalance(@PathVariable Long idBalance, Pageable oPageable) {
+        return new ResponseEntity<Page<TipoapunteEntity>>(oTipoApunteService.getXBalance(idBalance, oPageable), HttpStatus.OK);
+    }
+
+    @GetMapping("/restxbalance/{idBalance}")
+    public ResponseEntity<Page<TipoapunteEntity>>getRestXBalance(@PathVariable Long idBalance, Pageable oPageable) {
+        return new ResponseEntity<Page<TipoapunteEntity>>(oTipoApunteService.getRestXBalance(idBalance, oPageable), HttpStatus.OK);
     }
 
 }
