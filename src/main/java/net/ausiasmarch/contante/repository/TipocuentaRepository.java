@@ -17,6 +17,6 @@ public interface TipocuentaRepository extends JpaRepository<TipocuentaEntity, Lo
     @Query(value = "SELECT t.* FROM tipocuenta t, grupotipocuenta g WHERE t.id = g.id_tipocuenta and g.id_balance=:id_balance", nativeQuery = true)
     Page<TipocuentaEntity> findAllXBalance(Long id_balance, Pageable oPageable);
 
-    @Query(value = "SELECT DISTINCT t3.* FROM tipocuenta t3 WHERE t3.id NOT IN ( SELECT t2.id_tipocuenta FROM grupotipocuenta t2 WHERE t2.id_balance = :id_balance );", nativeQuery = true)
+    @Query(value = "SELECT * FROM tipocuenta WHERE id NOT IN ( SELECT id_tipocuenta FROM grupotipocuenta WHERE id_balance = :id_balance )", nativeQuery = true)
     Page<TipocuentaEntity> findAllXBalanceNoTiene(Long id_balance, Pageable oPageable);
 }

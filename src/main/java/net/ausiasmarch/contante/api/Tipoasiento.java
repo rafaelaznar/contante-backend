@@ -48,8 +48,17 @@ public class Tipoasiento {
     }
 
     @GetMapping("/xbalance/{id}")
-    public ResponseEntity<Page<TipoasientoEntity>> getByBalance(Pageable oPageable, @PathVariable Long id) {
-        return new ResponseEntity<Page<TipoasientoEntity>>(oTipoAsientoService.getPageByBalance(oPageable, id),
+    public ResponseEntity<Page<TipoasientoEntity>> getByBalance(Pageable oPageable, @PathVariable Long id,
+            @RequestParam Optional<String> filter) {
+        return new ResponseEntity<Page<TipoasientoEntity>>(oTipoAsientoService.getPageByBalance(oPageable, id, filter),
+                HttpStatus.OK);
+    }
+
+    @GetMapping("/wherebalanceisnot/{id}")
+    public ResponseEntity<Page<TipoasientoEntity>> getTipoasientoSinRelacionar(Pageable oPageable,
+            @PathVariable Long id, @RequestParam Optional<String> filter) {
+        return new ResponseEntity<Page<TipoasientoEntity>>(
+                oTipoAsientoService.getTipoasientoSinRelacionar(id, oPageable, filter),
                 HttpStatus.OK);
     }
 
