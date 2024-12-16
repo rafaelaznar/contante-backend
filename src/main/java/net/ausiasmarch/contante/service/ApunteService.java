@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import net.ausiasmarch.contante.entity.ApunteEntity;
 import net.ausiasmarch.contante.entity.SumasProjection;
+import net.ausiasmarch.contante.entity.TipoapunteEntity;
 import net.ausiasmarch.contante.exception.ResourceNotFoundException;
 import net.ausiasmarch.contante.repository.ApunteRepository;
 
@@ -248,6 +249,13 @@ public class ApunteService implements ServiceInterface<ApunteEntity> {
     public ApunteEntity randomSelection() {
         return oApunteRepository.findAll()
                 .get(oRandomService.getRandomInt(0, (int) (oApunteRepository.count() - 1)));
+    }
+
+    public ApunteEntity setTipoApunte(Long id, Long idtipoapunte) {
+        ApunteEntity oApunteEntity = oApunteRepository.findById(id).get();
+        TipoapunteEntity oTipoapunteEntity = oTipoapunteService.get(idtipoapunte);
+        oApunteEntity.setTipoapunte(oTipoapunteEntity);
+        return oApunteRepository.save(oApunteEntity);
     }
 
 }
