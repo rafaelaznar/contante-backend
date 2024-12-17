@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.ausiasmarch.contante.entity.CuentaEntity;
+import net.ausiasmarch.contante.entity.GrupocuentaEntity;
 import net.ausiasmarch.contante.service.CuentaService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
@@ -55,6 +56,12 @@ public class Cuenta {
         return new ResponseEntity<Long>(oCuentaService.count(), HttpStatus.OK);
     }
 
+        @GetMapping("/xbalance/{id}")
+    public ResponseEntity<Page<CuentaEntity>> getByBalance(Pageable oPageable, @PathVariable Long id) {
+        return new ResponseEntity<Page<CuentaEntity>>(oCuentaService.getPageByBalance(oPageable, id),
+                HttpStatus.OK);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Long> delete(@PathVariable Long id) {
         return new ResponseEntity<Long>(oCuentaService.delete(id), HttpStatus.OK);
@@ -80,4 +87,9 @@ public class Cuenta {
         return new ResponseEntity<Long>(oCuentaService.deleteAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/xbalancenotiene/{id}")
+    public ResponseEntity<Page<CuentaEntity>> getNotInXBalance(Pageable oPageable, @PathVariable Long id) {
+        return new ResponseEntity<Page<CuentaEntity>>(oCuentaService.findAllXBalanceNoTiene(id, oPageable),
+                HttpStatus.OK);
+    }
 }

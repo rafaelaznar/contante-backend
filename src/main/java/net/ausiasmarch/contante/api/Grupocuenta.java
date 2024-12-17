@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.ausiasmarch.contante.entity.GrupocuentaEntity;
+import net.ausiasmarch.contante.entity.TipoasientoEntity;
 import net.ausiasmarch.contante.service.GrupocuentaService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
@@ -70,6 +71,17 @@ public class Grupocuenta {
     @DeleteMapping("/all")
     public ResponseEntity<Long> deleteAll() {
         return new ResponseEntity<Long>(oGrupoCuentaService.deleteAll(), HttpStatus.OK);
+    }
+
+
+    @DeleteMapping("/delete/{idb}/{idtc}")
+    public ResponseEntity<Long> deleteByIds(@PathVariable Long idb, @PathVariable Long idtc) {
+        return new ResponseEntity<Long>(oGrupoCuentaService.deleteByIds(idb, idtc), HttpStatus.OK);
+    }
+    
+    @PutMapping("/create/{idb}/{idtc}")
+    public ResponseEntity<Long> createByIds(@PathVariable Long idb, @PathVariable Long idtc) {
+        return new ResponseEntity<Long>(oGrupoCuentaService.createByIds(idb, idtc), HttpStatus.OK);
     }
 
 }
